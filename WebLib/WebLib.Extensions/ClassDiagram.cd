@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="WebLib.Extensions.Controller" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="5.5" Width="8.25" />
+    <TypeIdentifier>
+      <HashCode>ACBGAACBAIAAAAEIIACABwABAQgkKAAAAAAiAgAAAAg=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebLib.Extensions.RepoExtended&lt;T&gt;">
+    <Position X="7.25" Y="3.75" Width="4" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="WebLib.Extensions.RepoExtended&lt;T&gt;.RepoOperation">
+        <TypeIdentifier>
+          <NewMemberFileName>RepoExtended.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAEAAAADgAAEECAAAEAAAAgAAAAAAQAAIA=</HashCode>
+      <FileName>RepoExtended.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_ERROR_LOG">
+    <Position X="0.5" Y="0.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQCAAIACAAEAAAAAAEAAAgAAJAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_ERROR_LOG.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_ERROR_LOGRepository">
+    <Position X="7.25" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_ERROR_LOGRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_APPLICATION_PARAMETER">
+    <Position X="11.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAIAAAAAAAAQAAAAAAAACAAAA=</HashCode>
+      <FileName>Model\ADM_R_APPLICATION_PARAMETER.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_APPLICATION_PARAMETERRepository">
+    <Position X="16.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAQAAIA=</HashCode>
+      <FileName>Model\ADM_R_APPLICATION_PARAMETERRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_ERROR_LOG">
+    <Position X="21.5" Y="2.25" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAIACAAEAAAAAAEAAAgAAJAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_ERROR_LOG.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_ERROR_LOGRepository">
+    <Position X="30" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_ERROR_LOGRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUP">
+    <Position X="0.5" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAASACCACAEIQAAAAAQAABAoQAAQAAAAAAAIAA=</HashCode>
+      <FileName>Model\ADM_R_GROUP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUP_ACCESS">
+    <Position X="7.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIBAAAEIQAAAAAAAAAAIAQCAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_GROUP_ACCESS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUP_ACCESSRepository">
+    <Position X="11.5" Y="3" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Model\ADM_R_GROUP_ACCESSRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUP_MEMBERS">
+    <Position X="16.5" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEIQAAAAAAAAAAMAAAIAACAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_GROUP_MEMBERS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUP_MEMBERSRepository">
+    <Position X="21.5" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Model\ADM_R_GROUP_MEMBERSRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_GROUPRepository">
+    <Position X="30" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Model\ADM_R_GROUPRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_LOG_ACTION">
+    <Position X="0.5" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACBBAAAAAQAAIAAEABAAAAAAAAIAAAAIAAAgAAABAI=</HashCode>
+      <FileName>Model\ADM_R_LOG_ACTION.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_LOG_ACTIONRepository">
+    <Position X="7.25" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_LOG_ACTIONRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_LOG_LOGIN">
+    <Position X="11.5" Y="13.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAwQAIAEIAAAAAgAAAIIAAQAIIEAABAABAA=</HashCode>
+      <FileName>Model\ADM_R_LOG_LOGIN.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_LOG_LOGINRepository">
+    <Position X="16.5" Y="5.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_LOG_LOGINRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_MODULE">
+    <Position X="21.5" Y="11.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQAAAQABAAkJAEAAAAAAEAAAACIAQAAAACAAUg=</HashCode>
+      <FileName>Model\ADM_R_MODULE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_MODULE_ATTRIBUT">
+    <Position X="30" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAQDAAAEIAECAAAAAEAAQAQAAAAAAAABAAA=</HashCode>
+      <FileName>Model\ADM_R_MODULE_ATTRIBUT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_MODULE_ATTRIBUTRepository">
+    <Position X="0.5" Y="8.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Model\ADM_R_MODULE_ATTRIBUTRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_MODULERepository">
+    <Position X="7.25" Y="11.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAABAAABAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Model\ADM_R_MODULERepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_USER">
+    <Position X="11.5" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAgAACAAAGgAAAAAAEAAAEAAAEAAFIAAAAAEEE=</HashCode>
+      <FileName>Model\ADM_R_USER.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.ADM_R_USERRepository">
+    <Position X="16.5" Y="7.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Model\ADM_R_USERRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.MainMenu">
+    <Position X="30" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAABAEAAAAAAEAAAAAIAAAAAAAAAUA=</HashCode>
+      <FileName>Model\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.MainMenuRepository">
+    <Position X="0.5" Y="4" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MainMenuRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Extensions.Model.VIEW_GROUP_ACCESS_ATTRIBUTE">
+    <Position X="11.5" Y="9.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAIAAAAEIQEAAAAAAEBAIAAKAAAQIAAAAQA=</HashCode>
+      <FileName>Model\VIEW_GROUP_ACCESS_ATTRIBUTE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

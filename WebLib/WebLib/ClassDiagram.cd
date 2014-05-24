@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="WebLib.Base">
+    <Position X="19.25" Y="0.5" Width="8.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="WebLib.Base.MSSQLParameter">
+        <TypeIdentifier>
+          <NewMemberFileName>Base.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>VAAAHAgEAIIAAIAOCwKAICLAQ4QQAgAAiQCACkMPxCA=</HashCode>
+      <FileName>Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.cNavigation">
+    <Position X="8.5" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAQgQAgAABAAAIAARAAAAAAAAIACUAAAAAAhAACAAA=</HashCode>
+      <FileName>cNavigation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.CommonFunction">
+    <Position X="33" Y="0.5" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAEAAAAAAABgDAAAAAAAgARAEAAQAAAAA=</HashCode>
+      <FileName>CommonFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.AppConstant">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAgAAAAAEQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.SortConstant">
+    <Position X="56" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.ErrorConstant">
+    <Position X="35.75" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAJAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.ObjectRepoConstant">
+    <Position X="49" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.SPName">
+    <Position X="56" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.SPStatus">
+    <Position X="56" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.ConnectorConstant">
+    <Position X="39.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.OperatorConstant">
+    <Position X="49" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAACBAAEEAAAAAAAAAAAIAAAAAAAAAAAAAQCAAAAAAA=</HashCode>
+      <FileName>Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.cUserData">
+    <Position X="42.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAIAQBgAAEAIAYIAAAgIAEUAAAAAAAAAAgQgCAA=</HashCode>
+      <FileName>cUserData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Email">
+    <Position X="46" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAEAAAARAIAcARADAAAAAAAAAAAAAQAgAAATA=</HashCode>
+      <FileName>Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Enum">
+    <Position X="33" Y="7" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="WebLib.Enum.EnumStatusDominate">
+        <TypeIdentifier>
+          <NewMemberFileName>Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WebLib.Enum.EnumCardType">
+        <TypeIdentifier>
+          <NewMemberFileName>Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WebLib.Enum.EnumPaymentType">
+        <TypeIdentifier>
+          <NewMemberFileName>Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WebLib.Enum.EnumSessionRule">
+        <TypeIdentifier>
+          <NewMemberFileName>Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="WebLib.Enum.EnumSessionProfile">
+        <TypeIdentifier>
+          <NewMemberFileName>Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.FileToObjectClass">
+    <Position X="42.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAIAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>FileToObjectClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.fMailer">
+    <Position X="42.75" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAEAAAARAIAcARADAAAAAAAAAAAAAQAgAAATA=</HashCode>
+      <FileName>fMailer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.JavaObject">
+    <Position X="46" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>JavaScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.JavaScript">
+    <Position X="46" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAABgCAAsAAAIAAAQAAAQAAEAAAAQAQAABAQCA=</HashCode>
+      <FileName>JavaScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.MailSender">
+    <Position X="49" Y="9" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MailSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.MSAccess">
+    <Position X="49" Y="12" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAEAAAACAABAEAFAAAQQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MSAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.cSession">
+    <Position X="39.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgIAAAAAAACgAAAAwAAAAA=</HashCode>
+      <FileName>Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.WebLib">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebLib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.AuditTrailData">
+    <Position X="8.5" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAABAAgQAACAACAAFBVgAAAAAAAQIAAAQAA=</HashCode>
+      <FileName>Data\AuditTrailData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.CollectionExtended">
+    <Position X="12" Y="0.5" Width="7" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="WebLib.Data.CollectionExtended.Func&lt;T, TResult&gt;">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\CollectionExtended.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAIAAAAAAAAAAAAAAQAAAEAAAAAAAgAQAAQAAA=</HashCode>
+      <FileName>Data\CollectionExtended.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.ColumnAttribute">
+    <Position X="12" Y="4.25" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEgAAEAAAAAAAAAAAAAQAIBAAAAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Data\ColumnAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.ConditionData">
+    <Position X="33" Y="3.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAABAAAABAAAAACAAQAAAAAAAgAAAAIAA=</HashCode>
+      <FileName>Data\ConditionData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.FileHandler">
+    <Position X="35.75" Y="8.5" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>CMAAQAQAACAAQAAEEgEAAACAABAAEAALAAAACAAAAIE=</HashCode>
+      <FileName>Data\FileHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.ListItem&lt;N, V&gt;">
+    <Position X="6.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAAAAAAAAAAAAAAAAAAEACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.MSSQL">
+    <Position X="56" Y="5.5" Width="7" />
+    <TypeIdentifier>
+      <HashCode>YEAECAQRTUmBSPGCABgECNRAgQAgUEQABCAgACACiAQ=</HashCode>
+      <FileName>Data\MSSQL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.ObjectHandler">
+    <Position X="49" Y="15.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAAAAAAABQAAAAAIAAAEQAAIAAAABA=</HashCode>
+      <FileName>Data\ObjectHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.ObjectRepoData">
+    <Position X="6.25" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Data\ObjectRepoData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.Repository">
+    <Position X="0.5" Y="0.5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIBAAAAEAAAAAAAgAAAAAAAAEABAg=</HashCode>
+      <FileName>Data\RepoManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Data.RepoManager&lt;T&gt;">
+    <Position X="0.75" Y="5" Width="5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="WebLib.Data.RepoManager&lt;T&gt;.AuditTrailConstant">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\RepoManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QEwAAEAAIAAAAAAABAAAAACAgAEAAwAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\RepoManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Security.LDAP">
+    <Position X="49" Y="7" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAACAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Security\LDAP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Security.WebSecurity">
+    <Position X="12" Y="9" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAACgAAAEABAAACBAAAAAAAACAAAAgAAA=</HashCode>
+      <FileName>Security\WebSecurity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Web.BaseController" BaseTypeListCollapsed="true">
+    <Position X="28" Y="0.5" Width="4.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="WebLib.Web.BaseController.WebCookie">
+        <TypeIdentifier>
+          <NewMemberFileName>Web\BaseController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>MAAGwIQBAAICAAZAAAAQAjIIVgYAiAAAAACQAAAAEBI=</HashCode>
+      <FileName>Web\BaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebLib.Web.PagingParameter">
+    <Position X="49" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAIAAAAAAAAgEAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Web\PagingParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Web.SearchParameter">
+    <Position X="49" Y="4.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Web\SearchParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.Web.WebAppsCookie">
+    <Position X="56" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Web\WebAppsCookie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebLib.WebHandler.Download" BaseTypeListCollapsed="true">
+    <Position X="39.5" Y="4.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABABAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebHandler\Download.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebLib.WebHandler.Image" BaseTypeListCollapsed="true">
+    <Position X="42.75" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABABAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebHandler\Image.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="WebLib.Web.IAuthorization">
+    <Position X="8.5" Y="11" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Web\IAuthorization.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WebLib.Web.IControlModel&lt;T&gt;">
+    <Position X="8.5" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Web\IControlModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WebLib.Web.IControlView&lt;T&gt;">
+    <Position X="8.5" Y="14" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABEAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Web\IControlView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WebLib.Web.IExceptionCapture">
+    <Position X="8.5" Y="15.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Web\IExceptionCapture.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
