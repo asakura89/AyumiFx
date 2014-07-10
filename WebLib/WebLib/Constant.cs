@@ -2,13 +2,13 @@ using System;
 
 namespace WebLib
 {
-    public class AppConstant
+    /*public class AppConstant
     {
         public const String APP_NAME = "AppName";
         public const String UOBI_KEY = "UOBIKey";
         public const String DOMAIN = "Domain";
         public const String AD_PATH = "ADPath";
-    }
+    }*/
 
     public class SortConstant
     {
@@ -35,29 +35,35 @@ namespace WebLib
         public const String SP_PAGING = "USP_getPaging";
     }
 
-    public class SPStatus
+    /*public class SPStatus
     {
         public const String SP_INSERT = "Insert";
         public const String SP_UPDATE = "Update";
         public const String SP_DELETE = "Delete";
-    }
+    }*/
 
-    public class ConnectorConstant
+    /*internal sealed class Connector
     {
-        public const String CON_AND = " AND ";
-        public const String CON_OR = " OR ";
-    }
+        internal const String And = " AND ";
+        internal const String Or = " OR ";
+    }*/
 
-    public class OperatorConstant
+    /*internal sealed class Operator
     {
-        public const String OP_EQUAL = " = ";
-        public const String OP_NOT_EQUAL = " != ";
-        public const String OP_MORE_THEN = " > ";
-        public const String OP_MORE_THEN_EQUAL = " >= ";
-        public const String OP_LESS_THEN = " < ";
-        public const String OP_LESS_THEN_EQUAL = " <= ";
-        public const String OP_LIKE = " like ";
-        public const String OP_BETWEEN = " BETWEEN ";
-        public const String OP_IN = " IN ";
-    }
+        internal const String Equal = " = ";
+        internal const String NotEqual = " != ";
+        internal const String MoreThan = " > ";
+        internal const String MoreThanEqual = " >= ";
+        internal const String LessThan = " < ";
+        internal const String LessThanEqual = " <= ";
+        internal const String Like = " like ";
+        internal const String Between = " BETWEEN ";
+        internal const String In = " IN ";
+        internal const String Is = " IS ";
+    }*/
 }
+
+
+
+
+

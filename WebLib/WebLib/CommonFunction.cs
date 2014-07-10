@@ -4,7 +4,9 @@ using System.Configuration;
 using System.Data;
 using System.Reflection;
 using System.Web.UI.WebControls;
+using WebLib.Constant;
 using WebLib.Data;
+using WebLib.Security;
 
 namespace WebLib
 {
@@ -30,15 +32,33 @@ namespace WebLib
             return new DateTime(1753, 1, 1);
         }
 
+        public static String TrimStart(String target, String trimString)
+        {
+            String result = target;
+            while (result.StartsWith(trimString))
+                result = result.Substring(trimString.Length);
+
+            return result;
+        }
+
+        public static String TrimEnd(String target, String trimString)
+        {
+            String result = target;
+            while (result.EndsWith(trimString))
+                result = result.Substring(0, result.Length - trimString.Length);
+
+            return result;
+        }
+
         /// <summary>
         /// Convert DataTable To List of Object
         /// </summary>
         /// <typeparam name="TSource">type of Object</typeparam>
         /// <param name="dt">Data table to be converted</param>
         /// <returns>List<T></returns>
-        public static List<TSource> ConvertDataTableToListObject<TSource>(DataTable dt)
+        public static List<TSource> ConvertDataTableToList<TSource>(DataTable dt)
         {
-            List<TSource> listObject = new List<TSource>();
+            /*List<TSource> listObject = new List<TSource>();
             TSource objectData = Activator.CreateInstance<TSource>();
             List<ObjectRepoData> listAttribut = ObjectHandler.GetListObjectRepoFromObject<TSource>();
             foreach (DataRow dr in dt.Rows)
@@ -59,38 +79,87 @@ namespace WebLib
                 }
                 listObject.Add(objData);
             }
-            return listObject;
+            return listObject;*/
+
+            var dataList = new List<TSource>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                var dataObj = Activator.CreateInstance<TSource>();
+                Type dataObjType = dataObj.GetType();
+                PropertyInfo[] propertyList = dataObjType.GetProperties();
+
+                foreach (PropertyInfo property in propertyList)
+                {
+                    Type propertyType = property.PropertyType;
+                    Object dataValue = DBNull.Value;
+                    if (!(propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof (List<>)))
+                        dataValue = dr[property.Name];
+
+                    if (dataValue != DBNull.Value)
+                        property.SetValue(dataObj, Convert.ChangeType(dataValue, property.PropertyType), null);
+                }
+
+                dataList.Add(dataObj);
+            }
+
+            return dataList;
         }
 
-        ///// <summary>
-        ///// Get half UOBI key to decrypt string from config file
-        ///// </summary>
-        ///// <param name="appName">App name from config file</param>
-        ///// <returns>half key</returns>
-        //private static String GetHalfKeyFromRegistry(String appName)
-        //{
-        //    ApplicationRegistryHandler appReg = new ApplicationRegistryHandler();
-        //    return appReg.ReadFromRegistry("Software\\" + appName, "Key");
-        //}
+        public static List<TSource> ConvertDataTableToListWithColumnAttributeAwareness<TSource>(DataTable dt)
+        {
+            var dataList = new List<TSource>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                var dataObj = Activator.CreateInstance<TSource>();
+                Type dataObjType = dataObj.GetType();
+                PropertyInfo[] propertyList = dataObjType.GetProperties();
 
-        ///// <summary>
-        ///// Get decrypted web config value by config name
-        ///// </summary>
-        ///// <param name="configName">config name</param>
-        ///// <returns>decrypted config value</returns>
-        //public static String GetWebConfigValue(String configName)
-        //{
-        //    Encryptor encryptor = new Encryptor();
+                foreach (PropertyInfo property in propertyList)
+                {
+                    Type propertyType = property.PropertyType;
+                    Object dataValue = DBNull.Value;
+                    if (!(propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(List<>)))
+                        dataValue = dr[property.Name];
 
-        //    String encryptedConfig = ConfigurationManager.AppSettings[configName].ToString();
-        //    String appName = ConfigurationManager.AppSettings[AppConstant.APP_NAME].ToString().Trim();
-        //    String uobiKey = ConfigurationManager.AppSettings[AppConstant.UOBI_KEY].ToString();
+                    if (dataValue != DBNull.Value)
+                        property.SetValue(dataObj, Convert.ChangeType(dataValue, property.PropertyType), null);
+                }
 
-        //    String regKey = CommonFunction.GetHalfKeyFromRegistry(appName);
-        //    String decryptedConfig = encryptor.Decrypt(encryptedConfig, regKey, uobiKey);
+                dataList.Add(dataObj);
+            }
 
-        //    return decryptedConfig;
-        //}
+            return dataList;
+        }
+
+        /// <summary>
+        /// Get half UOBI key to decrypt string from config file
+        /// </summary>
+        /// <param name="appName">App name from config file</param>
+        /// <returns>half key</returns>
+        private static String GetHalfKeyFromRegistry(String appName)
+        {
+            ApplicationRegistryHandler appReg = new ApplicationRegistryHandler();
+            return appReg.ReadFromRegistry("Software\\" + appName, "Key");
+        }
+
+        /// <summary>
+        /// Get decrypted web config value by config name
+        /// </summary>
+        /// <param name="configName">config name</param>
+        /// <returns>decrypted config value</returns>
+        public static String GetWebConfigValue(String configName)
+        {
+            Encryptor encryptor = new Encryptor();
+
+            String encryptedConfig = ConfigurationManager.AppSettings[configName].ToString();
+            String appName = ConfigurationManager.AppSettings[UOBI.Name].ToString().Trim();
+            String uobiKey = ConfigurationManager.AppSettings[UOBI.Key].ToString();
+
+            String regKey = CommonFunction.GetHalfKeyFromRegistry(appName);
+            String decryptedConfig = encryptor.Decrypt(encryptedConfig, regKey, uobiKey);
+
+            return decryptedConfig;
+        }
 
         public static void PopulateRawListToListBox<T>(ref ListBox listbox, List<T> dataList, String display, String value)
         {

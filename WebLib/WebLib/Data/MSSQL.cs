@@ -1,15 +1,19 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Xml;
+using System.Data.Common;
+using System.Net;
+using System.Reflection;
+using WebLib.Constant;
 using WebLib.Security;
 
 namespace WebLib.Data
 {
-    public class MSSQL
+    public class MSSQL : IDisposable
     {
-        private WebSecurity cSec = new WebSecurity();
+        /*private WebSecurity cSec = new WebSecurity();
         private string _ConnectionString;
         private SqlConnection _Connection = new SqlConnection();
         public string _UserID;
@@ -19,18 +23,92 @@ namespace WebLib.Data
         public string _Password;
         private string _Transaction="";
         private string _AppConfigName = "DBConfig";
-        private int _TimeOut;
+        private int _TimeOut;*/
 
-        public MSSQL(string appConfigName)
+        /*public MSSQL(string appConfigName)
         {
             if (!string.IsNullOrEmpty(appConfigName)) 
                 _AppConfigName = appConfigName;
         }
 
         public MSSQL()
-            : this("DBConfig") { }
+            : this("DBConfig") { }*/
 
-        /// <summary>
+        protected const String SqlServerProvider = "System.Data.SqlClient";
+        private DbConnection connection;
+        private DbProviderFactory factory;
+        private readonly WebSecurity security = new WebSecurity();
+
+
+        public class DefaultMSSQLConfiguration : IMSSQLConfiguration
+        {
+            public String ConnectionString { get; set; }
+            public String ConnectionProvider { get; set; }
+            public ConnectionStringSource ConnectionStringSource { get; set; }
+            public ConnectionStringEncryptionType ConnectionStringEncryptionType { get; set; }
+
+            public DefaultMSSQLConfiguration()
+            {
+                ConnectionString = "DbConfig";
+                ConnectionProvider = SqlServerProvider;
+                ConnectionStringSource = ConnectionStringSource.AppConfig;
+                ConnectionStringEncryptionType = ConnectionStringEncryptionType.TripleDES;
+            }
+        }
+
+        public enum ConnectionStringEncryptionType
+        {
+            TripleDES,
+            UOBISecurity
+        }
+
+        public enum ConnectionStringSource
+        {
+            ConnectionString,
+            AppConfig
+        }
+
+        /*public MSSQL(String connectionString, String provider, ConnectionStringSource connectionStringSource)
+        {
+            OpenConnection(connectionString, provider, connectionStringSource);
+        }
+
+        public MSSQL(String connectionStringName, String provider) : this(connectionStringName, provider, ConnectionStringSource.AppConfig) { }
+
+        public MSSQL(String connectionStringName) : this(connectionStringName, SqlServerProvider) { }*/
+
+        public MSSQL(IMSSQLConfiguration mssqlConfig)
+        {
+            //ValidateConfiguration(mssqlConfig);
+
+            //const String ConnectionStringTemplate = "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};";
+            String decryptedConnectionString = String.Empty;
+            String provider = String.IsNullOrEmpty(mssqlConfig.ConnectionProvider) ? SqlServerProvider : mssqlConfig.ConnectionProvider;
+            if (mssqlConfig.ConnectionStringSource == ConnectionStringSource.AppConfig)
+            {
+                switch (mssqlConfig.ConnectionStringEncryptionType)
+                {
+                    case ConnectionStringEncryptionType.TripleDES:
+                        String encryptedConnectionString = ConfigurationManager.AppSettings[mssqlConfig.ConnectionString];
+                        decryptedConnectionString = security.DecryptTripleDes(encryptedConnectionString, false);
+                        break;
+                    case ConnectionStringEncryptionType.UOBISecurity:
+                        decryptedConnectionString = CommonFunction.GetWebConfigValue(mssqlConfig.ConnectionString);
+                        break;
+                }
+            }
+            else
+                decryptedConnectionString = mssqlConfig.ConnectionString;
+
+            OpenConnection(decryptedConnectionString, provider);
+        }
+
+        /*private void ValidateConfiguration(Configuration mssqlConfiguration)
+        {
+            throw new NotImplementedException();
+        }*/
+
+        /*/// <summary>
         /// property of SQL Transaction
         /// </summary>
         /// 
@@ -46,8 +124,8 @@ namespace WebLib.Data
             {
                 _Transaction = value;
             }
-        }
-        /// <summary>
+        }*/
+        /*/// <summary>
         /// to get parameter value with name and parameter
         /// </summary>
         /// <param name="_Name">name</param>
@@ -78,34 +156,46 @@ namespace WebLib.Data
                 return "";
             }
 
-        }
+        }*/
 
-        #region Connection Handling
+        /*//#region Connection Handling
         /// <summary>
         /// Open database connection
-        /// </summary>
-        public void OpenConnection()
+        /// </summary>*/
+        public void OpenConnection(String connectionString, String provider)
         {
-            CloseConnection();
+            /*CloseConnection();
             try
             {
                 _Connection.Open();
                 if (SQLTransaction != "")
                     _Connection.BeginTransaction(SQLTransaction);
                 /*else
-                    _Connection.BeginTransaction();*/
+                    _Connection.BeginTransaction();#1#
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
+            }*/
+
+            if (connection != null)
+                CloseConnection();
+
+            factory = DbProviderFactories.GetFactory(provider);
+            connection = factory.CreateConnection();
+            if (connection == null)
+                throw new InvalidOperationException("Connection creation from factory failed.");
+
+            connection.ConnectionString = connectionString;
+            connection.Open();
         }
-        /// <summary>
+
+        /*/// <summary>
         /// close database connection
-        /// </summary>
-        public void CloseConnection()
+        /// </summary>*/
+        private void CloseConnection()
         {
-            if (_Connection.State != ConnectionState.Closed)
+            /*if (_Connection.State != ConnectionState.Closed)
             {
                 try
                 {
@@ -115,9 +205,67 @@ namespace WebLib.Data
                 {
                     Console.WriteLine(e.Message);
                 }
+            }*/
+            connection.Close();
+            connection.Dispose();
+            connection = null;
+        }
+
+        private DbCommand BuildProcedureCommand(String procedureName)
+        {
+            return BuildProcedureCommand(procedureName, null);
+        }
+
+        private DbCommand BuildProcedureCommand(String procedureName, Object[] args)
+        {
+            return BuildDbCommand(procedureName, args, CommandType.StoredProcedure);
+        }
+
+        private DbCommand BuildSqlCommand(String queryString)
+        {
+            return BuildSqlCommand(queryString, null);
+        }
+
+        private DbCommand BuildSqlCommand(String queryString, Object[] args)
+        {
+            return BuildDbCommand(queryString, args, CommandType.Text);
+        }
+
+        private DbCommand BuildDbCommand(String queryString, Object[] args, CommandType dbCommandType)
+        {
+            DbCommand builtDbCommand = connection.CreateCommand();
+            builtDbCommand.CommandText = queryString;
+            builtDbCommand.CommandType = dbCommandType;
+            if (args != null)
+                BuildDbCommandParameter(ref builtDbCommand, args);
+
+            return builtDbCommand;
+        }
+
+        private void BuildDbCommandParameter(ref DbCommand builtDbCommand, Object[] queryParameters)
+        {
+            builtDbCommand.Parameters.Clear();
+            for (Int32 paramIdx = 0; paramIdx < queryParameters.Length; paramIdx++)
+            {
+                Object currentArgs = queryParameters[paramIdx] ?? DBNull.Value;
+                DbParameter param = builtDbCommand.CreateParameter();
+                param.ParameterName = "@" + paramIdx.ToString();
+                param.Value = currentArgs;
+                builtDbCommand.Parameters.Add(param);
             }
         }
-        /// <summary>
+
+        private DbDataAdapter BuildSelectDataAdapter(DbCommand builtSqlCommand)
+        {
+            DbDataAdapter builtDataAdapter = factory.CreateDataAdapter();
+            if (builtDataAdapter == null)
+                throw new Exception("Data Adapter creation from factory failed.");
+
+            builtDataAdapter.SelectCommand = builtSqlCommand;
+            return builtDataAdapter;
+        }
+
+        /*/// <summary>
         /// get webconfig dbscript consist of
         /// use, server, database, datasource, password, timeout and globaltransact        /// 
         /// </summary>
@@ -125,8 +273,8 @@ namespace WebLib.Data
         public string WebConfigDBScript()
         {
             return "user=" + _UserID + ";server=" + _Server + ";database=" + _Database + ";datasource=" + _DataSource + ";password=" + _Password + ";timeout=" + _TimeOut.ToString().Trim() + ";globaltransact="+_Transaction+"";
-        }
-        /// <summary>
+        }*/
+        /*/// <summary>
         /// Init Database considt of
         /// userid,data_source,database and password
         /// </summary>
@@ -159,8 +307,9 @@ namespace WebLib.Data
                 appLog.WriteEntry("DBConnHandler.SetConnDetailsFromConfig. Error in setup db connection details. Error Message : " + ex.Message);
                 Environment.Exit(20);
             }
-        }
-        /// <summary>
+        }*/
+
+        /*/// <summary>
         /// update database connection
         /// </summary>
         public void UpdateConnection()
@@ -182,9 +331,9 @@ namespace WebLib.Data
             }
             
         }
-        #endregion
-        #region Data Handling
-        /// <summary>
+        #endregion*/
+        //#region Data Handling
+        /*/// <summary>
         /// Function to get DataTable from Tabel, View, T-SQL
         /// </summary>
         /// <param name="_TableOrVieworSQL">name of table or view</param>
@@ -284,8 +433,8 @@ namespace WebLib.Data
                 result = _DataValue["BranchName"].ToString() ;
             }
             return result;
-        }
-        public DataTable ExecuteDataTable(string _TableOrVieworSQL, CommandType _CmdType)
+        }*/
+        /*public DataTable ExecuteDataTable(string _TableOrVieworSQL, CommandType _CmdType)
         {
             SqlCommand SQLCommand = new SqlCommand();
             SqlDataAdapter SQLAdapter = new SqlDataAdapter();
@@ -307,59 +456,76 @@ namespace WebLib.Data
             SQLAdapter.Fill(_DataTable);
             CloseConnection();
             return _DataTable;
+        }*/
+
+        public DataSet ExecuteDataSet(String queryString)
+        {
+            var targetDataSet = new DataSet();
+            using (DbCommand cmd = BuildSqlCommand(queryString))
+            {
+                using (DbDataAdapter dataAdapter = BuildSelectDataAdapter(cmd))
+                    dataAdapter.Fill(targetDataSet);
+            }
+
+            return targetDataSet;
         }
 
-        public DataTable ExecuteDataTable(String query)
+        public DataSet ExecuteDataSet(String queryString, params Object[] queryParamList)
         {
-            OpenConnection();
-            DataTable targetDataTable = new DataTable();
-            using (SqlCommand cmd = _Connection.CreateCommand())
+            var targetDataSet = new DataSet();
+            using (DbCommand cmd = BuildSqlCommand(queryString, queryParamList))
             {
-                cmd.CommandText = query;
-                cmd.CommandType = CommandType.Text;
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    da.Fill(targetDataTable);
+                using (DbDataAdapter dataAdapter = BuildSelectDataAdapter(cmd))
+                    dataAdapter.Fill(targetDataSet);
+            }
+
+            return targetDataSet;
+        }
+
+        public DataTable ExecuteDataTable(String queryString)
+        {
+            var targetDataTable = new DataTable();
+            using (DbCommand cmd = BuildSqlCommand(queryString))
+            {
+                using (DbDataAdapter dataAdapter = BuildSelectDataAdapter(cmd))
+                    dataAdapter.Fill(targetDataTable);
             }
 
             return targetDataTable;
         }
 
-        public DataTable ExecuteDataTable(String query, params Object[] queryParamList)
+        public DataTable ExecuteDataTable(String queryString, params Object[] queryParamList)
         {
-            OpenConnection();
-            DataTable targetDataTable = new DataTable();
-            using (SqlCommand cmd = _Connection.CreateCommand())
+            var targetDataTable = new DataTable();
+            using (DbCommand cmd = BuildSqlCommand(queryString, queryParamList))
             {
-                cmd.CommandText = query;
-                cmd.CommandType = CommandType.Text;
-                CreateSqlParameter(cmd, queryParamList);
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    da.Fill(targetDataTable);
+                using (DbDataAdapter dataAdapter = BuildSelectDataAdapter(cmd))
+                    dataAdapter.Fill(targetDataTable);
             }
 
             return targetDataTable;
         }
 
-        public void ExecuteNonQuery(String query, params Object[] queryParamList)
+        public void ExecuteNonQuery(String queryString)
         {
-            OpenConnection();
-            using (SqlCommand cmd = _Connection.CreateCommand())
-            {
-                cmd.CommandText = query;
-                cmd.CommandType = CommandType.Text;
-                CreateSqlParameter(cmd, queryParamList);
+            using (DbCommand cmd = BuildSqlCommand(queryString))
                 cmd.ExecuteNonQuery();
-            }
         }
 
-        private void CreateSqlParameter(SqlCommand cmd, Object[] paramList)
+        public void ExecuteNonQuery(String queryString, params Object[] queryParamList)
+        {
+            using (DbCommand cmd = BuildSqlCommand(queryString, queryParamList))
+                cmd.ExecuteNonQuery();
+        }
+
+        /*private void CreateSqlParameter(SqlCommand cmd, Object[] paramList)
         {
             cmd.Parameters.Clear();
             for (int index = 0; index < paramList.Length; index++)
                 cmd.Parameters.AddWithValue("@" + index, paramList[index]);
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Function to get DataSet from Tabel, View, T-SQL
         /// </summary>
         /// <param name="_TableOrViewOrQueryOrSP">name of table or view</param>
@@ -497,94 +663,117 @@ namespace WebLib.Data
             //Preparing Adapter
             CloseConnection();
             return _ReturnValue;
-        }
-        /// <summary>
+        }*/
+        /*/// <summary>
         /// Function to ExecuteStoredProcedure
         /// </summary>
         /// <param name="_StoredProcedure">name of storedprocedure</param>
         /// <param name="_Parameter">paramater</param>
-        /// <returns>1/0(true/false)</returns>
-        public int ExecuteStoredProcedure(string _StoredProcedure, SqlParameter[] _Parameter)
+        /// <returns>1/0(true/false)</returns>*/
+        public void ExecuteStoredProcedure(String procedureName, params Object[] queryParamList)
         {
-            SqlCommand SQLCommand = new SqlCommand();
-            DataSet _DataSet = new DataSet();
-            int _ReturnValue = 0;
-            //Preparing Connection           
-            OpenConnection();
-            SQLCommand.Connection = _Connection;
-            SQLCommand.CommandText = _StoredProcedure;
-            SQLCommand.CommandType = CommandType.StoredProcedure;
-            if (_TimeOut > 0)
-                SQLCommand.CommandTimeout = _TimeOut;
-            else 
-                SQLCommand.CommandTimeout = 0;
-
-            string paramLast = "";
-            if (_Parameter.GetUpperBound(0) > 0)
-            {
-                for (int i = 0; i <= _Parameter.GetUpperBound(0); i++)
-                {
-                    SQLCommand.Parameters.Add(_Parameter[i]);
-                    paramLast += "'" + _Parameter[i].Value.ToString() + "',";
-                }
-            }
-            object obj = SQLCommand.ExecuteReader();
-            
-            //_ReturnValue = SQLCommand.ExecuteReader();
-            //Return Value for OUTPUT parameter
-            for(int i = 0;i<=_Parameter.GetUpperBound(0);i++)
-            {
-                //_Parameter[i].Value = SQLCommand.Parameters.Item(_Parameter[i].ParameterName).Value;
-                _Parameter[i].Value = SQLCommand.Parameters[_Parameter[i].ParameterName].Value;
-            }
-            //Preparing Adapter
-            CloseConnection();
-            return _ReturnValue;
+            using (DbCommand cmd = BuildProcedureCommand(procedureName, queryParamList))
+                cmd.ExecuteNonQuery();
         }
-        /// <summary>
+
+        public void ExecuteStoredProcedure<TSource>(TSource obj, String status)
+        {
+            Type objType = obj.GetType();
+            String procedureName = objType.Name;
+            using (DbCommand cmd = BuildProcedureCommand(procedureName))
+            {
+                IEnumerable<DbParameter> queryParamList = CreateDbParameterList(obj, status, cmd, false);
+                foreach (DbParameter parameter in queryParamList)
+                    cmd.Parameters.Add(parameter);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public IEnumerable<String> ExecuteStoredProcedureWithOutput<TSource>(TSource obj, String status)
+        {
+            Type objType = obj.GetType();
+            String procedureName = objType.Name;
+            using (DbCommand cmd = BuildProcedureCommand(procedureName))
+            {
+                IEnumerable<DbParameter> queryParamList = CreateDbParameterList(obj, status, cmd, true);
+                foreach (DbParameter parameter in queryParamList)
+                    cmd.Parameters.Add(parameter);
+
+                cmd.ExecuteNonQuery();
+
+                IEnumerable<DbParameter> parameterOutputList = GetOutputParameterList(cmd.Parameters);
+                foreach (DbParameter parameter in parameterOutputList)
+                    yield return parameter.Value.ToString();
+            }
+        }
+
+        private IEnumerable<DbParameter> CreateDbParameterList<TSource>(TSource obj, String status, DbCommand cmd, Boolean isUsingOutputParam)
+        {
+            Type objType = obj.GetType();
+            PropertyInfo[] propertyList = objType.GetProperties();
+            foreach (PropertyInfo property in propertyList)
+            {
+                DbParameter parameter = cmd.CreateParameter();
+                parameter.ParameterName = "@" + property.Name;
+                parameter.Value = property.GetValue(obj, null);
+                if (isUsingOutputParam)
+                    parameter.Direction = ParameterDirection.InputOutput;
+
+                yield return parameter;
+            }
+
+            DbParameter statusParameter = cmd.CreateParameter();
+            statusParameter.ParameterName = "@status";
+            statusParameter.Value = status;
+
+            yield return statusParameter;
+        }
+
+        private IEnumerable<DbParameter> GetOutputParameterList(IEnumerable dbParameterList)
+        {
+            foreach (DbParameter parameter in dbParameterList)
+                if (parameter.Direction == ParameterDirection.InputOutput)
+                    yield return parameter;
+        }
+
+        /*/// <summary>
         /// Function to ExecuteDataScallar
         /// </summary>
         /// <param name="_TSQL">query that you want to execute</param>
-        /// <returns>object</returns>
-        public object ExecuteDataScallar(string _TSQL)
+        /// <returns>object</returns>*/
+        public Object ExecuteDataScalar(String queryString)
         {
-            SqlCommand SQLCommand=new SqlCommand();
-            SqlDataAdapter SqlClient=new SqlDataAdapter();
-            object _DataValue=new object();
-            //Preparing Connection
-            OpenConnection();
-            SQLCommand.Connection = _Connection;
-            SQLCommand.CommandText = _TSQL.Trim();
-            if (_TimeOut > 0)
-                SQLCommand.CommandTimeout = _TimeOut;
-            else
-                SQLCommand.CommandTimeout = 0;
-            SQLCommand.CommandType = CommandType.Text;
-            _DataValue = SQLCommand.ExecuteScalar();
-            CloseConnection();
-            return _DataValue;
-        }
-
-        public Object ExecuteDataScallar(String query, params Object[] queryParamList)
-        {
-            OpenConnection();
-            using (SqlCommand cmd = _Connection.CreateCommand())
-            {
-                cmd.CommandText = query;
-                cmd.CommandType = CommandType.Text;
-                CreateSqlParameter(cmd, queryParamList);
+            using (DbCommand cmd = BuildSqlCommand(queryString))
                 return cmd.ExecuteScalar();
-            }
         }
 
-        /// <summary>
+        public Object ExecuteDataScalar(String queryString, params Object[] queryParamList)
+        {
+            using (DbCommand cmd = BuildSqlCommand(queryString, queryParamList))
+                return cmd.ExecuteScalar();
+        }
+
+        public TResult ExecuteDataScalar<TResult>(String queryString)
+        {
+            Object result = ExecuteDataScalar(queryString);
+            return result == DBNull.Value ? default(TResult) : (TResult)result;
+        }
+
+        public TResult ExecuteDataScalar<TResult>(String queryString, params Object[] queryParamList)
+        {
+            Object result = ExecuteDataScalar(queryString, queryParamList);
+            return result == DBNull.Value ? default(TResult) : (TResult)result;
+        }
+
+        /*/// <summary>
         /// Function to ExecuteDataReader
         /// </summary>
         /// <param name="_TSQL">query that you want to execute</param>
-        /// <returns>SqlDataReader</returns>
-        public SqlDataReader ExecuteDataReader(string _TSQL)
+        /// <returns>SqlDataReader</returns>*/
+        public DbDataReader ExecuteDataReader(String queryString)
         {
-            SqlCommand SQLCommand = new SqlCommand();
+            /*SqlCommand SQLCommand = new SqlCommand();
             SqlDataAdapter SqlClient = new SqlDataAdapter();
             SqlDataReader _DataValue;
             //Preparing Connection
@@ -598,14 +787,149 @@ namespace WebLib.Data
             SQLCommand.CommandType = CommandType.Text;
             _DataValue = SQLCommand.ExecuteReader();
             CloseConnection();
-            return _DataValue;
+            return _DataValue;*/
+            using (DbCommand cmd = BuildSqlCommand(queryString))
+                return cmd.ExecuteReader();
         }
-        /// <summary>
+
+        public DbDataReader ExecuteDataReader(String queryString, params Object[] queryParamList)
+        {
+            using (DbCommand cmd = BuildSqlCommand(queryString, queryParamList))
+                return cmd.ExecuteReader();
+        }
+
+        public List<String> Insert<TSource>(TSource obj, String currentUser)
+        {
+            if (IsAuditTrailedObject(obj))
+                SetAuditTrail(ref obj, currentUser, SPStatus.Insert);
+            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Insert));
+        }
+
+        public List<String> Update<TSource>(TSource obj, String currentUser)
+        {
+            if (IsAuditTrailedObject(obj))
+                SetAuditTrail(ref obj, currentUser, SPStatus.Update);
+            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Update));
+        }
+
+        public List<String> Delete<TSource>(TSource obj, String currentUser)
+        {
+            if (IsAuditTrailedObject(obj))
+                SetAuditTrail(ref obj, currentUser, SPStatus.Delete);
+            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Delete));
+        }
+
+        private Boolean IsAuditTrailedObject<TSource>(TSource obj)
+        {
+            return obj is IAuditTrail;
+        }
+
+        private void SetAuditTrail<TSource>(ref TSource obj, String currentUser, String spStatus)
+        {
+            var auditTrail = obj as IAuditTrail;
+            switch (spStatus)
+            {
+                case SPStatus.Insert:
+                    auditTrail.CreatedOn = DateTime.Now;
+                    auditTrail.CreatedBy = currentUser;
+                    break;
+                case SPStatus.Delete:
+                    auditTrail.IsDeleted = true;
+                    auditTrail.IsActive = false;
+                    break;
+            }
+
+            auditTrail.UpdatedOn = DateTime.Now;
+            auditTrail.UpdatedBy = currentUser;
+        }
+
+        public Boolean IsExist<TResult>(IEnumerable<Condition> conditionList)
+        {
+            String tableName = String.Empty;
+            Type tType = typeof (TResult);
+            Object[] attributeList = tType.GetCustomAttributes(typeof (TableAttribute), false);
+            if (attributeList.Length > 0)
+            {
+                var tableAttribute = (TableAttribute) attributeList[0];
+                tableName = tableAttribute.TableName;
+            }
+            else
+                tableName = tType.Name;
+
+            String condition = CommonFunction.TrimStart(ObjectHandler.GenerateConditionToQuery(conditionList), "AND").Trim();
+            String query = String.Format("USP_IS_EXIST {0}, {1}", tableName, condition);
+            var isExist = (Boolean) ExecuteDataScalar(query);
+
+            return isExist;
+        }
+
+        public Boolean IsExist<TResult>(Condition condition)
+        {
+            if (condition == null)
+                throw new ArgumentNullException("condition");
+
+            var conditionList = new List<Condition>();
+            if (!String.IsNullOrEmpty(condition.ColumnName) &&
+                !String.IsNullOrEmpty(condition.Connector) &&
+                !String.IsNullOrEmpty(condition.LogicOperator))
+                conditionList.Add(condition);
+
+            return IsExist<TResult>(conditionList);
+        }
+
+        public List<TResult> GetDataList<TResult>(IEnumerable<Condition> conditionList, Boolean isColumnAttributeAware = true)
+        {
+            String query = ObjectHandler.GetSelectQuery<TResult>(conditionList);
+            DataTable targetedDataTable = ExecuteDataTable(query);
+
+            if (isColumnAttributeAware)
+                return CommonFunction.ConvertDataTableToListWithColumnAttributeAwareness<TResult>(targetedDataTable);
+
+            return CommonFunction.ConvertDataTableToList<TResult>(targetedDataTable);
+        }
+
+        public List<TResult> GetDataList<TResult>(Condition condition, Boolean isColumnAttributeAware = true)
+        {
+            var conditionList = new List<Condition>();
+            if (!String.IsNullOrEmpty(condition.ColumnName) &&
+                !String.IsNullOrEmpty(condition.Connector) &&
+                !String.IsNullOrEmpty(condition.LogicOperator))
+                conditionList.Add(condition);
+            String query = ObjectHandler.GetSelectQuery<TResult>(conditionList);
+            DataTable targetedDataTable = ExecuteDataTable(query);
+
+            if (isColumnAttributeAware)
+                return CommonFunction.ConvertDataTableToListWithColumnAttributeAwareness<TResult>(targetedDataTable);
+
+            return CommonFunction.ConvertDataTableToList<TResult>(targetedDataTable);
+        }
+
+        public List<TResult> GetDataList<TResult>(String query, Boolean isColumnAttributeAware = true)
+        {
+            DataTable targetedDataTable = ExecuteDataTable(query);
+
+            if (isColumnAttributeAware)
+                return CommonFunction.ConvertDataTableToListWithColumnAttributeAwareness<TResult>(targetedDataTable);
+
+            return CommonFunction.ConvertDataTableToList<TResult>(targetedDataTable);
+        }
+
+        public List<TResult> GetDataList<TResult>(String query, Boolean isColumnAttributeAware = true, params Object[] paramList)
+        {
+            DataTable targetedDataTable = ExecuteDataTable(query, paramList);
+
+            if (isColumnAttributeAware)
+                return CommonFunction.ConvertDataTableToListWithColumnAttributeAwareness<TResult>(targetedDataTable);
+
+            return CommonFunction.ConvertDataTableToList<TResult>(targetedDataTable);
+        }
+
+        /*/// <summary>
         /// Function to ExecuteXMLReader
         /// </summary>
         /// <param name="_TSQL">query that you want to execute</param>
-        /// <returns>XMLReader</returns>
-        public XmlReader ExecuteXMLReader(string _TSQL)
+        /// <returns>XMLReader</returns>*/
+        /*public XmlReader ExecuteXMLReader(string _TSQL)
         {
             SqlCommand SQLCommand = new SqlCommand();
             SqlDataAdapter SqlClient = new SqlDataAdapter();
@@ -631,8 +955,8 @@ namespace WebLib.Data
         public void ExecuteStoredProcedure(string _StoredProcedure, string _ParameterString)
         {
             ExecuteNonQuery("EXEC " + _StoredProcedure + " " + _ParameterString);
-        }
-        /// <summary>
+        }*/
+        /*/// <summary>
         /// Function to RunDTS
         /// </summary>
         /// <param name="_Provider">name of provider to run DTS</param>
@@ -687,7 +1011,7 @@ namespace WebLib.Data
         {
             return DTSScript("IBMDA400", _Server, _UserID, _Password, _InitQuery, _SourceQuery);
         }
-        #endregion
+        //#endregion
         #region SQLDMO Handling
         /// <summary>
         /// Function to check row that you want to use exist or not
@@ -1158,8 +1482,8 @@ namespace WebLib.Data
             }
             else
                 Console.WriteLine("Error setting configuration");
-        }
-        /// <summary>
+        }*/
+        /*/// <summary>
         /// Function to switch DB to application
         /// </summary>
         public void SwitchDBToAplication()
@@ -1179,13 +1503,17 @@ namespace WebLib.Data
         {
             SwitchDBToAplication();
         }
-        #endregion
+        #endregion*/
         
-        public void New()
+        /*public void New()
         {
             _Transaction="";
         }
-
-
+        */
+        public void Dispose()
+        {
+            CloseConnection();
+            GC.SuppressFinalize(this);
+        }
     }
 }

@@ -44,27 +44,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationRegistryHandler.cs" />
     <Compile Include="Base.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="cNavigation.cs" />
     <Compile Include="CommonFunction.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="Constant\AppConfig.cs" />
+    <Compile Include="Constant\App.cs" />
+    <Compile Include="Constant\Connector.cs" />
+    <Compile Include="Constant\IGroupMemberProperty.cs" />
+    <Compile Include="Constant\IMenuProperty.cs" />
+    <Compile Include="Constant\IUserProperty.cs" />
+    <Compile Include="Constant\CommonException.cs" />
+    <Compile Include="Constant\IAuditTrailProperty.cs" />
+    <Compile Include="Constant\IModuleProperty.cs" />
+    <Compile Include="Constant\Operator.cs" />
+    <Compile Include="Constant\SPStatus.cs" />
+    <Compile Include="Constant\UOBI.cs" />
     <Compile Include="cUserData.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Data\AuditTrailData.cs" />
+    <Compile Include="Data\AuditTrailedObject.cs" />
     <Compile Include="Data\CollectionExtended.cs" />
     <Compile Include="Data\ColumnAttribute.cs" />
-    <Compile Include="Data\ConditionData.cs" />
+    <Compile Include="Data\Condition.cs" />
     <Compile Include="Data\FileHandler.cs" />
+    <Compile Include="Data\IActionLog.cs" />
+    <Compile Include="Data\IAuditTrail.cs" />
+    <Compile Include="Data\IMSSQLConfiguration.cs" />
+    <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\ListItem.cs" />
+    <Compile Include="Data\LoggedAction.cs" />
     <Compile Include="Data\MSSQL.cs" />
     <Compile Include="Data\ObjectHandler.cs" />
     <Compile Include="Data\ObjectRepoData.cs" />
     <Compile Include="Data\RepoManager.cs" />
+    <Compile Include="Data\TableAttribute.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="Extensions\Controller.cs" />
+    <Compile Include="Extensions\Model\ISimpleObjectFactory.cs" />
+    <Compile Include="Extensions\Model\ISimpleRepositoryFactory.cs" />
+    <Compile Include="Extensions\Model\ISimpleServiceFactory.cs" />
+    <Compile Include="Extensions\Model\Object\IAppParameter.cs" />
+    <Compile Include="Extensions\Model\Object\IErrorInfo.cs" />
+    <Compile Include="Extensions\Model\Object\IGroupMember.cs" />
+    <Compile Include="Extensions\Model\Object\ILoginInfo.cs" />
+    <Compile Include="Extensions\Model\Object\IMenu.cs" />
+    <Compile Include="Extensions\Model\Object\IModule.cs" />
+    <Compile Include="Extensions\Model\Repository\IErrorInfoRepository.cs" />
+    <Compile Include="Extensions\Model\Repository\ILoginInfoRepository.cs" />
+    <Compile Include="Extensions\Model\Repository\IUserRepository.cs" />
+    <Compile Include="Extensions\Model\Service\ConsoleErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\DatabaseErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\DefaultErrorLogService.cs" />
+    <Compile Include="Extensions\Model\Service\DefaultUserLoginPolicy.cs" />
+    <Compile Include="Extensions\Model\Service\GroupAccessService.cs" />
+    <Compile Include="Extensions\Model\Service\GroupMemberService.cs" />
+    <Compile Include="Extensions\Model\Service\IErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\IErrorLogService.cs" />
+    <Compile Include="Extensions\Model\Service\LoginService.cs" />
+    <Compile Include="Extensions\Model\Service\IUserLoginPolicy.cs" />
+    <Compile Include="Extensions\Model\Service\MenuService.cs" />
+    <Compile Include="Extensions\Model\Service\ModuleService.cs" />
+    <Compile Include="Extensions\Model\Service\UserService.cs" />
+    <Compile Include="Extensions\Model\Service\WindowsEventLogErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Object\IUser.cs" />
     <Compile Include="FileToObjectClass.cs" />
     <Compile Include="fMailer.cs" />
     <Compile Include="JavaScript.cs" />
@@ -72,16 +119,26 @@
     <Compile Include="MSAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\LDAP.cs" />
+    <Compile Include="Security\PBKDF2SHA1.cs" />
+    <Compile Include="Security\UOBISecurity.cs" />
     <Compile Include="Security\WebSecurity.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="WebHandler\Download.cs" />
     <Compile Include="WebHandler\Image.cs" />
     <Compile Include="WebLib.cs" />
     <Compile Include="Web\BaseController.cs" />
+    <Compile Include="Web\Controller.cs" />
+    <Compile Include="Web\DefaultControllerFactory.cs" />
+    <Compile Include="Web\IActionCapture.cs" />
     <Compile Include="Web\IAuthorization.cs" />
+    <Compile Include="Web\IController.cs" />
+    <Compile Include="Web\IControllerFactory.cs" />
     <Compile Include="Web\IControlModel.cs" />
+    <Compile Include="Web\IControlPaging.cs" />
     <Compile Include="Web\IControlView.cs" />
     <Compile Include="Web\IExceptionCapture.cs" />
+    <Compile Include="Web\IObjectFactory.cs" />
+    <Compile Include="Web\ObjectFactory.cs" />
     <Compile Include="Web\PagingParameter.cs" />
     <Compile Include="Web\SearchParameter.cs" />
     <Compile Include="Web\WebAppsCookie.cs" />
@@ -92,6 +149,7 @@
   <ItemGroup>
     <Content Include="WebLib_diagram.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

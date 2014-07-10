@@ -19,7 +19,7 @@ namespace WebLib.Data
         {
             if (source == null) throw new ArgumentNullException("source");
 
-            return CollectionExtended.Any(CollectionExtended.Where(source, predicate));
+            return Any(Where(source, predicate));
         }
 
         public static Int32 Count<TSource>(IEnumerable<TSource> source)
@@ -46,7 +46,7 @@ namespace WebLib.Data
         {
             if (source == null) throw new ArgumentNullException("source");
 
-            return CollectionExtended.FirstOrDefault(CollectionExtended.Where(source, predicate));
+            return FirstOrDefault(Where(source, predicate));
         }
 
         public static IEnumerable<TSource> Where<TSource>(IEnumerable<TSource> source, Func<TSource, Boolean> predicate)
@@ -55,7 +55,7 @@ namespace WebLib.Data
 
             using (IEnumerator<TSource> e = source.GetEnumerator())
                 while (e.MoveNext())
-                    if (predicate(e.Current) == true)
+                    if (predicate(e.Current))
                         yield return e.Current;
         }
 
@@ -73,7 +73,7 @@ namespace WebLib.Data
             if (source == null) throw new ArgumentNullException("source");
 
             IEqualityComparer<TSource> comparer = EqualityComparer<TSource>.Default;
-            return CollectionExtended.Any(source, delegate(TSource item) { return comparer.Equals(item, value); });
+            return Any(source, delegate(TSource item) { return comparer.Equals(item, value); });
         }
 
         public static List<TSource> ToList<TSource>(IEnumerable<TSource> source)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Web;
 using System.Web.UI;
@@ -6,23 +7,26 @@ using WebLib.Security;
 
 namespace WebLib.Web
 {
-    public abstract class BaseController : IAuthorization
+    public abstract class BaseController : IAuthorization, IControlPaging
     {
         private readonly WebCookie cookie;
         protected readonly HttpContext currentContext;
 
-        private const String USER_SESSION_KEY = "weblib.session.userid";
-        private const String IP_SESSION_KEY = "weblib.session.clientip";
-        private const String MODULE_SESSION_KEY = "weblib.session.module";
+        private const String SCRIPT_TYPE = "apps.script.type.script";
+        
+        private const String REDIRECT_TYPE = "apps.script.type.redirect";
+        private const String USER_SESSION_KEY = "apps.session.userid";
+        private const String IP_SESSION_KEY = "apps.session.clientip";
+        /*private const String MODULE_SESSION_KEY = "apps.session.module";
         private const String LOGIN_PAGE = "LoginPage";
-        private const String USER_SESSION = "UserSession";
+        private const String USER_SESSION = "UserSession";*/
 
-        protected const String ACTION_SESSION_KEY = "weblib.session.action";
-        protected const String PAGING_SESSION_KEY = "weblib.session.paging";
-        protected const String ACTIVEPAGE_SESSION_KEY = "weblib.session.activepage";
-        protected const String TOTALROW_SESSION_KEY = "weblib.session.totalrow";
-        protected const String SORT_SESSION_KEY = "weblib.session.sort";
-        protected const String SORT_DIRECTION_SESSION_KEY = "weblib.session.sortdir";
+        protected const String ACTION_SESSION_KEY = "apps.session.action";
+        protected const String PAGING_SESSION_KEY = "apps.session.paging";
+        protected const String ACTIVEPAGE_SESSION_KEY = "apps.session.activepage";
+        protected const String TOTALROW_SESSION_KEY = "apps.session.totalrow";
+        protected const String SORT_SESSION_KEY = "apps.session.sort";
+        protected const String SORT_DIRECTION_SESSION_KEY = "apps.session.sortdir";
 
         public Int32 CurrentTotalPage
         {
@@ -43,10 +47,15 @@ namespace WebLib.Web
             set { currentContext.Session[USER_SESSION_KEY] = value; }
         }
 
-        public String CurrentUserIP
+        public String CurrentUserIp
         {
             get { return currentContext.Session[IP_SESSION_KEY] == null ? String.Empty : currentContext.Session[IP_SESSION_KEY].ToString(); }
             set { currentContext.Session[IP_SESSION_KEY] = value; }
+        }
+
+        public String CurrentSessionId
+        {
+            get { return currentContext.Session.SessionID; }
         }
 
         public String CurrentPage
@@ -90,17 +99,13 @@ namespace WebLib.Web
             set { currentContext.Session[TOTALROW_SESSION_KEY] = value; }
         }
 
-        protected BaseController()
-        {
-            cookie = new WebCookie(currentContext.Request, currentContext.Response);
-        }
-
+        // TODO: rapihin cookie
         private class WebCookie
         {
-            private const String WEB_APPS_COOKIE_KEY = "weblib.cookie";
-            private const String COOKIE_VALUE_ID = "cookieId";
-            private const String COOKIE_VALUE_EXP = "cookieExp";
-            private static WebSecurity security = new WebSecurity();
+            private const String WEB_APPS_COOKIE_KEY = "apps.cookie.key";
+            private const String COOKIE_VALUE_ID = "apps.cookie.id";
+            private const String COOKIE_VALUE_EXP = "apps.cookie.expiration";
+            private static readonly WebSecurity security = new WebSecurity();
             private readonly HttpRequest request;
             private readonly HttpResponse response;
 
@@ -139,7 +144,7 @@ namespace WebLib.Web
                 return false;
             }
 
-            public DateTime GetCookieExpiringDate()
+            private DateTime GetCookieExpiringDate()
             {
                 HttpCookie currentCookie = FindCookie();
                 DateTime cookieExpDate;
@@ -154,7 +159,7 @@ namespace WebLib.Web
                 DateTime cookieExpDate = DateTime.Now.AddDays(1);
                 HttpCookie newCookie = response.Cookies[WEB_APPS_COOKIE_KEY];
                 String cookieId = sessionId;
-                String cookieExp = security.EncryptTripleDES(cookieExpDate.ToString(), true);
+                String cookieExp = security.EncryptTripleDES(cookieExpDate.ToString(CultureInfo.InvariantCulture), true);
                 newCookie.Values.Add(COOKIE_VALUE_ID, cookieId);
                 newCookie.Values.Add(COOKIE_VALUE_EXP, cookieExp);
                 newCookie.Expires = cookieExpDate;
@@ -167,16 +172,25 @@ namespace WebLib.Web
             }
         }
 
+        protected BaseController()
+        {
+            currentContext = HttpContext.Current;
+            cookie = new WebCookie(currentContext.Request, currentContext.Response);
+        }
+
         protected abstract void OnLogin(String userId, String passwordString);
-        protected abstract Boolean OnAuthorization();
         protected abstract void OnLogout();
+        protected abstract Boolean OnAuthorization();
+        //protected abstract void OnException(Exception ex);
 
         public Boolean IsAuthorized()
         {
-            if (!cookie.IsCookieExists())
-                return false;
+            return IsLoggedIn() && OnAuthorization();
+        }
 
-            return !cookie.IsCookieExpired() && OnAuthorization();
+        public Boolean IsLoggedIn()
+        {
+            return cookie.IsCookieExists() && !cookie.IsCookieExpired();
         }
 
         public void Login(String userId, String passwordString)
@@ -188,8 +202,6 @@ namespace WebLib.Web
         public void Logout()
         {
             OnLogout();
-            currentContext.Session.RemoveAll();
-            currentContext.Session.Timeout = 1;
             cookie.RemoveCookie();
         }
 
@@ -226,7 +238,7 @@ namespace WebLib.Web
         public Boolean RedirectPageByClientScript(TemplateControl control, String url)
         {
             url = control.Page.ResolveUrl(url);
-            RegisterJavascript(control, "Redirect", url);
+            RegisterJavascript(control, REDIRECT_TYPE, url);
 
             return true;
         }
@@ -258,7 +270,7 @@ namespace WebLib.Web
 
         public void RegisterJavascript(TemplateControl control, String script)
         {
-            RegisterJavascript(control, "Script", script);
+            RegisterJavascript(control, SCRIPT_TYPE, script);
         }
 
         public void RegisterJavascript(TemplateControl control, String scriptTag, String script)

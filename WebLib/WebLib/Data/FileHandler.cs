@@ -173,7 +173,7 @@ namespace WebLib.Data
             returnType.GetGenericTypeDefinition() == typeof(List<>)))
                     continue;
                 object[] attr = propInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
-                int columnLength = ((ColumnAttribute)attr[0]).ColumnLengthValue;
+                int columnLength = ((ColumnAttribute)attr[0]).ColumnLength;
                 listLength.Add(columnLength);
             }
             return listLength;
@@ -396,7 +396,7 @@ namespace WebLib.Data
                 object[] attr = propInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
                 if (attr == null)
                     throw new Exception("Class Data must use attribute !");
-                int attrLength = ((ColumnAttribute)attr[0]).ColumnLengthValue;
+                int attrLength = ((ColumnAttribute)attr[0]).ColumnLength;
                 if (val.Length > attrLength)
                     throw new Exception("Object Length is too long than Column Length");
 

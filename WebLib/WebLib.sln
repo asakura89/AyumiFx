@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib", "WebLib\WebLib.csproj", "{904A927A-DF04-4AB4-8766-FD845223567E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib.Extensions", "WebLib.Extensions\WebLib.Extensions.csproj", "{7EC434A6-D172-4554-862C-062A1ADE659C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibTest", "WebLibTest\WebLibTest.csproj", "{82DB8E56-6113-4360-BEE1-B810D340AA1F}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -11,12 +11,12 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://asakura89.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = WebLib.Extensions\\WebLib.Extensions.csproj
-		SccProjectName1 = WebLib.Extensions
-		SccLocalPath1 = WebLib.Extensions
-		SccProjectUniqueName2 = WebLib\\WebLib.csproj
-		SccProjectName2 = WebLib
-		SccLocalPath2 = WebLib
+		SccProjectUniqueName1 = WebLib\\WebLib.csproj
+		SccProjectName1 = WebLib
+		SccLocalPath1 = WebLib
+		SccProjectUniqueName2 = WebLibTest\\WebLibTest.csproj
+		SccProjectName2 = WebLibTest
+		SccLocalPath2 = WebLibTest
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +27,10 @@ Global
 		{904A927A-DF04-4AB4-8766-FD845223567E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904A927A-DF04-4AB4-8766-FD845223567E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904A927A-DF04-4AB4-8766-FD845223567E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EC434A6-D172-4554-862C-062A1ADE659C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EC434A6-D172-4554-862C-062A1ADE659C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EC434A6-D172-4554-862C-062A1ADE659C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EC434A6-D172-4554-862C-062A1ADE659C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82DB8E56-6113-4360-BEE1-B810D340AA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DB8E56-6113-4360-BEE1-B810D340AA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DB8E56-6113-4360-BEE1-B810D340AA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DB8E56-6113-4360-BEE1-B810D340AA1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

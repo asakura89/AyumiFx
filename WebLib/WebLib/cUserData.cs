@@ -12,7 +12,7 @@ namespace WebLib
         private string _Email;
         private string _OfficeCode;
         private string _OfficeName;
-        private MSSQL mssql = new MSSQL();
+        private MSSQL mssql = new MSSQL(new MSSQL.DefaultMSSQLConfiguration());
         private string _BranchCode = string.Empty;
 
         //public string UserID
@@ -77,8 +77,8 @@ namespace WebLib
         {
             get
             {
-                mssql.Create();
-                _Email = mssql.ExecuteDataScallar("isNull(SELECT Email FROM Users WHERE UserID='" + UserID + "'),''").ToString();
+                //mssql.Create();
+                _Email = mssql.ExecuteDataScalar("isNull(SELECT Email FROM Users WHERE UserID='" + UserID + "'),''").ToString();
                 return _Email;
             }
         }
@@ -86,8 +86,8 @@ namespace WebLib
         {
             get
             {
-                 mssql.Create();
-                 _OfficeCode = mssql.ExecuteDataScallar("SELECT OfficeCode FROM Users WHERE UserID='" + UserID + "'").ToString();
+                 //mssql.Create();
+                 _OfficeCode = mssql.ExecuteDataScalar("SELECT OfficeCode FROM Users WHERE UserID='" + UserID + "'").ToString();
                 return _OfficeCode;
             }
         }
@@ -95,8 +95,8 @@ namespace WebLib
         {
             get
             {
-                mssql.Create();
-                _OfficeName = mssql.ExecuteDataScallar("SELECT BranchName FROM Branch WHERE BranchCode='" + UserOfficeCode + "'").ToString();
+                //mssql.Create();
+                _OfficeName = mssql.ExecuteDataScalar("SELECT BranchName FROM Branch WHERE BranchCode='" + UserOfficeCode + "'").ToString();
                 return _OfficeName;
             }
         }
@@ -104,40 +104,40 @@ namespace WebLib
         {
             get
             {
-                mssql.Create();
-                return mssql.ExecuteDataScallar("SELECT Region FROM Branch WHERE BranchCode='" + UserOfficeCode + "'").ToString();
+                //mssql.Create();
+                return mssql.ExecuteDataScalar("SELECT Region FROM Branch WHERE BranchCode='" + UserOfficeCode + "'").ToString();
             }
         }
         public string UserGroupCode
         {
             get
             {
-                mssql.Create();
-                return mssql.ExecuteDataScallar("SELECT TOP 1 GroupID FROM GroupMembers WHERE UserID='" + UserID + "'").ToString();
+                //mssql.Create();
+                return mssql.ExecuteDataScalar("SELECT TOP 1 GroupID FROM GroupMembers WHERE UserID='" + UserID + "'").ToString();
             }
         }
         public string UserGroupName
         {
             get
             {
-                mssql.Create();
-                return mssql.ExecuteDataScallar("SELECT [Description] FROM Groups WHERE GroupID='" + UserGroupCode + "'").ToString();
+                //mssql.Create();
+                return mssql.ExecuteDataScalar("SELECT [Description] FROM Groups WHERE GroupID='" + UserGroupCode + "'").ToString();
             }
         }
         public string UserGroupDefaultLink
         {
             get
             {
-                mssql.Create();
-                return mssql.ExecuteDataScallar("SELECT DefaultLink FROM Groups WHERE Groupid = '" + UserGroupCode + "'").ToString();
+                //mssql.Create();
+                return mssql.ExecuteDataScalar("SELECT DefaultLink FROM Groups WHERE Groupid = '" + UserGroupCode + "'").ToString();
             }
         }
         public bool hasChangedPassword
         {
             get
             {
-                mssql.Create();
-                return Convert.ToBoolean(mssql.ExecuteDataScallar("SELECT hasChangedPassword FROM Users WHERE UserID='" + UserID + "'"));
+                //mssql.Create();
+                return Convert.ToBoolean(mssql.ExecuteDataScalar("SELECT hasChangedPassword FROM Users WHERE UserID='" + UserID + "'"));
             }
         }
     }

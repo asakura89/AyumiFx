@@ -19,7 +19,7 @@ namespace WebLib
         
         private bool _isLogin;
         private bool _hasChangedPassword;
-        public MSSQL mssql = new MSSQL();       
+        public MSSQL mssql = new MSSQL(new MSSQL.DefaultMSSQLConfiguration());       
         public fMailer Mailer = new fMailer();
         public LDAP AD = new LDAP();
         public WebSecurity security = new WebSecurity();
@@ -36,25 +36,28 @@ namespace WebLib
 
         public Base()
         {
-            mssql.InitDatabase();
-            mssql.UpdateConnection();
+            //mssql.InitDatabase();
+            //mssql.UpdateConnection();
         }
         public string UserDB
         {
 
-            get { return mssql._UserID; }
+            get { return String.Empty; } //mssql._UserID; }
         }
         public string PassDB
         {
-            get { return mssql._Password; }
+            //get { return mssql._Password; }
+            get { return String.Empty; }
         }
         public string DBName
         {
-            get { return mssql._Database; }
+            //get { return mssql._Database; }
+            get { return String.Empty; }
         }
         public string DBServer
         {
-            get { return mssql._Server; }
+            //get { return mssql._Server; }
+            get { return String.Empty; }
         }
         public string Domain
         {
@@ -90,10 +93,10 @@ namespace WebLib
 
         private void Page_Load(object sender, System.EventArgs e)
         {
-            mssql.Create();            
+            //mssql.Create();            
             //ProtectPage();
-            Navigation.PagingSize = Convert.ToInt32(mssql.ExecuteDataScallar("SELECT ParamValue FROM SystemParameter WHERE ParamID='PagingSize'"));
-            Session.Timeout = Convert.ToInt32(mssql.ExecuteDataScallar("SELECT ParamValue FROM SystemParameter WHERE ParamID='sessiontime'"));
+            Navigation.PagingSize = Convert.ToInt32(mssql.ExecuteDataScalar("SELECT ParamValue FROM SystemParameter WHERE ParamID='PagingSize'"));
+            Session.Timeout = Convert.ToInt32(mssql.ExecuteDataScalar("SELECT ParamValue FROM SystemParameter WHERE ParamID='sessiontime'"));
             _Domain = System.Configuration.ConfigurationManager.AppSettings.Get("Domain");
             _LDAPPath = System.Configuration.ConfigurationManager.AppSettings.Get("LDAPPath");
             if (!IsPostBack)
@@ -282,7 +285,7 @@ namespace WebLib
             string usrpwd;           
             try
             {
-                usrpwd = mssql.ExecuteDataScallar("select Password from users where userid='" + username + "'").ToString();
+                usrpwd = mssql.ExecuteDataScalar("select Password from users where userid='" + username + "'").ToString();
 
                 string test = security.EncryptTripleDES("password", false);
 
@@ -308,13 +311,13 @@ namespace WebLib
                     {
                         if (UserName.ToLower() == "mossinst" || UserName.ToLower() == "admin")
                             isLogin = false;
-                        else if (mssql.ExecuteDataScallar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'") != null)
+                        else if (mssql.ExecuteDataScalar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'") != null)
                             isLogin = false;
                         else
                             isLogin = false;
 
 
-                        if (mssql.ExecuteDataScallar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString().ToLower() != "true")
+                        if (mssql.ExecuteDataScalar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString().ToLower() != "true")
                         {
                             isLogin = true;
                             ShowMessage("User ID is not Active");
@@ -345,7 +348,7 @@ namespace WebLib
                             Session["Password"] = Password;
                             mssql.ExecuteDataSet("UPDATE Users SET isLogin=1, SessionID='" + Session.SessionID + "' , LastLogin='" + DateTime.Now + "' WHERE UserID='" + UserData.UserID + "'", System.Data.CommandType.Text);
                             mssql.ExecuteDataSet("INSERT INTO LogLogin (SessionID, LoginTime, UserID, IPAddress) VALUES ('" + Session.SessionID + "'," + "'" + DateTime.Now + "', '" + UserData.UserID + "', '" + IP + "')", CommandType.Text);
-                            if (Convert.ToBoolean(mssql.ExecuteDataScallar("SELECT hasChangedPassword FROM Users WHERE UserID='" + UserData.UserID + "'")) == true)
+                            if (Convert.ToBoolean(mssql.ExecuteDataScalar("SELECT hasChangedPassword FROM Users WHERE UserID='" + UserData.UserID + "'")) == true)
                                 _hasChangedPassword = true;
                             else
                                 _hasChangedPassword = false;
@@ -367,9 +370,9 @@ namespace WebLib
                             isLogin = false;
                             
                         }
-                        else if (mssql.ExecuteDataScallar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
+                        else if (mssql.ExecuteDataScalar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
                             isLogin = true;
-                        else if (mssql.ExecuteDataScallar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
+                        else if (mssql.ExecuteDataScalar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
                             isLogin = true;
                         else
                             isLogin = false;
@@ -428,9 +431,9 @@ namespace WebLib
                     {
                         if (UserName.ToLower() == "mossinst" || UserName.ToLower() == "admin" || UserName.ToLower() == "lcsadmin")
                             isLogin = false;
-                        else if (mssql.ExecuteDataScallar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
+                        else if (mssql.ExecuteDataScalar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
                             isLogin = false;
-                        else if (mssql.ExecuteDataScallar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
+                        else if (mssql.ExecuteDataScalar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
                             isLogin = false;
                         else
                             isLogin = false;
@@ -466,9 +469,9 @@ namespace WebLib
                     {
                         if (UserName.ToLower() == "mossinst"  || UserName.ToLower() == "admin" || UserName.ToLower() == "lcsadmin")
                             isLogin = false;
-                        else if (mssql.ExecuteDataScallar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
+                        else if (mssql.ExecuteDataScalar("SELECT isnull(SessionID,'') as SessionID FROM Users WHERE UserID='" + UserName + "'").ToString() != "")
                             isLogin = true;
-                        else if (mssql.ExecuteDataScallar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
+                        else if (mssql.ExecuteDataScalar("SELECT Active FROM Users WHERE UserID='" + UserName + "'").ToString() != "true")
                             isLogin = true;
                         else
                             isLogin = false;
@@ -525,7 +528,7 @@ namespace WebLib
             try
             {
                 if(UserData.UserID!="")
-                    ValidSession = mssql.ExecuteDataScallar("SELECT SessionID FROM Users WHERE UserID='" + UserData.UserID + "'").ToString();
+                    ValidSession = mssql.ExecuteDataScalar("SELECT SessionID FROM Users WHERE UserID='" + UserData.UserID + "'").ToString();
             }
             catch (Exception ex)
             {

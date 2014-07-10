@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace WebLib.Data
 {
-    public class Repository
+    /*public class Repository
     {
         protected readonly MSSQL mssql;
         protected readonly String userName;
@@ -127,14 +127,14 @@ namespace WebLib.Data
         public T ExecScalar<T>(String query)
         {
             mssql.Create();
-            Object result = mssql.ExecuteDataScallar(query);
+            Object result = mssql.ExecuteDataScalar(query);
             return result == DBNull.Value ? default(T) : (T) result;
         }
 
         public T ExecScalar<T>(String query, params Object[] queryParamList)
         {
             mssql.Create();
-            Object result = mssql.ExecuteDataScallar(query, queryParamList);
+            Object result = mssql.ExecuteDataScalar(query, queryParamList);
             return result == DBNull.Value ? default(T) : (T)result;
         }
 
@@ -173,7 +173,7 @@ namespace WebLib.Data
         /// <param name="obj">object to be inserted</param>
         public virtual void Insert(T obj)
         {
-            if (isUsingAuditTrail)
+            if (IsAuditTrailedObject(obj))
                  SetAuditTrailObjectInsert(obj);
             ExecSP(obj, SPStatus.SP_INSERT);
         }
@@ -184,7 +184,7 @@ namespace WebLib.Data
         /// <param name="obj">Object to be Updated</param>
         public virtual void Update(T obj)
         {
-            if(isUsingAuditTrail)
+            if (IsAuditTrailedObject(obj))
                 SetAuditTrailObjectUpdate(obj);
             ExecSP(obj, SPStatus.SP_UPDATE);
         }
@@ -195,9 +195,14 @@ namespace WebLib.Data
         /// <param name="obj">Object to be Deleted</param>
         public virtual void Delete(T obj)
         {
-            if (isUsingAuditTrail)
+            if (IsAuditTrailedObject(obj))
                 SetAuditTrailObjectDelete(obj);
             ExecSP(obj, SPStatus.SP_DELETE);
+        }
+
+        private Boolean IsAuditTrailedObject(T obj)
+        {
+            return obj is IAuditTrail;
         }
 
         /// <summary>
@@ -208,7 +213,7 @@ namespace WebLib.Data
         public virtual List<T> GetDataList(List<ConditionData> listCondition)
         {
             mssql.Create();
-            string query = ObjectHandler.GetSelectQueryBuilder<T>(listCondition);
+            string query = ObjectHandler.GetSelectQuery<T>(listCondition);
             DataTable dt = mssql.ExecuteDataTable(query, CommandType.Text);
             return CommonFunction.ConvertDataTableToListObject<T>(dt);
         }
@@ -226,7 +231,7 @@ namespace WebLib.Data
                 !String.IsNullOrEmpty(condition.Connector) &&
                 !String.IsNullOrEmpty(condition.Operator))
             listCondition.Add(condition);
-            String query = ObjectHandler.GetSelectQueryBuilder<T>(listCondition);
+            String query = ObjectHandler.GetSelectQuery<T>(listCondition);
             DataTable dt = mssql.ExecuteDataTable(query, CommandType.Text);
             return CommonFunction.ConvertDataTableToListObject<T>(dt);
         }
@@ -264,7 +269,7 @@ namespace WebLib.Data
         public virtual DataTable GetDataTable(List<ConditionData> listCondition)
         {
             mssql.Create();
-            string query = ObjectHandler.GetSelectQueryBuilder<T>(listCondition);
+            string query = ObjectHandler.GetSelectQuery<T>(listCondition);
             return mssql.ExecuteDataTable(query, CommandType.Text);
         }
 
@@ -276,7 +281,7 @@ namespace WebLib.Data
         public virtual DataTable GetDataTable(List<ConditionData> listCondition, string sortCondition)
         {
             mssql.Create();
-            string query = ObjectHandler.GetSelectQueryBuilder<T>(listCondition);
+            string query = ObjectHandler.GetSelectQuery<T>(listCondition);
             if (!string.IsNullOrEmpty(sortCondition))
                 query += " order by " + sortCondition;
             return mssql.ExecuteDataTable(query, CommandType.Text);
@@ -372,5 +377,5 @@ namespace WebLib.Data
         //    }
         //    return listPrimary;
         //}
-    }
+    }*/
 }

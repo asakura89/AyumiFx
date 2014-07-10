@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
+using WebLib.Constant;
 
 namespace WebLib.Data
 {
@@ -93,34 +95,48 @@ namespace WebLib.Data
         /// Get Query Select of Object 
         /// </summary>
         /// <typeparam name="TSource">Type of Object</typeparam>
-        /// <param name="listCondition">filter condition</param>
+        /// <param name="conditionList">filter condition</param>
         /// <returns></returns>
-        public static string GetSelectQueryBuilder<TSource>(List<ConditionData> listCondition)
+        public static string GetSelectQuery<TSource>(IEnumerable<Condition> conditionList)
         {
-            List<ObjectRepoData> listObjectRepo = GetListObjectRepoFromObject<TSource>();
-            TSource data = Activator.CreateInstance<TSource>();
-            string queryBuild = "Select ";
-            if(listObjectRepo.Count==1)
-                queryBuild += " * ";
-            for (int i = 1; i < listObjectRepo.Count; i++)
+            var queryBuilder = new StringBuilder();
+            var obj = Activator.CreateInstance<TSource>();
+            Type objType = obj.GetType();
+            PropertyInfo[] propertyList = objType.GetProperties();
+
+            queryBuilder.Append("SELECT ");
+            if (propertyList.Length <= 1)
+                queryBuilder.Append("* ");
+            else
             {
-                if (listObjectRepo[i].Name.Equals(ObjectRepoConstant.TABLE_NAME))
-                    continue;
-                Type type = data.GetType();
-                PropertyInfo propInfo = type.GetProperty(listObjectRepo[i].Name);
-                Type returnType = propInfo.PropertyType;
-                if ((returnType.IsGenericType &&
-            returnType.GetGenericTypeDefinition() == typeof(List<>)))
-                    continue;
-                queryBuild += listObjectRepo[i].Name;
-                if (i != listObjectRepo.Count - 1)
-                    queryBuild += ",";
+                var columnList = new String[propertyList.Length];
+                for (int idx = 0; idx < propertyList.Length; idx++)
+                {
+                    PropertyInfo property = propertyList[idx];
+                    Type propertyType = property.PropertyType;
+                    if (!(propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof (List<>)))
+                    {
+                        Object[] attributeList = property.GetCustomAttributes(typeof (ColumnAttribute), false);
+                        if (attributeList.Length > 0)
+                        {
+                            var attribute = (ColumnAttribute) attributeList[0];
+                            if (!String.IsNullOrEmpty(attribute.ColumnName))
+                                columnList[idx] = attribute.ColumnName;
+                        }
+                        else
+                            columnList[idx] = property.Name;
+                    }
+                }
+
+                String columnListString = String.Join(", ", columnList) + " ";
+                queryBuilder.Append(columnListString);
             }
-            
-            queryBuild += " from " + listObjectRepo[0].Type + " where 1=1 ";
-            if (listCondition != null && listCondition.Count != 0)
-                queryBuild += GenerateConditionToQuery(listCondition);
-            return queryBuild;
+
+            queryBuilder.Append("FROM " + objType.Name + " WHERE 1=1 ");
+            if (conditionList != null && CollectionExtended.Any(conditionList))
+                queryBuilder.Append(GenerateConditionToQuery(conditionList));
+
+            return queryBuilder.ToString();
         }
 
         private static ObjectRepoData GetClassName<TSource>(TSource obj)
@@ -131,72 +147,79 @@ namespace WebLib.Data
             return table;
         }
 
-        private static string GenerateConditionToQuery(List<ConditionData> listCondition)
+        public static string GenerateConditionToQuery(IEnumerable<Condition> listCondition)
         {
-            string conditionQuery = string.Empty;
-            foreach (ConditionData cond in listCondition)
+            String conditionQuery = String.Empty;
+            foreach (Condition cond in listCondition)
             {
-                if(cond.Operator.Equals(OperatorConstant.OP_BETWEEN))
+                switch (cond.LogicOperator)
                 {
-                    conditionQuery += CreateConditionQueryBETWEEN(cond);
-                }
-                else if(cond.Operator.Equals(OperatorConstant.OP_IN))
-                {
-                    conditionQuery += CreateConditionQueryIN(cond);
-                }
-                else if (cond.Operator.Equals(OperatorConstant.OP_LIKE))
-                {
-                    conditionQuery += CreateConditionQueryLIKE(cond);
-                }
-                else
-                {
-                    conditionQuery += CreateConditionQueryNORMAL(cond);
+                    case Operator.Between:
+                        conditionQuery += CreateConditionQueryBETWEEN(cond);
+                        break;
+                    case Operator.In:
+                        conditionQuery += CreateConditionQueryIN(cond);
+                        break;
+                    case Operator.Like:
+                        conditionQuery += CreateConditionQueryLIKE(cond);
+                        break;
+                    case Operator.Is:
+                        conditionQuery += CreateConditionQueryIS(cond);
+                        break;
+                    default:
+                        conditionQuery += CreateConditionQueryNORMAL(cond);
+                        break;
                 }
             }
+
             return conditionQuery;
         }
 
-        private static string CreateConditionQueryNORMAL(ConditionData condData)
+        private static string CreateConditionQueryNORMAL(Condition cond)
         {
             string query = string.Empty;
-            query += condData.Connector + condData.ColumnName + condData.Operator
-                + " '" + condData.Value[0] + "' ";
+            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+                + " '" + cond.ColumnValue[0] + "' ";
             return query;
         }
 
-        private static string CreateConditionQueryLIKE(ConditionData condData)
+        private static string CreateConditionQueryIS(Condition cond)
         {
             string query = string.Empty;
-            query += condData.Connector + condData.ColumnName + condData.Operator
-                + " '%" + condData.Value[0] + "%' ";
+            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+                + " " + cond.ColumnValue[0] + " ";
             return query;
         }
 
-        private static string CreateConditionQueryBETWEEN(ConditionData condData)
+        private static string CreateConditionQueryLIKE(Condition cond)
         {
             string query = string.Empty;
-            query += condData.Connector + condData.ColumnName+  condData.Operator
-                + " '" + condData.Value[0] + "' and "
-                + " '" + condData.Value[1] + "'";
+            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+                + " '%" + cond.ColumnValue[0] + "%' ";
             return query;
         }
 
-        private static string CreateConditionQueryIN(ConditionData condData)
+        private static string CreateConditionQueryBETWEEN(Condition cond)
         {
             string query = string.Empty;
-            query += condData.Connector + condData.ColumnName + condData.Operator + " (";
-            for (int i = 0; i < condData.Value.Length; i++)
+            query += cond.Connector + cond.ColumnName+  cond.LogicOperator
+                + " '" + cond.ColumnValue[0] + "' and "
+                + " '" + cond.ColumnValue[1] + "'";
+            return query;
+        }
+
+        private static string CreateConditionQueryIN(Condition cond)
+        {
+            string query = string.Empty;
+            query += cond.Connector + cond.ColumnName + cond.LogicOperator + " (";
+            for (int i = 0; i < cond.ColumnValue.Length; i++)
             {
-                query += "'"+ condData.Value[i]+"'";
-                if (i != condData.Value.Length - 1)
+                query += "'"+ cond.ColumnValue[i]+"'";
+                if (i != cond.ColumnValue.Length - 1)
                     query += ", ";
             }
             query += ") ";
             return query;
         }
-
-
-       
-        
     }
 }

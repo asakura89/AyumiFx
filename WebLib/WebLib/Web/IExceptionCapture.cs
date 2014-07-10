@@ -5,6 +5,6 @@ namespace WebLib.Web
 {
     public interface IExceptionCapture
     {
-        void OnException(TemplateControl control, Exception ex);
+        void CaptureException(TemplateControl control, Exception ex);
     }
 }

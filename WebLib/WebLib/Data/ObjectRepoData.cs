@@ -4,16 +4,16 @@ namespace WebLib.Data
 {
     public class ObjectRepoData : ListItem<String, Object>
     {
-        public String Name
+        public new String Name
         {
-            get { return base.name; }
-            set { base.name = value; }
+            get { return base.Name; }
+            set { base.Name = value; }
         }
 
         public Object Type
         {
-            get { return base.value; }
-            set { base.value = value; }
+            get { return Value; }
+            set { Value = value; }
         }
     }
 }
