@@ -7,7 +7,7 @@ using WebLib.Security;
 
 namespace WebLib.Web
 {
-    public abstract class BaseController : IAuthorization, IControlPaging
+    public abstract class BasePresenter : IAuthorization, IControlPaging
     {
         private readonly WebCookie cookie;
         protected readonly HttpContext currentContext;
@@ -172,7 +172,7 @@ namespace WebLib.Web
             }
         }
 
-        protected BaseController()
+        protected BasePresenter()
         {
             currentContext = HttpContext.Current;
             cookie = new WebCookie(currentContext.Request, currentContext.Response);

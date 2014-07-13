@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace WebLib.Data
@@ -81,6 +82,15 @@ namespace WebLib.Data
             if (source == null) throw new ArgumentNullException("source");
 
             return new List<TSource>(source);
+        }
+
+        public static IEnumerable<TResult> Cast<TResult>(IEnumerable source)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+
+            IEnumerator e = source.GetEnumerator();
+            while (e.MoveNext())
+                yield return (TResult) e.Current;
         }
     } 
 }

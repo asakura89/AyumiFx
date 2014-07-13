@@ -13,7 +13,7 @@ using WebLib.Web;
 
 namespace WebLib.Extensions
 {
-    public abstract class Controller : BaseController
+    public abstract class Presenter : BasePresenter
     {
         //private readonly ADM_R_USERRepository userRepo = new ADM_R_USERRepository();
         /*private readonly LoginService loginService;
@@ -29,7 +29,7 @@ namespace WebLib.Extensions
         private const String EXCEPTION_TYPE = "apps.script.type.exception";
 
         //protected Controller(LoginService loginService, IErrorLogService errorLogService)
-        protected Controller(ISimpleServiceFactory serviceFactory)
+        protected Presenter(ISimpleServiceFactory serviceFactory)
         {
             if (serviceFactory == null)
                 throw new ArgumentNullException("serviceFactory");

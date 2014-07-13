@@ -84,7 +84,7 @@
     <Compile Include="Data\TableAttribute.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="Extensions\Controller.cs" />
+    <Compile Include="Extensions\Presenter.cs" />
     <Compile Include="Extensions\Model\ISimpleObjectFactory.cs" />
     <Compile Include="Extensions\Model\ISimpleRepositoryFactory.cs" />
     <Compile Include="Extensions\Model\ISimpleServiceFactory.cs" />
@@ -126,13 +126,13 @@
     <Compile Include="WebHandler\Download.cs" />
     <Compile Include="WebHandler\Image.cs" />
     <Compile Include="WebLib.cs" />
-    <Compile Include="Web\BaseController.cs" />
-    <Compile Include="Web\Controller.cs" />
-    <Compile Include="Web\DefaultControllerFactory.cs" />
+    <Compile Include="Web\BasePresenter.cs" />
+    <Compile Include="Web\Presenter.cs" />
+    <Compile Include="Web\DefaultPresenterFactory.cs" />
     <Compile Include="Web\IActionCapture.cs" />
     <Compile Include="Web\IAuthorization.cs" />
-    <Compile Include="Web\IController.cs" />
-    <Compile Include="Web\IControllerFactory.cs" />
+    <Compile Include="Web\IPresenter.cs" />
+    <Compile Include="Web\IPresenterFactory.cs" />
     <Compile Include="Web\IControlModel.cs" />
     <Compile Include="Web\IControlPaging.cs" />
     <Compile Include="Web\IControlView.cs" />
