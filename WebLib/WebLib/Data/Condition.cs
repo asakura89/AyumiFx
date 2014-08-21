@@ -4,23 +4,23 @@ namespace WebLib.Data
 {
     public class Condition
     {
-        public String Connector { get; set; }
+        public Connector Connector { get; set; }
         public String ColumnName { get; set; }
-        public String LogicOperator { get; set; }
+        public Operator Operator { get; set; }
         public String[] ColumnValue { get; set; }
 
-        public Condition(String connector, String columnName, String logicOperator, params String[] columnValue)
+        public Condition(Connector connector, String columnName, Operator op, params String[] columnValue)
         {
             Connector = connector;
             ColumnName = columnName;
-            LogicOperator = logicOperator;
+            Operator = op;
             ColumnValue = columnValue;
         }
 
-        public Condition(String connector, String columnName, String logicOperator, String columnValue)
-            : this(connector, columnName, logicOperator, new [] { columnValue }) { }
+        public Condition(Connector connector, String columnName, Operator op, String columnValue)
+            : this(connector, columnName, op, new [] { columnValue }) { }
 
         public Condition()
-            : this(String.Empty, String.Empty, String.Empty, String.Empty) { }
+            : this(Connector.And, String.Empty, Operator.Equal, String.Empty) { }
     }
 }

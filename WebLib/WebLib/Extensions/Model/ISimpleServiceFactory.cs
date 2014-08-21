@@ -7,7 +7,10 @@ namespace WebLib.Extensions.Model
         IUserLoginPolicy CreateUserLoginPolicy();
         LoginService CreateLoginService();
         ModuleService CreateModuleService();
+        GroupMemberService CreateGroupMemberService();
         GroupAccessService CreateGroupAccessService();
+        UserService CreateUserService();
+        AppParameterService CreateAppParameterService();
         IErrorLogService CreateErrorLogService();
     }
 }

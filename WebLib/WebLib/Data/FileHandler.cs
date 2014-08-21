@@ -172,8 +172,8 @@ namespace WebLib.Data
                 if ((returnType.IsGenericType &&
             returnType.GetGenericTypeDefinition() == typeof(List<>)))
                     continue;
-                object[] attr = propInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
-                int columnLength = ((ColumnAttribute)attr[0]).ColumnLength;
+                object[] attr = propInfo.GetCustomAttributes(typeof(Column), false);
+                int columnLength = ((Column)attr[0]).ColumnLength;
                 listLength.Add(columnLength);
             }
             return listLength;
@@ -248,8 +248,8 @@ namespace WebLib.Data
                 if ((returnType.IsGenericType &&
             returnType.GetGenericTypeDefinition() == typeof(List<>)))
                     continue;
-                object[] attr = propInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
-                int colIndex = ((ColumnAttribute)attr[0]).ColumnIndex;
+                object[] attr = propInfo.GetCustomAttributes(typeof(Column), false);
+                int colIndex = ((Column)attr[0]).ColumnIndex;
                 propInfo.SetValue(objData, Convert.ChangeType(valArray[colIndex], propInfo.PropertyType), null);
             }
             return objData;
@@ -393,10 +393,10 @@ namespace WebLib.Data
             returnType.GetGenericTypeDefinition() == typeof(List<>)))
                     continue;
                 val += (string)propInfo.GetValue(obj, null);
-                object[] attr = propInfo.GetCustomAttributes(typeof(ColumnAttribute), false);
+                object[] attr = propInfo.GetCustomAttributes(typeof(Column), false);
                 if (attr == null)
                     throw new Exception("Class Data must use attribute !");
-                int attrLength = ((ColumnAttribute)attr[0]).ColumnLength;
+                int attrLength = ((Column)attr[0]).ColumnLength;
                 if (val.Length > attrLength)
                     throw new Exception("Object Length is too long than Column Length");
 

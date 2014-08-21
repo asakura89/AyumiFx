@@ -116,10 +116,10 @@ namespace WebLib.Data
                     Type propertyType = property.PropertyType;
                     if (!(propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof (List<>)))
                     {
-                        Object[] attributeList = property.GetCustomAttributes(typeof (ColumnAttribute), false);
+                        Object[] attributeList = property.GetCustomAttributes(typeof (Column), false);
                         if (attributeList.Length > 0)
                         {
-                            var attribute = (ColumnAttribute) attributeList[0];
+                            var attribute = (Column) attributeList[0];
                             if (!String.IsNullOrEmpty(attribute.ColumnName))
                                 columnList[idx] = attribute.ColumnName;
                         }
@@ -133,7 +133,7 @@ namespace WebLib.Data
             }
 
             queryBuilder.Append("FROM " + objType.Name + " WHERE 1=1 ");
-            if (conditionList != null && CollectionExtended.Any(conditionList))
+            if (conditionList != null && CollectionExtension.Any(conditionList))
                 queryBuilder.Append(GenerateConditionToQuery(conditionList));
 
             return queryBuilder.ToString();
@@ -152,7 +152,7 @@ namespace WebLib.Data
             String conditionQuery = String.Empty;
             foreach (Condition cond in listCondition)
             {
-                switch (cond.LogicOperator)
+                switch (cond.Operator)
                 {
                     case Operator.Between:
                         conditionQuery += CreateConditionQueryBETWEEN(cond);
@@ -178,7 +178,7 @@ namespace WebLib.Data
         private static string CreateConditionQueryNORMAL(Condition cond)
         {
             string query = string.Empty;
-            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+            query += cond.Connector + cond.ColumnName + cond.Operator
                 + " '" + cond.ColumnValue[0] + "' ";
             return query;
         }
@@ -186,7 +186,7 @@ namespace WebLib.Data
         private static string CreateConditionQueryIS(Condition cond)
         {
             string query = string.Empty;
-            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+            query += cond.Connector + cond.ColumnName + cond.Operator
                 + " " + cond.ColumnValue[0] + " ";
             return query;
         }
@@ -194,7 +194,7 @@ namespace WebLib.Data
         private static string CreateConditionQueryLIKE(Condition cond)
         {
             string query = string.Empty;
-            query += cond.Connector + cond.ColumnName + cond.LogicOperator
+            query += cond.Connector + cond.ColumnName + cond.Operator
                 + " '%" + cond.ColumnValue[0] + "%' ";
             return query;
         }
@@ -202,7 +202,7 @@ namespace WebLib.Data
         private static string CreateConditionQueryBETWEEN(Condition cond)
         {
             string query = string.Empty;
-            query += cond.Connector + cond.ColumnName+  cond.LogicOperator
+            query += cond.Connector + cond.ColumnName+  cond.Operator
                 + " '" + cond.ColumnValue[0] + "' and "
                 + " '" + cond.ColumnValue[1] + "'";
             return query;
@@ -211,7 +211,7 @@ namespace WebLib.Data
         private static string CreateConditionQueryIN(Condition cond)
         {
             string query = string.Empty;
-            query += cond.Connector + cond.ColumnName + cond.LogicOperator + " (";
+            query += cond.Connector + cond.ColumnName + cond.Operator + " (";
             for (int i = 0; i < cond.ColumnValue.Length; i++)
             {
                 query += "'"+ cond.ColumnValue[i]+"'";

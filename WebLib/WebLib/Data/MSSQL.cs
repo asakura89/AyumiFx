@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Common;
 using System.Net;
 using System.Reflection;
+using EnumExperimentation;
 using WebLib.Constant;
 using WebLib.Security;
 
@@ -52,14 +53,14 @@ namespace WebLib.Data
                 ConnectionString = "DbConfig";
                 ConnectionProvider = SqlServerProvider;
                 ConnectionStringSource = ConnectionStringSource.AppConfig;
-                ConnectionStringEncryptionType = ConnectionStringEncryptionType.TripleDES;
+                ConnectionStringEncryptionType = ConnectionStringEncryptionType.Normal;
             }
         }
 
         public enum ConnectionStringEncryptionType
         {
-            TripleDES,
-            UOBISecurity
+            Normal,
+            Registry
         }
 
         public enum ConnectionStringSource
@@ -88,11 +89,11 @@ namespace WebLib.Data
             {
                 switch (mssqlConfig.ConnectionStringEncryptionType)
                 {
-                    case ConnectionStringEncryptionType.TripleDES:
+                    case ConnectionStringEncryptionType.Normal:
                         String encryptedConnectionString = ConfigurationManager.AppSettings[mssqlConfig.ConnectionString];
                         decryptedConnectionString = security.DecryptTripleDes(encryptedConnectionString, false);
                         break;
-                    case ConnectionStringEncryptionType.UOBISecurity:
+                    case ConnectionStringEncryptionType.Registry:
                         decryptedConnectionString = CommonFunction.GetWebConfigValue(mssqlConfig.ConnectionString);
                         break;
                 }
@@ -802,21 +803,21 @@ namespace WebLib.Data
         {
             if (IsAuditTrailedObject(obj))
                 SetAuditTrail(ref obj, currentUser, SPStatus.Insert);
-            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Insert));
+            return CollectionExtension.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Insert));
         }
 
         public List<String> Update<TSource>(TSource obj, String currentUser)
         {
             if (IsAuditTrailedObject(obj))
                 SetAuditTrail(ref obj, currentUser, SPStatus.Update);
-            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Update));
+            return CollectionExtension.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Update));
         }
 
         public List<String> Delete<TSource>(TSource obj, String currentUser)
         {
             if (IsAuditTrailedObject(obj))
                 SetAuditTrail(ref obj, currentUser, SPStatus.Delete);
-            return CollectionExtended.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Delete));
+            return CollectionExtension.ToList(ExecuteStoredProcedureWithOutput(obj, SPStatus.Delete));
         }
 
         private Boolean IsAuditTrailedObject<TSource>(TSource obj)
@@ -847,10 +848,10 @@ namespace WebLib.Data
         {
             String tableName = String.Empty;
             Type tType = typeof (TResult);
-            Object[] attributeList = tType.GetCustomAttributes(typeof (TableAttribute), false);
+            Object[] attributeList = tType.GetCustomAttributes(typeof (Table), false);
             if (attributeList.Length > 0)
             {
-                var tableAttribute = (TableAttribute) attributeList[0];
+                var tableAttribute = (Table) attributeList[0];
                 tableName = tableAttribute.TableName;
             }
             else
@@ -869,10 +870,12 @@ namespace WebLib.Data
                 throw new ArgumentNullException("condition");
 
             var conditionList = new List<Condition>();
-            if (!String.IsNullOrEmpty(condition.ColumnName) &&
+            conditionList.Add(condition);
+            // TODO: check condition
+            /*if (!String.IsNullOrEmpty(condition.ColumnName) &&
                 !String.IsNullOrEmpty(condition.Connector) &&
-                !String.IsNullOrEmpty(condition.LogicOperator))
-                conditionList.Add(condition);
+                !String.IsNullOrEmpty(condition.Operator))
+                conditionList.Add(condition);*/
 
             return IsExist<TResult>(conditionList);
         }
@@ -891,9 +894,7 @@ namespace WebLib.Data
         public List<TResult> GetDataList<TResult>(Condition condition, Boolean isColumnAttributeAware = true)
         {
             var conditionList = new List<Condition>();
-            if (!String.IsNullOrEmpty(condition.ColumnName) &&
-                !String.IsNullOrEmpty(condition.Connector) &&
-                !String.IsNullOrEmpty(condition.LogicOperator))
+            if (!String.IsNullOrEmpty(condition.ColumnName))
                 conditionList.Add(condition);
             String query = ObjectHandler.GetSelectQuery<TResult>(conditionList);
             DataTable targetedDataTable = ExecuteDataTable(query);
@@ -1514,6 +1515,111 @@ namespace WebLib.Data
         {
             CloseConnection();
             GC.SuppressFinalize(this);
+        }
+    }
+
+    /*public class 
+
+    public class Join
+    {
+        public 
+    }*/
+
+    public enum Connector
+    {
+        [StringValue("AND")] And,
+        [StringValue("OR")] Or
+    }
+
+    public enum Operator
+    {
+        [StringValue("=")] Equal,
+        [StringValue("<>")] NotEqual,
+        [StringValue("<")] LessThan,
+        [StringValue(">")] GreaterThan,
+        [StringValue("<=")] LessThanEqual,
+        [StringValue(">=")] GreaterThanEqual,
+        [StringValue("IN")] In,
+        [StringValue("NOT IN")] NotIn,
+        [StringValue("IS")] Is,
+        [StringValue("LIKE")] Like,
+        [StringValue("BETWEEN")] Between
+    }
+
+    public class MSSQL<T>
+    {
+        private readonly MSSQL sequel = new MSSQL(new MSSQL.DefaultMSSQLConfiguration());
+
+        private String[] columnList = null;
+        private String tableName = String.Empty;
+        private Boolean isDistinct = false;
+        private List<Condition> conditionList = new List<Condition>();
+
+        //private Join[] joinList = null;
+
+        public MSSQL<T> Select(params String[] columnList)
+        {
+            this.columnList = columnList;
+            return this;
+        }
+
+        public MSSQL<T> From(String tableName)
+        {
+            this.tableName = tableName;
+            return this;
+        }
+
+        public MSSQL<T> Where(String column, Operator op, Object value, Connector conditionConnector)
+        {
+            conditionList.Add(new Condition(conditionConnector, column, op, value.ToString()));
+            return this;
+        }
+
+        public MSSQL<T> Where(String column, Operator op, Object value)
+        {
+            Where(column, op, value, Connector.And);
+            return this;
+        }
+
+        public MSSQL<T> And(String column, Operator op, Object value)
+        {
+            Where(column, op, value);
+            return this;
+        }
+
+        public MSSQL<T> Or(String column, Operator op, Object value)
+        {
+            Where(column, op, value, Connector.Or);
+            return this;
+        }
+
+        public MSSQL<T> WhereIn(String column, Object[] valueList)
+        {
+            Int32 valueListLength = valueList.Length;
+            String[] valueArray = new String[valueListLength];
+            for (int idx = 0; idx < valueListLength; idx++)
+                valueArray[idx] = valueList[idx].ToString();
+
+
+            conditionList.Add(new Condition(Connector.And, column, Operator.In, valueArray));
+            return this;
+        }
+
+        //public MSSQL<T> OrWhereIn()
+
+        public Boolean IsExist()
+        {
+            return sequel.IsExist<T>(conditionList);
+        }
+
+        public IEnumerable<T> Get()
+        {
+            return sequel.GetDataList<T>(conditionList);
+        }
+
+        public T GetSingle()
+        {
+            return CollectionExtension.FirstOrDefault(Get());
         }
     }
 }

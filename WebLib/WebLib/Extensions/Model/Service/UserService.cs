@@ -21,21 +21,21 @@ namespace WebLib.Extensions.Model.Service
         public IUser GetByNIK(String nik)
         {
             var conditionList = new List<Condition>();
-            conditionList.Add(new Condition(Connector.And, IUserProperty.NIK, Operator.Like, nik));
+            conditionList.Add(new Condition(Connector.And, IUserProperty.NIK, Operator.Equal, nik));
             conditionList.Add(new Condition(Connector.And, IAuditTrailProperty.IsDeleted, Operator.Equal, Boolean.FalseString));
             List<IUser> userList = dbHandler.GetDataList<IUser>(conditionList, false);
 
-            return CollectionExtended.FirstOrDefault(userList);
+            return CollectionExtension.FirstOrDefault(userList);
         }
 
         public IUser GetByUserId(String userId)
         {
             var conditionList = new List<Condition>();
-            conditionList.Add(new Condition(Connector.And, IUserProperty.Username, Operator.Like, userId));
+            conditionList.Add(new Condition(Connector.And, IUserProperty.Username, Operator.Equal, userId));
             conditionList.Add(new Condition(Connector.And, IAuditTrailProperty.IsDeleted, Operator.Equal, Boolean.FalseString));
             List<IUser> userList = dbHandler.GetDataList<IUser>(conditionList, false);
 
-            return CollectionExtended.FirstOrDefault(userList);
+            return CollectionExtension.FirstOrDefault(userList);
         }
     }
 }

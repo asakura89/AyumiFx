@@ -227,7 +227,7 @@ namespace WebLib.Extensions
                 if (String.IsNullOrEmpty(searchParam.columnName))
                     continue;
 
-                String searchOperator = searchParam.searchOperator == Operator.Like.Trim() ? "%" : String.Empty;
+                String searchOperator = searchParam.searchOperator == Operator.Like ? "%" : String.Empty;
                 searchStringList.Add(String.Format("{0} {1} ''{2}{3}{2}''", searchParam.columnName, searchParam.searchOperator,
                     searchOperator, searchParam.keyword));
             }

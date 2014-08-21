@@ -1,16 +1,17 @@
 ﻿using System;
+using WebLib.Data;
 
 namespace WebLib.Web
 {
     public class SearchParameter
     {
         public String columnName;
-        public String searchOperator;
+        public Operator searchOperator;
         public String keyword;
 
-        public SearchParameter() : this(String.Empty, String.Empty, String.Empty) { }
+        public SearchParameter() : this("1", Operator.Equal, "1") { }
 
-        public SearchParameter(String columnName, String searchOperator, String keyword)
+        public SearchParameter(String columnName, Operator searchOperator, String keyword)
         {
             this.columnName = columnName;
             this.searchOperator = searchOperator;

@@ -21,7 +21,7 @@ namespace WebLib.Extensions.Model.Service
         public List<IGroupMember> GetByUser(String userId)
         {
             var conditionList = new List<Condition>();
-            conditionList.Add(new Condition(Connector.And, IGroupMemberProperty.UserId, Operator.Like, userId));
+            conditionList.Add(new Condition(Connector.And, IGroupMemberProperty.UserId, Operator.Equal, userId));
             conditionList.Add(new Condition(Connector.And, IAuditTrailProperty.IsDeleted, Operator.Equal, Boolean.FalseString));
             List<IGroupMember> memberList = dbHandler.GetDataList<IGroupMember>(conditionList, false);
 
@@ -31,7 +31,7 @@ namespace WebLib.Extensions.Model.Service
         public List<IGroupMember> GetByGroup(String groupId)
         {
             var conditionList = new List<Condition>();
-            conditionList.Add(new Condition(Connector.And, IGroupMemberProperty.GroupId, Operator.Like, groupId));
+            conditionList.Add(new Condition(Connector.And, IGroupMemberProperty.GroupId, Operator.Equal, groupId));
             conditionList.Add(new Condition(Connector.And, IAuditTrailProperty.IsDeleted, Operator.Equal, Boolean.FalseString));
             List<IGroupMember> memberList = dbHandler.GetDataList<IGroupMember>(conditionList, false);
 
