@@ -4,6 +4,7 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 using WebLib.Security;
+using WebLib.Security.Cryptography;
 
 namespace WebLib.Web
 {
@@ -105,7 +106,7 @@ namespace WebLib.Web
             private const String WEB_APPS_COOKIE_KEY = "apps.cookie.key";
             private const String COOKIE_VALUE_ID = "apps.cookie.id";
             private const String COOKIE_VALUE_EXP = "apps.cookie.expiration";
-            private static readonly WebSecurity security = new WebSecurity();
+            private static readonly TripleDESEncryptor tripleDESEncryptor = new TripleDESEncryptor();
             private readonly HttpRequest request;
             private readonly HttpResponse response;
 
@@ -148,7 +149,7 @@ namespace WebLib.Web
             {
                 HttpCookie currentCookie = FindCookie();
                 DateTime cookieExpDate;
-                String cookieExp = security.DecryptTripleDes(currentCookie.Values[COOKIE_VALUE_EXP], true);
+                String cookieExp = tripleDESEncryptor.Decrypt(currentCookie.Values[COOKIE_VALUE_EXP]);
                 DateTime.TryParse(cookieExp, out cookieExpDate);
 
                 return cookieExpDate;
@@ -159,7 +160,7 @@ namespace WebLib.Web
                 DateTime cookieExpDate = DateTime.Now.AddDays(1);
                 HttpCookie newCookie = response.Cookies[WEB_APPS_COOKIE_KEY];
                 String cookieId = sessionId;
-                String cookieExp = security.EncryptTripleDES(cookieExpDate.ToString(CultureInfo.InvariantCulture), true);
+                String cookieExp = tripleDESEncryptor.Encrypt(cookieExpDate.ToString(CultureInfo.InvariantCulture));
                 newCookie.Values.Add(COOKIE_VALUE_ID, cookieId);
                 newCookie.Values.Add(COOKIE_VALUE_EXP, cookieExp);
                 newCookie.Expires = cookieExpDate;

@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using WebLib.Data;
 using WebLib.Security;
+using WebLib.Security.Cryptography;
 
 namespace WebLib
 {
@@ -22,7 +23,8 @@ namespace WebLib
         public MSSQL mssql = new MSSQL(new MSSQL.DefaultMSSQLConfiguration());       
         public fMailer Mailer = new fMailer();
         public LDAP AD = new LDAP();
-        public WebSecurity security = new WebSecurity();
+        //public WebSecurity security = new WebSecurity();
+        public TripleDESEncryptor tripleDESEncryptor = new TripleDESEncryptor();
         public JavaScript JS = new JavaScript();
         // private cSession SessionHandling = new cSession();
         // private cMSSQLSession MSSQLSession = new cMSSQLSession();
@@ -287,9 +289,9 @@ namespace WebLib
             {
                 usrpwd = mssql.ExecuteDataScalar("select Password from users where userid='" + username + "'").ToString();
 
-                string test = security.EncryptTripleDES("password", false);
+                string test = tripleDESEncryptor.Encrypt("password");
 
-                if (security.DecryptTripleDes(usrpwd,false) == pwd)
+                if (tripleDESEncryptor.Decrypt(usrpwd) == pwd)
                     return true;
                 else
                     return false;

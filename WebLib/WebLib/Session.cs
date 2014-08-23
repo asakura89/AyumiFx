@@ -1,5 +1,6 @@
 using System;
 using WebLib.Security;
+using WebLib.Security.Cryptography;
 
 namespace WebLib
 {
@@ -29,10 +30,10 @@ namespace WebLib
        }
        public cSession()
        {
-           WebSecurity Enc = new WebSecurity();
+           TripleDESEncryptor Enc = new TripleDESEncryptor();
             _sessUserID = "";
             _sessPassword = "";
-            _SessionID = Enc.EncryptTripleDES( _sessUserID + _sessPassword + DateTime.Now.ToShortDateString(), true);
+            _SessionID = Enc.Encrypt( _sessUserID + _sessPassword + DateTime.Now.ToShortDateString());
        }
     }
 }

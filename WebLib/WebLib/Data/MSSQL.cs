@@ -9,6 +9,7 @@ using System.Reflection;
 using EnumExperimentation;
 using WebLib.Constant;
 using WebLib.Security;
+using WebLib.Security.Cryptography;
 
 namespace WebLib.Data
 {
@@ -38,7 +39,7 @@ namespace WebLib.Data
         protected const String SqlServerProvider = "System.Data.SqlClient";
         private DbConnection connection;
         private DbProviderFactory factory;
-        private readonly WebSecurity security = new WebSecurity();
+        private readonly TripleDESEncryptor tripleDESEncryptor = new TripleDESEncryptor();
 
 
         public class DefaultMSSQLConfiguration : IMSSQLConfiguration
@@ -91,7 +92,7 @@ namespace WebLib.Data
                 {
                     case ConnectionStringEncryptionType.Normal:
                         String encryptedConnectionString = ConfigurationManager.AppSettings[mssqlConfig.ConnectionString];
-                        decryptedConnectionString = security.DecryptTripleDes(encryptedConnectionString, false);
+                        decryptedConnectionString = tripleDESEncryptor.Decrypt(encryptedConnectionString);
                         break;
                     case ConnectionStringEncryptionType.Registry:
                         decryptedConnectionString = CommonFunction.GetWebConfigValue(mssqlConfig.ConnectionString);
