@@ -18,13 +18,19 @@ namespace WebLib.Security.Cryptography
 
         public String GetHash(String stringToHash)
         {
-            Byte[] hashBytes = algorithm.ComputeHash(Encoding.Default.GetBytes(stringToHash));
+            Byte[] hashBytes = GetHashBytes(stringToHash);
             StringBuilder hashStringBuilder = new StringBuilder();
 
             foreach (Byte hashByte in hashBytes)
                 hashStringBuilder.Append(hashByte.ToString("x2"));
 
             return hashStringBuilder.ToString();
+        }
+
+        public Byte[] GetHashBytes(String stringToHash)
+        {
+            Byte[] hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(stringToHash));
+            return hashBytes;
         }
 
         public Boolean IsHashVerified(String stringToHash, String againtsHashString)

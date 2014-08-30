@@ -11,8 +11,8 @@ namespace WebLib.Security.Cryptography
 
         public TripleDESEncryptor()
         {
-            using (MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider())
-                keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(InternalKey));
+            MD5Encryptor encryptor = new MD5Encryptor();
+            keyArray = encryptor.GetHashBytes(InternalKey);
         }
 
         public String Encrypt(String stringToEncrypt)

@@ -3,14 +3,14 @@ using System.Security.Cryptography;
 
 namespace WebLib.Security.Cryptography
 {
-    public class SHA384Encryptor : INonDecryptable
+    public class SHA1Encryptor : INonDecryptable
     {
         private readonly SimpleOneWayEncryptor encryptor;
 
-        public SHA384Encryptor()
+        public SHA1Encryptor()
         {
-            using (SHA384 sha384Algorithm = SHA384.Create())
-                encryptor = new SimpleOneWayEncryptor(sha384Algorithm);
+            using (SHA1 sha1Algorithm = SHA1.Create())
+                encryptor = new SimpleOneWayEncryptor(sha1Algorithm);
         }
 
         public String GetHash(String stringToHash)

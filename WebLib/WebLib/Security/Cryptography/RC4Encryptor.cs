@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace WebLib.Security.Cryptography
 {
@@ -46,6 +47,12 @@ namespace WebLib.Security.Cryptography
                 output = output + Convert.ToChar(v);
             }
             return output;
+        }
+
+        public Byte[] GetHashBytes(String stringToHash)
+        {
+            Byte[] hashBytes = Encoding.UTF8.GetBytes(GetHash(stringToHash));
+            return hashBytes;
         }
 
         public Boolean IsHashVerified(String stringToHash, String againtsHashString)

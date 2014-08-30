@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Reflection;
 using System.Web.UI.WebControls;
+using WebLib.Configuration;
 using WebLib.Constant;
 using WebLib.Data;
 using WebLib.Security;
@@ -151,12 +152,17 @@ namespace WebLib
         {
             Encryptor encryptor = new Encryptor();
 
-            String encryptedConfig = ConfigurationManager.AppSettings[configName].ToString();
-            String appName = ConfigurationManager.AppSettings[UOBI.Name].ToString().Trim();
-            String uobiKey = ConfigurationManager.AppSettings[UOBI.Key].ToString();
+            String encryptedConfig = ConfigurationManager.AppSettings[configName];
+            if (String.IsNullOrEmpty(encryptedConfig))
+                throw new BadConfigurationException(configName);
+            
+            ConfigurationService configService = new ConfigurationService();
+            DefaultConfiguration config = configService.GetDefaultConfiguration();
+            String appName = config.AppName;
+            String appKey = config.AppKey;
 
-            String regKey = CommonFunction.GetHalfKeyFromRegistry(appName);
-            String decryptedConfig = encryptor.Decrypt(encryptedConfig, regKey, uobiKey);
+            String regKey = GetHalfKeyFromRegistry(appName);
+            String decryptedConfig = encryptor.Decrypt(encryptedConfig, regKey, appKey);
 
             return decryptedConfig;
         }

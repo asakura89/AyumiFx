@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Security.Authentication;
 using System.Web.UI;
+using WebLib.Configuration;
 using WebLib.Constant;
 using WebLib.Data;
 using WebLib.Extensions.Model;
@@ -80,8 +81,10 @@ namespace WebLib.Extensions
         {
             // TODO: inject the config value
             var activeDirectory = new LDAP();
-            String domain = ConfigurationManager.AppSettings[AppConfig.Domain];
-            String activeDirectoryPath = ConfigurationManager.AppSettings[AppConfig.ADPath];
+            ConfigurationService configService = new ConfigurationService();
+            DefaultConfiguration config = configService.GetDefaultConfiguration();
+            String domain = config.Domain;
+            String activeDirectoryPath = config.ADPath;
             if (!activeDirectory.IsAuthenticated(domain, activeDirectoryPath, userId, passwordString))
                 throw new AuthenticationException(CommonException.NotAuthorized);
         }

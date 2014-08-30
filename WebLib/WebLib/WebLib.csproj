@@ -50,6 +50,10 @@
     </Compile>
     <Compile Include="cNavigation.cs" />
     <Compile Include="CommonFunction.cs" />
+    <Compile Include="Configuration\ActiveDirectoryConfiguration.cs" />
+    <Compile Include="Configuration\BadConfigurationException.cs" />
+    <Compile Include="Configuration\ConfigurationService.cs" />
+    <Compile Include="Configuration\DefaultConfiguration.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Constant\AppConfig.cs" />
     <Compile Include="Constant\App.cs" />
@@ -127,6 +131,8 @@
     <Compile Include="Security\Cryptography\INonDecryptable.cs" />
     <Compile Include="Security\Cryptography\MD5Encryptor.cs" />
     <Compile Include="Security\Cryptography\RC4Encryptor.cs" />
+    <Compile Include="Security\Cryptography\RIPEMD160Encryptor.cs" />
+    <Compile Include="Security\Cryptography\SHA1Encryptor.cs" />
     <Compile Include="Security\Cryptography\SHA384Encryptor.cs" />
     <Compile Include="Security\Cryptography\SimpleOneWayEncryptor.cs" />
     <Compile Include="Security\Cryptography\TripleDESEncryptor.cs" />
@@ -140,6 +146,7 @@
     <Compile Include="WebHandler\Image.cs" />
     <Compile Include="WebLib.cs" />
     <Compile Include="Web\BasePresenter.cs" />
+    <Compile Include="Web\Configuration.cs" />
     <Compile Include="Web\Presenter.cs" />
     <Compile Include="Web\DefaultPresenterFactory.cs" />
     <Compile Include="Web\IActionCapture.cs" />

@@ -1,12 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib", "WebLib\WebLib.csproj", "{904A927A-DF04-4AB4-8766-FD845223567E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibTest", "WebLibTest\WebLibTest.csproj", "{82DB8E56-6113-4360-BEE1-B810D340AA1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib.Test", "WebLib.Test\WebLib.Test.csproj", "{80BF2CEC-6CF7-4F97-83F9-66D45E9DA690}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72AF2964-472F-43AC-B841-03C8FB84856B}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
@@ -14,9 +10,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		WebLib.vsmdi = WebLib.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib", "WebLib\WebLib.csproj", "{904A927A-DF04-4AB4-8766-FD845223567E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibTest", "WebLibTest\WebLibTest.csproj", "{82DB8E56-6113-4360-BEE1-B810D340AA1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib.Test", "WebLib.Test\WebLib.Test.csproj", "{80BF2CEC-6CF7-4F97-83F9-66D45E9DA690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLib.Desktop", "WebLib.Desktop\WebLib.Desktop.csproj", "{61D71628-DD88-42DF-8EA9-5FB415685AF2}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://asakura89.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -26,9 +30,9 @@ Global
 		SccProjectUniqueName2 = WebLibTest\\WebLibTest.csproj
 		SccProjectName2 = WebLibTest
 		SccLocalPath2 = WebLibTest
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = WebLib.vsmdi
+		SccProjectUniqueName3 = WebLib.Desktop\\WebLib.Desktop.csproj
+		SccProjectName3 = WebLib.Desktop
+		SccLocalPath3 = WebLib.Desktop
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,8 +51,15 @@ Global
 		{80BF2CEC-6CF7-4F97-83F9-66D45E9DA690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80BF2CEC-6CF7-4F97-83F9-66D45E9DA690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80BF2CEC-6CF7-4F97-83F9-66D45E9DA690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D71628-DD88-42DF-8EA9-5FB415685AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D71628-DD88-42DF-8EA9-5FB415685AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D71628-DD88-42DF-8EA9-5FB415685AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D71628-DD88-42DF-8EA9-5FB415685AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WebLib.vsmdi
 	EndGlobalSection
 EndGlobal
