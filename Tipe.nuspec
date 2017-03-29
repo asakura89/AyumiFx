@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Tipe</id>
+        <version>1.0.2017.0206</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Tipe</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Tipe</title>
+        <description>Object to hold simple data type.</description>
+        <copyright>Copyright 2017</copyright>
+        <tags>data type object</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Tipe.dll" target="lib\net35" />
+        <file src="\build\net35\Tipe.pdb" target="lib\net35" />
+        <file src="\build\net40\Tipe.dll" target="lib\net40" />
+        <file src="\build\net40\Tipe.pdb" target="lib\net40" />
+        <file src="\build\net45\Tipe.dll" target="lib\net45" />
+        <file src="\build\net45\Tipe.pdb" target="lib\net45" />
+    </files>
+</package>
