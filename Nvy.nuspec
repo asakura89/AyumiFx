@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Nvy</id>
+        <version>1.0.2017.1906</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Nvy</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Nvy</title>
+        <description>Simple implementation of Name-Value pair object.</description>
+        <copyright>Copyright 2015</copyright>
+        <tags>name value pair</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Nvy.dll" target="lib\net35" />
+        <file src="\build\net35\Nvy.pdb" target="lib\net35" />
+        <file src="\build\net40\Nvy.dll" target="lib\net40" />
+        <file src="\build\net40\Nvy.pdb" target="lib\net40" />
+        <file src="\build\net45\Nvy.dll" target="lib\net45" />
+        <file src="\build\net45\Nvy.pdb" target="lib\net45" />
+    </files>
+</package>
