@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Pocho</id>
+        <version>1.0.2017.0106</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Pocho</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Pocho</title>
+        <description>Simple poco builder for test.</description>
+        <copyright>Copyright 2017</copyright>
+        <tags>poco builder test</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Pocho.dll" target="lib\net35" />
+        <file src="\build\net35\Pocho.pdb" target="lib\net35" />
+        <file src="\build\net40\Pocho.dll" target="lib\net40" />
+        <file src="\build\net40\Pocho.pdb" target="lib\net40" />
+        <file src="\build\net45\Pocho.dll" target="lib\net45" />
+        <file src="\build\net45\Pocho.pdb" target="lib\net45" />
+    </files>
+</package>
