@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Dfy</id>
+        <version>1.0.2017.0115</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Dfy</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Dfy</title>
+        <description>Simple implementation of Download file object for web apps.</description>
+        <copyright>Copyright 2017</copyright>
+        <tags>download file object</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Dfy.dll" target="lib\net35" />
+        <file src="\build\net35\Dfy.pdb" target="lib\net35" />
+        <file src="\build\net40\Dfy.dll" target="lib\net40" />
+        <file src="\build\net40\Dfy.pdb" target="lib\net40" />
+        <file src="\build\net45\Dfy.dll" target="lib\net45" />
+        <file src="\build\net45\Dfy.pdb" target="lib\net45" />
+    </files>
+</package>
