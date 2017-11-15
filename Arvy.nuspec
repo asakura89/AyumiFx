@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Arvy</id>
-        <version>1.0.2017.0306</version>
+        <version>1.0.2017.1015</version>
         <authors>asakura89</authors>
         <owners>asakura89</owners>
         <projectUrl>https://github.com/asakura89/Arvy</projectUrl>

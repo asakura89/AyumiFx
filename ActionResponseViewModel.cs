@@ -14,6 +14,19 @@ namespace Arvy
         public const String NewLine = "{newline}";
         public String ResponseType { get; set; }
         public String Message { get; set; }
+
+        public override string ToString()
+        {
+            return ToString(true);
+        }
+
+        public String ToString(Boolean alwaysReturn)
+        {
+            if (!alwaysReturn && ResponseType == Error)
+                throw new InvalidOperationException(Message);
+
+            return ResponseType + "|" + Message;
+        }
     }
 
     public static class ActionResponseExt
