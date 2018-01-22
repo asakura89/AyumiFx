@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>AppSea</id>
+        <version>1.0.2018.0122</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/AppSea</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>AppSea</title>
+        <description>.Net AppSettings loader.</description>
+        <copyright>Copyright 2017</copyright>
+        <tags>app settings</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net35\AppSea.dll" target="lib\net35" />
+        <file src=".\build\net35\AppSea.pdb" target="lib\net35" />
+        <file src=".\build\net40\AppSea.dll" target="lib\net40" />
+        <file src=".\build\net40\AppSea.pdb" target="lib\net40" />
+        <file src=".\build\net45\AppSea.dll" target="lib\net45" />
+        <file src=".\build\net45\AppSea.pdb" target="lib\net45" />
+    </files>
+</package>
