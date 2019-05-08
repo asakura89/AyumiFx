@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Cylog</id>
+        <version>1.0.2019.0108</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Cylog</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Cylog</title>
+        <description>Simple log4net utility.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>log4net utility</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Cylog.dll" target="lib\net35" />
+        <file src="\build\net35\Cylog.pdb" target="lib\net35" />
+        <file src="\build\net40\Cylog.dll" target="lib\net40" />
+        <file src="\build\net40\Cylog.pdb" target="lib\net40" />
+        <file src="\build\net45\Cylog.dll" target="lib\net45" />
+        <file src="\build\net45\Cylog.pdb" target="lib\net45" />
+    </files>
+</package>
