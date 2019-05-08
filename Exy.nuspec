@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Exy</id>
+        <version>1.0.2019.0108</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Exy</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Exy</title>
+        <description>Simple Exception utility.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>exception utility</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\Exy.dll" target="lib\net35" />
+        <file src="\build\net35\Exy.pdb" target="lib\net35" />
+        <file src="\build\net40\Exy.dll" target="lib\net40" />
+        <file src="\build\net40\Exy.pdb" target="lib\net40" />
+        <file src="\build\net45\Exy.dll" target="lib\net45" />
+        <file src="\build\net45\Exy.pdb" target="lib\net45" />
+    </files>
+</package>
