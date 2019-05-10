@@ -10,6 +10,7 @@ namespace Exy {
 
             return errorList
                 .AppendLine(ex.Message)
+                .AppendLine(ex.StackTrace)
                 .ToString();
         }
     }
