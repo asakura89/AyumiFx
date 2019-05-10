@@ -7,12 +7,13 @@ namespace Varya {
     public static class StringExt {
         public static String ReplaceWith(this String string2Replace, IDictionary<String, String> replacements) {
             if (replacements != null && replacements.Any()) {
-                return Regex.Replace(string2Replace, "(\\$\\w*)", match => {
+                return Regex.Replace(string2Replace, "\\$\\{(?<key>\\w*)\\}", match => {
                     if (match.Success) {
-                        if (replacements.ContainsKey(match.Value))
-                            return replacements[match.Value];
+                        String key = match.Groups["key"].Value;
+                        if (replacements.ContainsKey(key))
+                            return replacements[key];
 
-                        return match.Value;
+                        return key;
                     }
 
                     return String.Empty;
