@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Deto</id>
+        <version>1.0.2019.0118</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Deto</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Deto</title>
+        <description>Simple datetime helper.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>variable replace</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net35\Deto.dll" target="lib\net35" />
+        <file src=".\build\net35\Deto.pdb" target="lib\net35" />
+        <file src=".\build\net40\Deto.dll" target="lib\net40" />
+        <file src=".\build\net40\Deto.pdb" target="lib\net40" />
+        <file src=".\build\net45\Deto.dll" target="lib\net45" />
+        <file src=".\build\net45\Deto.pdb" target="lib\net45" />
+    </files>
+</package>
