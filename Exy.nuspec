@@ -13,11 +13,11 @@
         <tags>exception utility</tags>
     </metadata>
     <files>
-        <file src="\build\net35\Exy.dll" target="lib\net35" />
-        <file src="\build\net35\Exy.pdb" target="lib\net35" />
-        <file src="\build\net40\Exy.dll" target="lib\net40" />
-        <file src="\build\net40\Exy.pdb" target="lib\net40" />
-        <file src="\build\net45\Exy.dll" target="lib\net45" />
-        <file src="\build\net45\Exy.pdb" target="lib\net45" />
+        <file src=".\build\net35\Exy.dll" target="lib\net35" />
+        <file src=".\build\net35\Exy.pdb" target="lib\net35" />
+        <file src=".\build\net40\Exy.dll" target="lib\net40" />
+        <file src=".\build\net40\Exy.pdb" target="lib\net40" />
+        <file src=".\build\net45\Exy.dll" target="lib\net45" />
+        <file src=".\build\net45\Exy.pdb" target="lib\net45" />
     </files>
 </package>
