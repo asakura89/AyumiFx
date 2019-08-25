@@ -13,11 +13,7 @@
         <tags>log4net utility</tags>
     </metadata>
     <files>
-        <file src="\build\net35\Cylog.dll" target="lib\net35" />
-        <file src="\build\net35\Cylog.pdb" target="lib\net35" />
-        <file src="\build\net40\Cylog.dll" target="lib\net40" />
-        <file src="\build\net40\Cylog.pdb" target="lib\net40" />
-        <file src="\build\net45\Cylog.dll" target="lib\net45" />
-        <file src="\build\net45\Cylog.pdb" target="lib\net45" />
+        <file src=".\build\net45\Cylog.dll" target="lib\net45" />
+        <file src=".\build\net45\Cylog.pdb" target="lib\net45" />
     </files>
 </package>

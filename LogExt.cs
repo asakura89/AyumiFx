@@ -1,7 +1,8 @@
-﻿using log4net;
-using Newtonsoft.Json;
 using System;
 using System.Reflection;
+using Exy;
+using log4net;
+using Newtonsoft.Json;
 
 namespace Cylog {
     public sealed class LogCallerInfo {
@@ -13,6 +14,8 @@ namespace Cylog {
         const String EmptyMessageReplacer = "-";
         static ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        public static void UseExternalLogger(ILog externalLogger) => logger = externalLogger;
+
         public static void Debug<T>(String caller, T obj) => Debug(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
 
         public static void Debug(String caller, String message = EmptyMessageReplacer)=> logger.Debug($"[{caller}] {message}");
@@ -21,7 +24,13 @@ namespace Cylog {
 
         public static void Info(String caller, String message = EmptyMessageReplacer) => logger.Info($"[{caller}] {message}");
 
+        public static void Warn<T>(String caller, T obj) => Warn(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
+
+        public static void Warn(String caller, String message = EmptyMessageReplacer) => logger.Warn($"[{caller}] {message}");
+
         public static void Error<T>(String caller, T obj) => Error(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
+
+        public static void Error(String caller, Exception ex) => Error(caller, ex.GetExceptionMessage());
 
         public static void Error(String caller, String message = EmptyMessageReplacer) => logger.Error($"[{caller}] {message}");
 
