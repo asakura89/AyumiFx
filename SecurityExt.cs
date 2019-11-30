@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Net;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -93,6 +95,20 @@ namespace Serena {
                 base64 = halfProcessed + Base64Equal;
 
             return Convert.FromBase64String(base64);
+        }
+
+        public static SecureString AsSecureString(this String plain) {
+            if (String.IsNullOrEmpty(plain) || String.IsNullOrWhiteSpace(plain))
+                throw new ArgumentNullException(nameof(plain));
+
+            return new NetworkCredential(String.Empty, plain).SecurePassword;
+        }
+
+        public static String AsPlainString(this SecureString secure) {
+            if (secure == null)
+                throw new ArgumentNullException(nameof(secure));
+
+            return new NetworkCredential(String.Empty, secure).Password;
         }
     }
 }
