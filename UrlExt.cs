@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Web;
+using System.Web.Security.AntiXss;
 
 namespace Maaya {
     public static class UrlExt {
@@ -44,6 +48,67 @@ namespace Maaya {
             }
 
             return false;
+        }
+
+        // NOTE: Return value determine if need to processed further or not
+        static Boolean ParseObject(Object source, out String result) {
+            String cleaned;
+            if (source == null) {
+                result = null;
+                return false;
+            }
+
+            cleaned = source as String;
+            if (cleaned == null) {
+                result = null;
+                return false;
+            }
+
+            cleaned = cleaned.Trim();
+            if (String.IsNullOrEmpty(cleaned)) {
+                result = cleaned;
+                return false;
+            }
+
+            result = cleaned;
+            return true;
+        }
+
+        public static String AsCleanedString(this Object source) {
+            Boolean okForFurtherProcessing = ParseObject(source, out String cleaned);
+            return !okForFurtherProcessing ? cleaned : AntiXssEncoder.HtmlEncode(cleaned, true);
+        }
+
+        public static String AsCleanedLink(this Object source) {
+            Boolean okForFurtherProcessing = ParseObject(source, out String cleaned);
+            if (!okForFurtherProcessing)
+                return cleaned;
+
+            var uriBuilder = new UriBuilder(cleaned);
+            IList<String> cleanedSegments = new List<String>();
+            foreach (String segment in uriBuilder.Uri.Segments) {
+                String cleanedSegment = segment.Replace("/", String.Empty);
+                if (cleanedSegment == String.Empty)
+                    continue;
+
+                cleanedSegments.Add(AntiXssEncoder.UrlEncode(HttpUtility.UrlDecode(cleanedSegment)));
+                // NOTE: we're back and forth because we can't turn off the UriBuilder's default url encoder
+                // and the UriBuilder's default url encoder did not escape singiequote and normal brackets
+            }
+            uriBuilder.Path = String.Join("/", cleanedSegments);
+
+            NameValueCollection queryStrings = HttpUtility.ParseQueryString(uriBuilder.Query);
+            NameValueCollection shadowQueryStrings = HttpUtility.ParseQueryString(uriBuilder.Query);
+            foreach (String key in shadowQueryStrings)
+                queryStrings[key] = AntiXssEncoder.UrlEncode(HttpUtility.UrlDecode(shadowQueryStrings[key]));
+            uriBuilder.Query = HttpUtility.UrlDecode(queryStrings.ToString());
+            uriBuilder.Fragment = AntiXssEncoder.UrlEncode(HttpUtility.UrlDecode(uriBuilder.Fragment).Replace("#", String.Empty));
+
+            // NOTE: hack to remove port
+            if (uriBuilder.Uri.IsDefaultPort)
+                uriBuilder.Port = -1;
+
+            return uriBuilder.Uri.AbsoluteUri;
         }
     }
 }
