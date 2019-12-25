@@ -1,18 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Web;
 using System.Web.Security.AntiXss;
 
 namespace Maaya {
     public static class UrlExt {
-        public static Boolean IsLocalUrl(this String url, Uri hostUri) {
+        public static Boolean IsLocalUrl(this String url, params Uri[] allowedUris) {
             if (String.IsNullOrEmpty(url))
                 return false;
 
             if (String.IsNullOrWhiteSpace(url))
                 return false;
 
+            Boolean localUrl = url.IsLocalUrl();
+            if (localUrl)
+                return true;
+
+            Boolean httpUrl = url.StartsWith("http:", StringComparison.InvariantCultureIgnoreCase);
+            Boolean httpsUrl = url.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase);
+            if (httpUrl || httpsUrl) {
+                if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
+                    return false;
+
+                var absolute = new Uri(url);
+                Boolean inAllowedUrls = allowedUris
+                    .Select(uri => uri.Host)
+                    .Any(host => absolute.Host.Equals(host, StringComparison.InvariantCultureIgnoreCase));
+
+                return inAllowedUrls;
+            }
+
+            return false;
+        }
+
+        static Boolean IsLocalUrl(this String url) {
             if (url[0] == '/') {
                 if (url.Length == 1) // "/" valid
                     return true;
@@ -34,17 +57,6 @@ namespace Maaya {
                     return false;
 
                 return true;
-            }
-
-            Boolean httpUrl = url.StartsWith("http:", StringComparison.InvariantCultureIgnoreCase);
-            Boolean httpsUrl = url.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase);
-            if (httpUrl || httpsUrl) {
-                if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                    return false;
-
-                var absolute = new Uri(url);
-                if (absolute.Host.Equals(hostUri.Host, StringComparison.InvariantCultureIgnoreCase))
-                    return true;
             }
 
             return false;
@@ -82,6 +94,10 @@ namespace Maaya {
         public static String AsCleanedLink(this Object source) {
             Boolean okForFurtherProcessing = ParseObject(source, out String cleaned);
             if (!okForFurtherProcessing)
+                return cleaned;
+
+            Boolean localUrl = cleaned.IsLocalUrl();
+            if (localUrl)
                 return cleaned;
 
             var uriBuilder = new UriBuilder(cleaned);
