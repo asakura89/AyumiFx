@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Security;
@@ -22,7 +23,9 @@ namespace Serena {
             };
         }
 
-        public static String Encrypt(String plainText, String securityKey, String securitySalt) {
+        public static String Encrypt(this String plainText) => Encrypt(plainText, GetKey(), GetSalt());
+
+        public static String Encrypt(this String plainText, String securityKey, String securitySalt) {
             using (RijndaelManaged algorithm = CreateRijndaelAlgorithm(securityKey, securitySalt)) {
                 Byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
                 Byte[] cipherBytes = null;
@@ -37,7 +40,9 @@ namespace Serena {
             }
         }
 
-        public static String Decrypt(String chiperText, String securityKey, String securitySalt) {
+        public static String Decrypt(this String chiperText) => Decrypt(chiperText, GetKey(), GetSalt());
+
+        public static String Decrypt(this String chiperText, String securityKey, String securitySalt) {
             using (RijndaelManaged algorithm = CreateRijndaelAlgorithm(securityKey, securitySalt)) {
                 Byte[] cipherBytes = DecodeBase64UrlToBytes(chiperText);
                 Byte[] plainBytes = null;
@@ -56,6 +61,22 @@ namespace Serena {
 
                 return Encoding.UTF8.GetString(plainBytes);
             }
+        }
+
+        static String GetKey() {
+            String key = ConfigurationManager.AppSettings.Get("Security.Key");
+            if (String.IsNullOrEmpty(key))
+                return String.Empty;
+
+            return EncodeBase64Url(key);
+        }
+
+        static String GetSalt() {
+            String salt = ConfigurationManager.AppSettings.Get("Security.Salt");
+            if (String.IsNullOrEmpty(salt))
+                return String.Empty;
+
+            return EncodeBase64Url(salt);
         }
 
         const String Base64Plus = "+";
@@ -110,5 +131,31 @@ namespace Serena {
 
             return new NetworkCredential(String.Empty, secure).Password;
         }
+
+        const String UppercaseAlphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+        const String LowercaseAlphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
+        const String Numeric = "1 2 3 4 5 6 7 8 9 0";
+        const String Symbol = "~ ! @ # $ % ^ & * _ - + = ` | \\ ( ) { } [ ] : ; < > . ? /";
+
+        static Int32 GenerateRandomNo(Int32 upperBound) {
+            Int32 seed = Guid.NewGuid().GetHashCode() % 50001;
+            var rnd = new Random(seed);
+            return rnd.Next(0, upperBound);
+        }
+
+        static String GenerateRandomAlphanumeric(Int32 length) {
+            String[] charCombination = (UppercaseAlphabet + " " + LowercaseAlphabet + " " + Numeric + " " + Symbol).Split(' ');
+            var output = new StringBuilder();
+            for (Int32 ctr = 0; ctr < length; ctr++) {
+                Int32 randomIdx = GenerateRandomNo(charCombination.Length - 1);
+                output.Append(charCombination[randomIdx]);
+            }
+
+            return output.ToString();
+        }
+
+        public static String GenerateKey() => EncodeBase64Url(GenerateRandomAlphanumeric(64));
+
+        public static String GenerateSalt() => EncodeBase64Url(GenerateRandomAlphanumeric(128));
     }
 }
