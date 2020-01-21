@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Varya</id>
-        <version>1.0.2019.0108</version>
+        <version>1.0.2020.0921</version>
         <authors>asakura89</authors>
         <owners>asakura89</owners>
         <projectUrl>https://github.com/asakura89/Varya</projectUrl>
@@ -13,11 +13,6 @@
         <tags>variable replace</tags>
     </metadata>
     <files>
-        <file src="\build\net35\Varya.dll" target="lib\net35" />
-        <file src="\build\net35\Varya.pdb" target="lib\net35" />
-        <file src="\build\net40\Varya.dll" target="lib\net40" />
-        <file src="\build\net40\Varya.pdb" target="lib\net40" />
-        <file src="\build\net45\Varya.dll" target="lib\net45" />
-        <file src="\build\net45\Varya.pdb" target="lib\net45" />
+        <file src=".\build\net45\Varya.dll" target="lib\net45" />
     </files>
 </package>
