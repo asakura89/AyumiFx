@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Puru.Wpf</id>
+        <version>1.0.2020.0111</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Puru</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Puru.Wpf</title>
+        <description>Simple plugin loader.</description>
+        <copyright>Copyright 2020</copyright>
+        <tags>plugin loader</tags>
+        <dependencies>
+            <dependency id="Nvy" version="[1.0.2017.1906]" />
+            <dependency id="Puru" version="[1.0.2020.0111]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src=".\build\net45\Puru.Wpf.dll" target="lib\net45" />
+    </files>
+</package>
