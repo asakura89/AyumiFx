@@ -132,30 +132,32 @@ namespace Serena {
             return new NetworkCredential(String.Empty, secure).Password;
         }
 
-        const String UppercaseAlphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
-        const String LowercaseAlphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
-        const String Numeric = "1 2 3 4 5 6 7 8 9 0";
-        const String Symbol = "~ ! @ # $ % ^ & * _ - + = ` | \\ ( ) { } [ ] : ; < > . ? /";
+        const String Alphanumeric = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 ~ ! @ # $ % ^ & * _ - + = ` | \\ ( ) { } [ ] : ; < > . ? /";
 
-        static Int32 GenerateRandomNo(Int32 upperBound) {
-            Int32 seed = Guid.NewGuid().GetHashCode() % 50001;
+        // https://en.wikipedia.org/wiki/Feigenbaum_constants
+        public const Int32 Feigenbaum = 46692;
+
+        public static Int32 TurnToRyandom(this Int32 lowerBound, Int32 upperBound) {
+            Int32 seed = Guid.NewGuid().GetHashCode() % Feigenbaum;
             var rnd = new Random(seed);
-            return rnd.Next(0, upperBound);
+            return rnd.Next(lowerBound, upperBound);
         }
 
-        static String GenerateRandomAlphanumeric(Int32 length) {
-            String[] charCombination = (UppercaseAlphabet + " " + LowercaseAlphabet + " " + Numeric + " " + Symbol).Split(' ');
+        public static Int32 TurnToRyandom(this Int32 upperBound) => 0.TurnToRyandom(upperBound);
+
+        static String GetRandomAlphanumeric(Int32 length) {
+            String[] charCombination = Alphanumeric.Split(' ');
             var output = new StringBuilder();
             for (Int32 ctr = 0; ctr < length; ctr++) {
-                Int32 randomIdx = GenerateRandomNo(charCombination.Length - 1);
+                Int32 randomIdx = (charCombination.Length -1).TurnToRyandom();
                 output.Append(charCombination[randomIdx]);
             }
 
             return output.ToString();
         }
 
-        public static String GenerateKey() => EncodeBase64Url(GenerateRandomAlphanumeric(64));
+        public static String GenerateKey() => EncodeBase64Url(GetRandomAlphanumeric(64));
 
-        public static String GenerateSalt() => EncodeBase64Url(GenerateRandomAlphanumeric(128));
+        public static String GenerateSalt() => EncodeBase64Url(GetRandomAlphanumeric(128));
     }
 }
