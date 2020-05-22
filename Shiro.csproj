@@ -7,8 +7,8 @@
     <ProjectGuid>{AED04E87-1239-4184-9572-0E6A860E23A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cylog</RootNamespace>
-    <AssemblyName>Cylog</AssemblyName>
+    <RootNamespace>Shiro</RootNamespace>
+    <AssemblyName>Shiro</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -56,8 +56,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Exy, Version=1.0.2019.108, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Exy.1.0.2019.108\lib\net45\Exy.dll</HintPath>
+    <Reference Include="Exy, Version=1.0.2020.1322, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Exy.1.0.2020.1322\lib\net45\Exy.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>

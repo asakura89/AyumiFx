@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Cylog
+set appname=Shiro
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build

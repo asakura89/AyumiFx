@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Shiro</id>
+        <version>1.0.2020.1322</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Shiro</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Shiro</title>
+        <description>Simple log4net utility.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>log4net utility</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net45\Shiro.dll" target="lib\net45" />
+    </files>
+</package>
