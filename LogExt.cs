@@ -37,11 +37,11 @@ namespace Shiro {
         // NOTE: One is not encouraged to fill `memberName` parameter as it'll be injected by the compiler service
         public static LogCallerInfo GetCallerInfo<T>(this T caller, [System.Runtime.CompilerServices.CallerMemberName] String memberName = "") =>
             new LogCallerInfo {
-                CallerType = caller.GetType().Name,
+                CallerType = caller.GetType().FullName,
                 CallerMember = memberName
             };
 
         public static String GetFormattedCallerInfoString<T>(this T caller, [System.Runtime.CompilerServices.CallerMemberName] String memberName = "") =>
-            $"{caller.GetType().Name}.{memberName}";
+            $"{caller.GetType().FullName}.{memberName}";
     }
 }
