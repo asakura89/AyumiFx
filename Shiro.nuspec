@@ -11,6 +11,11 @@
         <description>Simple log4net utility.</description>
         <copyright>Copyright 2019</copyright>
         <tags>log4net utility</tags>
+        <dependencies>
+            <dependency id="Exy" version="[1.0.2020.1322]" />
+            <dependency id="log4net" version="2.0.8" />
+            <dependency id="Newtonsoft.Json" version="12.0.2" />
+        </dependencies>
     </metadata>
     <files>
         <file src=".\build\net45\Shiro.dll" target="lib\net45" />
