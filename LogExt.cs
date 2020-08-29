@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text;
 using Exy;
 using log4net;
 using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace Shiro {
 
         public static void Debug<T>(String caller, T obj) => Debug(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
 
-        public static void Debug(String caller, String message = EmptyMessageReplacer)=> logger.Debug($"[{caller}] {message}");
+        public static void Debug(String caller, String message = EmptyMessageReplacer) => logger.Debug($"[{caller}] {message}");
 
         public static void Info<T>(String caller, T obj) => Info(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
 
@@ -30,7 +31,12 @@ namespace Shiro {
 
         public static void Error<T>(String caller, T obj) => Error(caller, JsonConvert.SerializeObject(obj, Formatting.Indented));
 
-        public static void Error(String caller, Exception ex) => Error(caller, ex.GetExceptionMessage());
+        public static void Error(String caller, Exception ex) =>
+            Error(caller,
+                new StringBuilder()
+                    .AppendLine()
+                    .Append(ex.GetExceptionMessage())
+                    .ToString());
 
         public static void Error(String caller, String message = EmptyMessageReplacer) => logger.Error($"[{caller}] {message}");
 
@@ -43,5 +49,8 @@ namespace Shiro {
 
         public static String GetFormattedCallerInfoString<T>(this T caller, [System.Runtime.CompilerServices.CallerMemberName] String memberName = "") =>
             $"{caller.GetType().FullName}.{memberName}";
+
+        public static String GetFormattedCallerInfoString(this Type callerType, [System.Runtime.CompilerServices.CallerMemberName] String memberName = "") =>
+            $"{callerType.FullName}.{memberName}";
     }
 }

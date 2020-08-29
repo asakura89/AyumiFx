@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Shiro</id>
-        <version>1.0.2020.1330</version>
+        <version>1.0.2020.1630</version>
         <authors>asakura89</authors>
         <owners>asakura89</owners>
         <projectUrl>https://github.com/asakura89/Shiro</projectUrl>
