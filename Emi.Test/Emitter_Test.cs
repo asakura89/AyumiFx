@@ -3,6 +3,9 @@ using System.Threading;
 using Xunit;
 
 namespace Emi.Test {
+    // NOTE: https://github.com/xunit/xunit/issues/1202
+    // xUnit 2.2 min req is .Net 4.5.2
+    // or downgrade to 2.1
     public class Emitter_Test {
         [Fact]
         public void On_EmptyFunc_ShouldContainsOne() {

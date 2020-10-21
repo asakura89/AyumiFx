@@ -18,10 +18,15 @@ namespace Emi {
     }
 
     public class Emitter {
-
+        readonly Object eLock = new Object();
         readonly Dictionary<String, IList<Action<EmitterEventArgs>>> e = new Dictionary<String, IList<Action<EmitterEventArgs>>>();
 
-        public Int32 Count => e.Count;
+        public Int32 Count {
+            get {
+                lock (eLock)
+                    return e.Count;
+            }
+        }
 
         public Emitter On(String name, Action<EmitterEventArgs> callback) {
             if (String.IsNullOrEmpty(name))
@@ -30,10 +35,12 @@ namespace Emi {
             if (callback == null)
                 throw new EmitterException("Invalid callback.");
 
-            if (!e.ContainsKey(name))
-                e.Add(name, new List<Action<EmitterEventArgs>>());
+            lock (eLock) {
+                if (!e.ContainsKey(name))
+                    e.Add(name, new List<Action<EmitterEventArgs>>());
 
-            e[name].Add(callback);
+                e[name].Add(callback);
+            }
 
             return this;
         }
@@ -44,23 +51,25 @@ namespace Emi {
             if (String.IsNullOrEmpty(name))
                 throw new EmitterException("Name must be specified.");
 
-            if (!e.ContainsKey(name))
-                return this;
+            lock (eLock) {
+                if (!e.ContainsKey(name))
+                    return this;
 
-            if (callback == null) {
-                e.Remove(name);
-                return this;
+                if (callback == null) {
+                    e.Remove(name);
+                    return this;
+                }
+
+                IList<Action<EmitterEventArgs>> callbacks = e[name];
+                IList<Action<EmitterEventArgs>> liveCallbacks = callbacks
+                    .Where(callb => !callb.Equals(callback))
+                    .ToList();
+
+                if (liveCallbacks.Any())
+                    e[name] = liveCallbacks;
+                else
+                    e.Remove(name); 
             }
-
-            IList<Action<EmitterEventArgs>> callbacks = e[name];
-            IList<Action<EmitterEventArgs>> liveCallbacks = callbacks
-                .Where(callb => !callb.Equals(callback))
-                .ToList();
-
-            if (liveCallbacks.Any())
-                e[name] = liveCallbacks;
-            else
-                e.Remove(name);
 
             return this;
         }
