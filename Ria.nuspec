@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Ria</id>
+        <version>1.0.2020.0121</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Ria</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Ria</title>
+        <description>Simple application pipeline.</description>
+        <copyright>Copyright 2020</copyright>
+        <tags>application pipeline</tags>
+        <dependencies>
+            <dependency id="Arvy" version="[1.0.2020.4202]" />
+            <dependency id="Eksmaru" version="[1.0.2020.124]" />
+            <dependency id="Reflx" version="[1.0.2020.125]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src=".\build\net35\Ria.dll" target="lib\net35" />
+        <file src=".\build\net40\Ria.dll" target="lib\net40" />
+        <file src=".\build\net45\Ria.dll" target="lib\net45" />
+    </files>
+</package>
