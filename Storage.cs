@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using Eksmaru;
+using Itsu;
 
 namespace Haru {
     public interface IStorage {
@@ -18,27 +19,6 @@ namespace Haru {
 
     public static class XmlStorageExt {
         public static Boolean IsSimpleType(this Type type) => type.Name == "String" || (type.IsValueType && type.Name != "Void");
-
-        public static DateTime ToUtc(this DateTime datetime, TimeZoneInfo timezone = null) {
-            if (datetime.Kind == DateTimeKind.Utc)
-                return datetime;
-
-            if (datetime == DateTime.MinValue || datetime == DateTime.MaxValue)
-                return DateTime.SpecifyKind(datetime, DateTimeKind.Utc);
-
-            if (datetime.Kind == DateTimeKind.Local)
-                return TimeZoneInfo.ConvertTimeToUtc(datetime);
-
-            if (timezone == null)
-                return TimeZoneInfo.ConvertTimeToUtc(datetime, TimeZoneInfo.Local);
-
-            return TimeZoneInfo.ConvertTimeToUtc(datetime, timezone);
-        }
-
-        public static String ToIsoDateTime(this DateTime datetime) {
-            datetime = datetime.ToUtc();
-            return $"{datetime:yyyyMMddTHHmmss}:{datetime.Ticks}Z";
-        }
     }
 
     public class XmlStorage : IStorage {
@@ -79,16 +59,81 @@ namespace Haru {
                 if (!loaded)
                     Load(path);
 
-                IList<XmlNode> itemNodes = storageRoot
+                return storageRoot
                     .SelectNodes("item")
                     .Cast<XmlNode>()
-                    .ToList();
-
-                return itemNodes.Select(node => node.GetAttributeValue("key"));
+                    .Select(node => node.GetAttributeValue("key"));
             }
         }
 
-        public T Get<T>(String key) => throw new NotImplementedException();
+        XmlNode GetItemNode(String key) => storageRoot.SelectSingleNode($"storage/item[@key='{key}']");
+
+        T AssignNodeValueToSimpleType<T>(XmlNode node, Type nodeType) {
+            String nodeValue = node.GetAttributeValue("value");
+            return (T) Convert.ChangeType(nodeValue, nodeType);
+        }
+
+        T AssignNodeValueToDateTime<T>(XmlNode node, Type nodeType) {
+            String nodeValue = node.GetAttributeValue("value");
+            DateTime datetime = nodeValue.FromIsoDateTime();
+
+            return (T) Convert.ChangeType(datetime, nodeType);
+        }
+
+        T AssignNodeValueToTimeSpan<T>(XmlNode node, Type nodeType) {
+            String nodeValue = node.GetAttributeValue("value");
+            var timespan = TimeSpan.Parse(nodeValue);
+
+            return (T) Convert.ChangeType(timespan, nodeType);
+        }
+
+        //T AssignNodeValueToEnumerable<T>(XmlNode node, Type nodeType) {
+        //    String nodeValue = node.GetAttributeValue("value");
+        //    //DateTime datetime = nodeValue.FromIsoDateTime();
+
+        //    //return (T) Convert.ChangeType(datetime, nodeType);
+        //}
+
+        // IMPORTANT: REFACTOR ASAP!!
+        T AssignNodeValueToObject<T>(XmlNode node) {
+            //Type objType = typeof(T); //obj.GetType();
+            String nodeType = node.GetAttributeValue("type");
+            if (typeof(T).FullName != nodeType)
+                throw new InvalidOperationException($"Node {node.GetAttributeValue("key")} and object have different type.");
+
+            var actualNodeType = Type.GetType(nodeType);
+            if (actualNodeType.FullName == "System.DateTime")
+                return AssignNodeValueToDateTime<T>(node, actualNodeType);
+            else if (actualNodeType.FullName == "System.TimeSpan")
+                return AssignNodeValueToTimeSpan<T>(node, actualNodeType);
+            else if (actualNodeType.IsSimpleType())
+                return AssignNodeValueToSimpleType<T>(node, actualNodeType);
+            //else if (actualNodeType is IDictionary)
+            //    return AssignNodeValueToDictionary<T>(node, actualNodeType);
+            //else if (actualNodeType is IEnumerable)
+            //    return AssignNodeValueToEnumerable<T>(node, actualNodeType);
+            //else
+            //    return AssignNodeValueToPoco<T>(node, actualNodeType);
+            else
+                return default(T);
+        }
+
+        public T Get<T>(String key) {
+            if (!loaded)
+                Load(path);
+
+            XmlNode item = GetItemNode(key);
+            if (item == null)
+                return default(T);
+
+            //T obj = Activator.CreateInstance<T>();
+            //AssignNodeToObject(item, obj);
+
+            //return obj;
+            //AssignNodeToObject<>();
+
+            return AssignNodeValueToObject<T>(item);
+        }
 
         XmlNode CreateItemNode(XmlDocument root, String key, String type) {
             XmlNode node = root.CreateElement("item", null);
@@ -98,8 +143,8 @@ namespace Haru {
             return node;
         }
 
-        void AssignSimpleValueToNode<T>(XmlDocument root, XmlNode node, T value) =>
-            root.AssignAttributeTo(node, "value", value.ToString());
+        void AssignSimpleValueToNode(XmlDocument root, XmlNode node, String value) =>
+            root.AssignAttributeTo(node, "value", value);
 
         void AssignDateTimeToNode(XmlDocument root, XmlNode node, DateTime value) =>
             root.AssignAttributeTo(node, "value", value.ToIsoDateTime());
@@ -125,7 +170,7 @@ namespace Haru {
             }
         }
 
-        void AssignObjectToNode<T>(XmlDocument root, XmlNode node, T value) {
+        void AssignPocoToNode<T>(XmlDocument root, XmlNode node, T value) {
             PropertyInfo[] properties = value.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
             foreach (PropertyInfo property in properties) {
                 XmlNode propertyNode = CreateItemNode(root, property.Name, property.PropertyType.ToString());
@@ -145,34 +190,54 @@ namespace Haru {
             }
         }
 
+        //String DetermineObjectType<T>(T obj) {
+        //    if (obj == null)
+        //        return "null";
+        //    else if (obj.GetType().Name == "DateTime")
+        //        return "datetime";
+        //    else if (obj.GetType().IsSimpleType())
+        //        return "simple";
+        //    else if (obj is IDictionary dictionary)
+        //        return "dictionary";
+        //    else if (obj is IEnumerable enumerable)
+        //        return "enumerable";
+        //    else
+        //        return "object";
+        //}
+
+        // IMPORTANT: REFACTOR ASAP!!
         void AssignValueToNode<T>(XmlDocument root, XmlNode node, T value) {
             if (value == null)
                 AssignSimpleValueToNode(root, node, "null");
             else if (value.GetType().Name == "DateTime")
                 AssignDateTimeToNode(root, node, Convert.ToDateTime(value));
             else if (value.GetType().IsSimpleType())
-                AssignSimpleValueToNode(root, node, value);
+                AssignSimpleValueToNode(root, node, value.ToString());
             else if (value is IDictionary dictionary)
                 AssignDictionaryToNode(root, node, dictionary);
             else if (value is IEnumerable enumerable)
                 AssignEnumerableToNode(root, node, enumerable);
             else
-                AssignObjectToNode(root, node, value);
+                AssignPocoToNode(root, node, value);
         }
+
+        void RemoveItemNode(XmlNode node) => storageRoot.SelectSingleNode("storage").RemoveChild(node);
+
+        void AddItemNode(XmlNode node) => storageRoot.SelectSingleNode("storage").AppendChild(node);
 
         public void Set<T>(String key, T value) {
             if (!loaded)
                 Load(path);
 
-            XmlNode node = storageRoot.SelectSingleNode($"storage/item[@key='{key}']");
+            XmlNode node = GetItemNode(key);
             Boolean newNode = node == null;
-            XmlNode udpated = CreateItemNode(storageRoot, key, value.GetType().ToString());
-            AssignValueToNode(storageRoot, udpated, value);
+            XmlNode updated = CreateItemNode(storageRoot, key, value.GetType().ToString());
+            AssignValueToNode(storageRoot, updated, value);
 
             if (!newNode)
-                storageRoot.SelectSingleNode("storage").RemoveChild(node);
+                RemoveItemNode(node);
 
-            storageRoot.SelectSingleNode("storage").AppendChild(udpated);
+            AddItemNode(updated);
             storageRoot.Save(path);
         }
 
@@ -180,9 +245,9 @@ namespace Haru {
             if (!loaded)
                 Load(path);
 
-            XmlNode node = storageRoot.SelectSingleNode($"storage/item[@key='{key}']");
+            XmlNode node = GetItemNode(key);
             if (node != null) {
-                storageRoot.SelectSingleNode("storage").RemoveChild(node);
+                RemoveItemNode(node);
                 storageRoot.Save(path);
             }
         }
