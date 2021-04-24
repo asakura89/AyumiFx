@@ -87,6 +87,51 @@ namespace Haru {
             return (T) Convert.ChangeType(timespan, nodeType);
         }
 
+        //IEnumerable<T> 
+
+        T AssignNodeValueToEnumerable<T>(XmlNode node, Type nodeType) {
+            XmlNodeList items = node.SelectNodes("item");
+            foreach (XmlNode item in items) {
+                
+            }
+
+                // NOTE: in case of array
+                Type elementType = nodeType.GetElementType();
+            if (elementType == null) {
+                Type[] genericTypes = nodeType.GetGenericArguments();
+                if (genericTypes.Length < 0)
+                    throw new ArrayTypeMismatchException($"Unknown IEnumerable element type from {nodeType.FullName}.");
+
+                elementType = genericTypes[0];
+            }
+
+            //Type genericIEnumType = typeof(IEnumerable<>).MakeGenericType(elementType);
+            Object genericIEnum = typeof(Enumerable)
+                .GetMethod("Empty", BindingFlags.Public | BindingFlags.Static)
+                .MakeGenericMethod(elementType)
+                .Invoke(null, null);
+
+            XmlNodeList docs = node.SelectNodes("item");
+            foreach (XmlNode doc in docs) {
+                Object items = typeof(Enumerable)
+                    .GetMethod("Repeat", BindingFlags.Public | BindingFlags.Static)
+                    .MakeGenericMethod(elementType)
+                    .Invoke(null, new Object[] { doc.GetAttributeValue("value"), 1 });
+
+                genericIEnum = typeof(Enumerable)
+                    .GetMethod("Concat", BindingFlags.Public | BindingFlags.Static)
+                    .MakeGenericMethod(elementType)
+                    .Invoke(null, new [] { genericIEnum, items });
+            }
+
+            if (nodeType.IsArray) {
+                ArrayList arr = new ArrayList();
+                arr.Add()
+                    Enumerable.ToArray(genericIEnum as IEnumerable)
+            //return (T) Convert.ChangeType(genericIEnum, nodeType);
+            }
+        }
+
         //T AssignNodeValueToEnumerable<T>(XmlNode node, Type nodeType) {
         //    String nodeValue = node.GetAttributeValue("value");
         //    //DateTime datetime = nodeValue.FromIsoDateTime();
@@ -110,8 +155,8 @@ namespace Haru {
                 return AssignNodeValueToSimpleType<T>(node, actualNodeType);
             //else if (actualNodeType is IDictionary)
             //    return AssignNodeValueToDictionary<T>(node, actualNodeType);
-            //else if (actualNodeType is IEnumerable)
-            //    return AssignNodeValueToEnumerable<T>(node, actualNodeType);
+            else if (typeof(IEnumerable).IsAssignableFrom(actualNodeType))
+                return AssignNodeValueToEnumerable<T>(node, actualNodeType);
             //else
             //    return AssignNodeValueToPoco<T>(node, actualNodeType);
             else

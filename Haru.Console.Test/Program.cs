@@ -64,7 +64,7 @@ namespace Haru.Console.Test {
             readValue.D = storage2.Get<Decimal>("d");
             readValue.E = storage2.Get<Int64>("e");
             readValue.F = storage2.Get<Int32>("f");
-            //readValue.G = storage2.Get<String[]>("g");
+            readValue.G = storage2.Get<String[]>("g");
             readValue.I = storage2.Get<DateTime>("i");
             readValue.J = storage2.Get<TimeSpan>("j");
 
