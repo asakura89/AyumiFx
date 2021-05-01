@@ -27,7 +27,7 @@ namespace Eksmaru {
         }
 
         public static XmlAttribute GetAttribute(this XmlNode node, String name) {
-            if (node != null && node.Attributes != null) {
+            if (node != null) {
                 XmlAttribute attr = node.Attributes[name];
                 if (attr != null)
                     return attr;
@@ -37,11 +37,14 @@ namespace Eksmaru {
         }
 
         public static void AssignAttributeTo(this XmlDocument xmlDoc, XmlNode node, String name, String value) {
-            if (xmlDoc != null && node != null && node.Attributes != null) {
-                XmlAttribute attr = xmlDoc.CreateAttribute(name);
-                attr.Value = value;
+            if (xmlDoc != null && node != null) {
+                XmlAttribute attr = node.GetAttribute(name);
+                if (attr == null) {
+                    attr = xmlDoc.CreateAttribute(name);
+                    node.Attributes.Append(attr);
+                }
 
-                node.Attributes.Append(attr);
+                attr.Value = value;
             }
         }
 
@@ -58,7 +61,7 @@ namespace Eksmaru {
             return node.InnerText;
         }
 
-        public static IList<String> GetNodesValue(XmlDocument xmlDoc, String selector) {
+        public static IList<String> GetMultipleNodeValue(XmlDocument xmlDoc, String selector) {
             var values = new List<String>();
             XmlNodeList docs = xmlDoc.SelectNodes(selector);
             foreach (XmlNode doc in docs)
