@@ -1,0 +1,6 @@
+[submodule "Eksmaru"]
+	path = Eksmaru
+	url = https://github.com/asakura89/Eksmaru.git
+[submodule "Itsu"]
+	path = Itsu
+	url = https://github.com/asakura89/Itsu.git

@@ -12,11 +12,13 @@ namespace Haru.Test {
                 File.Delete(path);
         }
 
+        const String AppName = "HaruTest";
+
         [Fact]
         public void DefaultConstructor_StorageLoaded_ShouldBeNull() {
-            var storage = new XmlStorage();
+            var storage = new XmlStorage(AppName);
             var root = typeof(XmlStorage)
-                .GetField("storageRoot", BindingFlags.Instance | BindingFlags.NonPublic)
+                .GetField("docRoot", BindingFlags.Instance | BindingFlags.NonPublic)
                 .GetValue(storage) as XmlDocument;
 
             Assert.Null(root);
@@ -24,7 +26,7 @@ namespace Haru.Test {
 
         [Fact]
         public void DefaultConstructor_StoragePath_ShouldBeDefault() {
-            var storage = new XmlStorage();
+            var storage = new XmlStorage(AppName);
             String defaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "storage.xml");
             String actualPath = typeof(XmlStorage)
                 .GetField("path", BindingFlags.Instance | BindingFlags.NonPublic)
@@ -35,33 +37,33 @@ namespace Haru.Test {
 
         [Fact]
         public void DefaultConstructor_StorageFile_ShouldNotBeCreated() {
-            var storage = new XmlStorage();
+            var storage = new XmlStorage(AppName);
             Assert.False(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "storage.xml")));
         }
 
         [Fact]
         public void SecondConstructor_EmptyPath_ThrowsException() {
-            Assert.Throws<ArgumentNullException>(() => new XmlStorage(String.Empty));
+            Assert.Throws<ArgumentNullException>(() => new XmlStorage(String.Empty, AppName));
 
-            Assert.Throws<ArgumentNullException>(() => new XmlStorage(null));
+            Assert.Throws<ArgumentNullException>(() => new XmlStorage(null, AppName));
         }
 
         [Fact]
         public void SecondConstructor_InvalidPath_DidntComplain() {
-            new XmlStorage("https://invalid-path.com");
-            new XmlStorage("C:\\nonExistentPath");
+            new XmlStorage("https://invalid-path.com", AppName);
+            new XmlStorage("C:\\nonExistentPath", AppName);
         }
 
         [Fact]
         public void GetKeys_StorageFile_ShouldBeCreated() {
-            var storage = new XmlStorage();
+            var storage = new XmlStorage(AppName);
             IEnumerable<String> keys = storage.Keys;
 
             String defaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "storage.xml");
             Assert.True(File.Exists(defaultPath));
 
             String otherPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "other-storage.xml");
-            var otherStorage = new XmlStorage(otherPath);
+            var otherStorage = new XmlStorage(otherPath, AppName);
             IEnumerable<String> otherKeys = otherStorage.Keys;
 
             Assert.True(File.Exists(otherPath));
@@ -73,11 +75,11 @@ namespace Haru.Test {
         [Fact]
         public void GetKeys_InvalidStorageFile_ThrowsException() {
             String invalidFilePath1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data\\invalid-storage.xml");
-            var storage = new XmlStorage(invalidFilePath1);
+            var storage = new XmlStorage(invalidFilePath1, AppName);
             Assert.Throws<InvalidOperationException>(() => storage.Keys);
 
             String invalidFilePath2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data\\invalid-storage-2.xml");
-            var otherStorage = new XmlStorage(invalidFilePath2);
+            var otherStorage = new XmlStorage(invalidFilePath2, AppName);
             Assert.Throws<InvalidOperationException>(() => otherStorage.Keys);
         }
     }

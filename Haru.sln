@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru", "Haru.csproj", "{913E22CC-D443-49F8-BA86-7730BD55F1D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eksmaru", "..\Eksmaru\Eksmaru.csproj", "{60BFCDD8-C920-4999-9727-2BE8F3238236}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru.Test", "Haru.Test\Haru.Test.csproj", "{6E6E16A6-55EF-4189-AD29-983024920BDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haru.Console.Test", "Haru.Console.Test\Haru.Console.Test.csproj", "{150971A9-F694-49F9-B673-D6B8E1C845CF}"
@@ -21,10 +19,6 @@ Global
 		{913E22CC-D443-49F8-BA86-7730BD55F1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{913E22CC-D443-49F8-BA86-7730BD55F1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{913E22CC-D443-49F8-BA86-7730BD55F1D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60BFCDD8-C920-4999-9727-2BE8F3238236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60BFCDD8-C920-4999-9727-2BE8F3238236}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60BFCDD8-C920-4999-9727-2BE8F3238236}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60BFCDD8-C920-4999-9727-2BE8F3238236}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E6E16A6-55EF-4189-AD29-983024920BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E6E16A6-55EF-4189-AD29-983024920BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E6E16A6-55EF-4189-AD29-983024920BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
