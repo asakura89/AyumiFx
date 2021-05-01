@@ -7,8 +7,8 @@
     <ProjectGuid>{AED04E87-1239-4184-9572-0E6A860E23A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Deto</RootNamespace>
-    <AssemblyName>Deto</AssemblyName>
+    <RootNamespace>Itsu</RootNamespace>
+    <AssemblyName>Itsu</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

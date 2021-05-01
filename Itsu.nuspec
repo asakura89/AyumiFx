@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Itsu</id>
+        <version>1.0.2021.2301</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Itsu</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Itsu</title>
+        <description>Simple datetime helper.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>datetime helper</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net35\Itsu.dll" target="lib\net35" />
+        <file src=".\build\net35\Itsu.pdb" target="lib\net35" />
+        <file src=".\build\net40\Itsu.dll" target="lib\net40" />
+        <file src=".\build\net40\Itsu.pdb" target="lib\net40" />
+        <file src=".\build\net45\Itsu.dll" target="lib\net45" />
+        <file src=".\build\net45\Itsu.pdb" target="lib\net45" />
+    </files>
+</package>

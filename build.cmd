@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Deto
+set appname=Itsu
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build

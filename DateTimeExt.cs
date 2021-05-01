@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Deto {
+namespace Itsu {
     public static class DateTimeExt {
         static String[] months = new[] {
             String.Empty,
