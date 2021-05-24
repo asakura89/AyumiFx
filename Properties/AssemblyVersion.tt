@@ -6,7 +6,7 @@
 <#
     DateTime date = DateTime.Now;
     DateTime buildYearMo = new DateTime(date.Year, date.Month, 1);
-    DateTime projectYear = new DateTime(2019, 5, 1);
+    DateTime projectYear = new DateTime(2020, 4, 1);
 
     Int32 major = 1;
     Int32 minor = 0;

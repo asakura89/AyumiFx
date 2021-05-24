@@ -8,12 +8,7 @@ set commonflags=/p:Configuration=%config%;AllowUnsafeBlocks=true /p:CLSCompliant
 
 set nugetversion=latest
 set cachednuget=%LocalAppData%\NuGet\nuget.%nugetversion%.exe
-
-if %PROCESSOR_ARCHITECTURE%==x86 (
-    set msbuild="%WINDIR%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
-) else (
-    set msbuild="%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe"
-)
+set msbuild="C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
 goto build
 
 :build-error
