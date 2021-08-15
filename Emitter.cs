@@ -3,20 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Emi {
-    public class EmitterException : Exception {
-        public EmitterException(String message) : base(message) { }
-
-        public EmitterException(String message, Exception innerException) : base(message, innerException) { }
-    }
-
-    public class EmitterEventArgs : EventArgs {
-        public Object Context { get; }
-
-        public EmitterEventArgs(Object context) {
-            Context = context;
-        }
-    }
-
     public class Emitter {
         readonly Object eLock = new Object();
         readonly Dictionary<String, IList<Action<EmitterEventArgs>>> e = new Dictionary<String, IList<Action<EmitterEventArgs>>>();

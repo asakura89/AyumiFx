@@ -36,6 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Emitter.cs" />
+    <Compile Include="EmitterEventArgs.cs" />
+    <Compile Include="EmitterException.cs" />
+    <Compile Include="IEventRegistrar.cs" />
     <Compile Include="XmlConfigEmitterLoader.cs" />
     <Compile Include="IEmitterLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -44,7 +47,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
-    <Compile Include="XmlExt.cs" />
+    <Compile Include="XmlConfigEventRegistrar.cs" />
+    <Compile Include="XmlEventDefinition.cs" />
+    <Compile Include="XmlEventDefinitionLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="emitter.config.xml">
@@ -57,6 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Eksmaru\Eksmaru.csproj">
+      <Project>{60bfcdd8-c920-4999-9727-2be8f3238236}</Project>
+      <Name>Eksmaru</Name>
+    </ProjectReference>
+    <ProjectReference Include="Reflx\Reflx.csproj">
+      <Project>{ff60305a-a48b-4e61-ab32-48acca429ad9}</Project>
+      <Name>Reflx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,6 @@
+[submodule "Reflx"]
+	path = Reflx
+	url = https://github.com/asakura89/Reflx.git
+[submodule "Eksmaru"]
+	path = Eksmaru
+	url = https://github.com/asakura89/Eksmaru.git
