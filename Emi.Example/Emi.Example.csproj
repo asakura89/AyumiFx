@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassB.cs" />
     <Compile Include="ClassA.cs" />
     <Compile Include="EventList.cs" />
     <Compile Include="Program.cs" />
@@ -49,7 +50,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="emitter.config.xml">
+    <None Include="emitter_dotnetnative.config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="emitter_emitter.config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

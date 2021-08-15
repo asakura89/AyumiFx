@@ -6,7 +6,7 @@ namespace Emi.Example {
         event EventHandler<EmitterEventArgs> ClassAFinish;
 
         public ClassA() {
-            new XmlConfigEventRegistrar()
+            new XmlConfigEventRegistrar($"{AppDomain.CurrentDomain.BaseDirectory}\\emitter_dotnetnative.config.xml")
                 .Register(this);
         }
 
