@@ -30,18 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Arvy, Version=1.0.2020.4202, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Arvy.1.0.2020.4202\lib\net35\Arvy.dll</HintPath>
-    </Reference>
-    <Reference Include="Eksmaru, Version=1.0.2020.124, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Eksmaru.1.0.2020.124\lib\net35\Eksmaru.dll</HintPath>
-    </Reference>
-    <Reference Include="Exy, Version=1.0.2020.1322, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Exy.1.0.2020.1322\lib\net35\Exy.dll</HintPath>
-    </Reference>
-    <Reference Include="Reflx, Version=1.0.2020.125, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Reflx.1.0.2020.125\lib\net35\Reflx.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -72,7 +60,21 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Arvy\Arvy.csproj">
+      <Project>{3a658b44-725f-44a8-a0f0-710e56e99bc6}</Project>
+      <Name>Arvy</Name>
+    </ProjectReference>
+    <ProjectReference Include="Eksmaru\Eksmaru.csproj">
+      <Project>{60bfcdd8-c920-4999-9727-2be8f3238236}</Project>
+      <Name>Eksmaru</Name>
+    </ProjectReference>
+    <ProjectReference Include="Reflx\Reflx.csproj">
+      <Project>{ff60305a-a48b-4e61-ab32-48acca429ad9}</Project>
+      <Name>Reflx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
