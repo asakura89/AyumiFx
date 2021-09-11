@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1622
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arvy", "Arvy.csproj", "{3A658B44-725F-44A8-A0F0-710E56E99BC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exy", "Exy\Exy.csproj", "{AED04E87-1239-4184-9572-0E6A860E23A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{3A658B44-725F-44A8-A0F0-710E56E99BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A658B44-725F-44A8-A0F0-710E56E99BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A658B44-725F-44A8-A0F0-710E56E99BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED04E87-1239-4184-9572-0E6A860E23A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED04E87-1239-4184-9572-0E6A860E23A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED04E87-1239-4184-9572-0E6A860E23A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED04E87-1239-4184-9572-0E6A860E23A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEE38E0C-B8E0-4331-BE91-41A3E671F7E0}
 	EndGlobalSection
 EndGlobal
