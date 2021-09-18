@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Arvy;
 using Reflx;
 
 namespace Ria {
@@ -16,9 +15,17 @@ namespace Ria {
             this.definitions = definitions;
         }
 
-        public IList<ActionResponseViewModel> Execute(String pipelineName, PipelineContext context) {
+        public PipelineContext Execute(String pipelineName) {
             XmlPipelinesDefinition pipeline = definitions.SingleOrDefault(definition => definition.Name.Equals(pipelineName, StringComparison.OrdinalIgnoreCase));
+            var context = new PipelineContext();
+
             foreach (XmlPipelineActionDefinition action in pipeline.Actions) {
+                Type ctxType = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(pipeline.ContextType, pipeline.ContextAssembly));
+                if (!typeof(PipelineContext).IsAssignableFrom(ctxType))
+                    throw new PipelineException($"Context Type '{pipeline.ContextType}', Assembly '{pipeline.ContextAssembly}' must be inherited from PipelineContext type.");
+
+                context = (PipelineContext) Activator.CreateInstance(ctxType);
+
                 Type type = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(action.Type, action.Assembly));
                 Object instance = Activator.CreateInstance(type);
                 MethodInfo methodInfo = instance
@@ -34,7 +41,7 @@ namespace Ria {
                     break;
             }
 
-            return context.ActionMessages;
+            return context;
         }
     }
 }
