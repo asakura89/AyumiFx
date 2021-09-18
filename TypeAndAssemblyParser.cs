@@ -40,7 +40,7 @@ namespace Reflx {
                 .SingleOrDefault(appDAsm => appDAsm.GetName().Name == typeAndAsm.Assembly);
 
             if (asm == null)
-                throw new InvalidOperationException($"Assembly '{typeAndAsm.Assembly}' was not found.");
+                throw new InvalidOperationException($"Assembly '{typeAndAsm.Assembly}' was not found in the current AppDomain.");
 
             return GetType(typeAndAsm, asm);
         }
