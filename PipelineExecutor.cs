@@ -17,15 +17,13 @@ namespace Ria {
 
         public PipelineContext Execute(String pipelineName) {
             XmlPipelinesDefinition pipeline = definitions.SingleOrDefault(definition => definition.Name.Equals(pipelineName, StringComparison.OrdinalIgnoreCase));
-            var context = new PipelineContext();
+            Type ctxType = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(pipeline.ContextType, pipeline.ContextAssembly));
+            if (!typeof(PipelineContext).IsAssignableFrom(ctxType))
+                throw new PipelineException($"Context Type '{pipeline.ContextType}', Assembly '{pipeline.ContextAssembly}' must be inherited from PipelineContext type.");
+
+            Object context = Activator.CreateInstance(ctxType);
 
             foreach (XmlPipelineActionDefinition action in pipeline.Actions) {
-                Type ctxType = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(pipeline.ContextType, pipeline.ContextAssembly));
-                if (!typeof(PipelineContext).IsAssignableFrom(ctxType))
-                    throw new PipelineException($"Context Type '{pipeline.ContextType}', Assembly '{pipeline.ContextAssembly}' must be inherited from PipelineContext type.");
-
-                context = (PipelineContext) Activator.CreateInstance(ctxType);
-
                 Type type = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(action.Type, action.Assembly));
                 Object instance = Activator.CreateInstance(type);
                 MethodInfo methodInfo = instance
@@ -37,11 +35,11 @@ namespace Ria {
                     throw new PipelineException($"Method '{action.Method}' was not found. Type '{action.Type}', Assembly '{action.Assembly}'.");
                 
                 methodInfo.Invoke(instance, new[] { context });
-                if (context.Cancelled)
+                if (((PipelineContext)context).Cancelled)
                     break;
             }
 
-            return context;
+            return (PipelineContext) context;
         }
     }
 }
