@@ -1,11 +1,8 @@
 using System;
+using System.Collections.Generic;
 
 namespace Emi {
     public class EmitterEventArgs : EventArgs {
-        public Object Context { get; }
-
-        public EmitterEventArgs(Object context) {
-            Context = context;
-        }
+        public IDictionary<String, Object> Data { get; set; } = new Dictionary<String, Object>();
     }
 }
