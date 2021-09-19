@@ -15,13 +15,19 @@ namespace Ria {
             this.definitions = definitions;
         }
 
-        public PipelineContext Execute(String pipelineName) {
+        public PipelineContext Execute(String pipelineName) => Execute(pipelineName, null);
+
+        public PipelineContext Execute(String pipelineName, IDictionary<String, Object> data) {
             XmlPipelinesDefinition pipeline = definitions.SingleOrDefault(definition => definition.Name.Equals(pipelineName, StringComparison.OrdinalIgnoreCase));
             Type ctxType = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(pipeline.ContextType, pipeline.ContextAssembly));
             if (!typeof(PipelineContext).IsAssignableFrom(ctxType))
                 throw new PipelineException($"Context Type '{pipeline.ContextType}', Assembly '{pipeline.ContextAssembly}' must be inherited from PipelineContext type.");
 
             Object context = Activator.CreateInstance(ctxType);
+            if (data != null && data.Any()) {
+                foreach (KeyValuePair<String, Object> dataItem in data)
+                    ((PipelineContext) context).Data.Add(dataItem);
+            }
 
             foreach (XmlPipelineActionDefinition action in pipeline.Actions) {
                 Type type = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(action.Type, action.Assembly));

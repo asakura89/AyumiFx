@@ -51,7 +51,7 @@
     <Compile Include="XmlPipelinesDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pipeline.config.xml" />
+    <None Include="pipeline.config.xml" />
     <Content Include="Properties\AssemblyVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
