@@ -53,9 +53,7 @@
     <Compile Include="XmlEventDefinitionLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="emitter.config.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="emitter.config.xml" />
     <Content Include="Properties\AssemblyVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
