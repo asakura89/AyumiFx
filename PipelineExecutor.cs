@@ -5,7 +5,7 @@ using System.Reflection;
 using Reflx;
 
 namespace Ria {
-    public class PipelineExecutor {
+    public class PipelineExecutor : IPipelineExecutor {
         readonly IList<XmlPipelinesDefinition> definitions;
 
         public PipelineExecutor(IList<XmlPipelinesDefinition> definitions) {

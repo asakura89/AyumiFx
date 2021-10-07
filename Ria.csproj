@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPipelineExecutor.cs" />
     <Compile Include="PipelineException.cs" />
     <Compile Include="PipelineExecutor.cs" />
     <Compile Include="PipelineContext.cs" />

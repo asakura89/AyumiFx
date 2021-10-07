@@ -47,7 +47,7 @@ namespace Ria {
             return new XmlPipelinesDefinition(nameValue, ctxTypeNAsm.Type, ctxTypeNAsm.Assembly, actions);
         }
 
-        public PipelineExecutor Load() {
+        public IPipelineExecutor Load() {
             XmlDocument config = XmlExt.LoadFromPath(configPath);
             String pipelinesSelector = $"configuration/pipelines";
             IEnumerable<XmlNode> pipelinesConfig = config.SelectNodes(pipelinesSelector).Cast<XmlNode>();
