@@ -1,0 +1,57 @@
+﻿
+/*
+
+Param:
+    Ids
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN RemoveUser
+
+    BEGIN TRY
+        DECLARE
+            @@message VARCHAR(MAX),
+            @@itemDelimiter CHAR(1) = ';',
+            @@dataCount INT, @@counter INT = 0,
+            @@currentData VARCHAR(100)
+
+        DECLARE @@splittedList TABLE ( [No] INT, Split VARCHAR(100) )
+
+        INSERT INTO @@splittedList
+        SELECT [No], Split FROM dbo.SplitString(@Ids, @@itemDelimiter)
+        SELECT @@dataCount = COUNT(0) FROM @@splittedList
+
+        WHILE (@@counter < @@dataCount)
+        BEGIN
+            SELECT @@currentData = Split FROM @@splittedList WHERE [No] = @@counter +1
+            IF ISNULL(NULLIF(@@currentData, ' '), '') <> ''
+            BEGIN
+                --<< Check reference >>--
+                /*IF EXISTS (SELECT Id FROM dbo.ReferencingTable WHERE refId = @Ids)
+                BEGIN
+                    SELECT TOP 1 @@message = 'Data: ' + m.[Name] + ' is used by ReferencingTable: ' + CAST(m.Id AS VARCHAR)
+                    FROM dbo.MasterTable m JOIN dbo.ReferencingTable r ON m.Id = r.refId
+
+                    RAISERROR(@@message, 16, 1)
+                END*/
+
+                DELETE FROM dbo.m_UserProfile WHERE Username = @@currentData
+                DELETE FROM dbo.m_User WHERE Username = @@currentData
+            END
+
+            SET @@counter = @@counter +1
+        END
+
+        COMMIT TRAN RemoveUser
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN RemoveUser
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

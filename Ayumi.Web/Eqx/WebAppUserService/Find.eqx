@@ -1,0 +1,2 @@
+﻿
+SELECT CASE WHEN COUNT(0) > 0 THEN 1 ELSE 0 END Found FROM dbo.m_User WHERE Username = @0

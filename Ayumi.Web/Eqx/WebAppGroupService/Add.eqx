@@ -1,0 +1,38 @@
+﻿
+/*
+
+Param:
+    GroupId,
+    GroupDesc
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN AddGroup
+
+    BEGIN TRY
+        DECLARE @@message VARCHAR(MAX)
+
+        --<< Check duplicate >>--
+        IF EXISTS (SELECT GroupId FROM dbo.m_Group WHERE GroupDesc = @GroupDesc)
+        BEGIN
+            SET @@message = 'Group with name: ' + @GroupDesc + ' already exist.'
+            RAISERROR(@@message , 16, 1)
+        END
+
+        INSERT INTO dbo.m_Group
+        (GroupId, GroupDesc)
+        VALUES (@GroupId, @GroupDesc)
+
+        COMMIT TRAN AddGroup
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN AddGroup
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

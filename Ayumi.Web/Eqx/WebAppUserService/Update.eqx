@@ -1,0 +1,35 @@
+﻿
+/*
+
+Param:
+    Username,
+    Email,
+    FirstName,
+    LastName
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN UpdateUser
+
+    BEGIN TRY
+        DECLARE @@message VARCHAR(MAX)
+
+        UPDATE dbo.m_UserProfile SET
+        FirstName = @FirstName,
+        LastName = @LastName,
+        Email = @Email
+        WHERE Username = @Username
+
+        COMMIT TRAN UpdateUser
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN UpdateUser
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

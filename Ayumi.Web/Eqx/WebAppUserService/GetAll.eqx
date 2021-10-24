@@ -1,0 +1,10 @@
+﻿SELECT
+u.Username,
+u.Password,
+u.Counter,
+up.FirstName,
+up.LastName,
+up.Email
+FROM dbo.m_User u
+JOIN dbo.m_UserProfile up
+ON u.Username = up.Username

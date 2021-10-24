@@ -1,0 +1,29 @@
+﻿
+/*
+
+Param:
+    Counter,
+    Username
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN UpdateBadSignInCounter
+
+    BEGIN TRY
+        DECLARE @@message VARCHAR(MAX)
+
+        UPDATE dbo.m_User SET [Counter] = @Counter WHERE Username = @Username
+
+        COMMIT TRAN UpdateBadSignInCounter
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN UpdateBadSignInCounter
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

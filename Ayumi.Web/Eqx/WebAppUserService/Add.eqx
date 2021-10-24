@@ -1,0 +1,51 @@
+﻿
+/*
+
+Param:
+    Username,
+    Password,
+    Email,
+    FirstName,
+    LastName
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN AddUser
+
+    BEGIN TRY
+        DECLARE @@message VARCHAR(MAX)
+
+        --<< Check duplicate >>--
+        IF EXISTS (SELECT Username FROM dbo.m_User WHERE [Username] = @Username)
+        BEGIN
+            SET @@message = 'User with username: ' + @Username + ' already exist.'
+            RAISERROR(@@message , 16, 1)
+        END
+
+        IF @Email <> '' AND EXISTS (SELECT Username FROM dbo.m_UserProfile WHERE Email = @Email)
+        BEGIN
+            SET @@message = 'User with email: ' + @Email + ' already exist.'
+            RAISERROR(@@message , 16, 1)
+        END
+
+        INSERT INTO dbo.m_User
+        (Username, [Password], [Counter], ResetPassword)
+        VALUES (@Username, @Password, 0, 1)
+
+        INSERT INTO dbo.m_UserProfile
+        (Username, FirstName, LastName, Email)
+        VALUES (@Username, @FirstName, @LastName, @Email)
+
+        COMMIT TRAN AddUser
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN AddUser
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

@@ -1,0 +1,3 @@
+﻿
+SELECT * FROM dbo.m_SignInInfo
+WHERE Username = @0 AND SignOutTime IS NULL

@@ -42,12 +42,96 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonException.cs" />
+    <Compile Include="CommonFormat.cs" />
+    <Compile Include="CommonIdGenerator.cs" />
+    <Compile Include="Config\AppConfig.cs" />
+    <Compile Include="Config\MainConfig.cs" />
+    <Compile Include="Config\Section.cs" />
+    <Compile Include="DateTimeHelper.cs" />
+    <Compile Include="DbContextFactory.cs" />
+    <Compile Include="DecimalModelBinder.cs" />
+    <Compile Include="Delimiter.cs" />
+    <Compile Include="EmbeddedResourceHandler.cs" />
+    <Compile Include="Eqx.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FtpHandler.cs" />
+    <Compile Include="IAccountService.cs" />
+    <Compile Include="IActivityService.cs" />
+    <Compile Include="IDbContextFactory.cs" />
+    <Compile Include="IGroupMemberService.cs" />
+    <Compile Include="IGroupService.cs" />
+    <Compile Include="IMenuService.cs" />
+    <Compile Include="IntegerHelper.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="IUserSignInPolicy.cs" />
+    <Compile Include="JQueryDataTableDataFormat.cs" />
+    <Compile Include="JQueryDataTableHelper.cs" />
+    <Compile Include="Model\m_Activity.cs" />
+    <Compile Include="Model\m_Authorization.cs" />
+    <Compile Include="Model\m_Group.cs" />
+    <Compile Include="Model\m_Member.cs" />
+    <Compile Include="Model\m_Menu.cs" />
+    <Compile Include="Model\m_SignInInfo.cs" />
+    <Compile Include="Model\m_User.cs" />
+    <Compile Include="Model\m_UserProfile.cs" />
+    <Compile Include="ObjectRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="Security.cs" />
+    <Compile Include="UpdateProfileViewModel.cs" />
+    <Compile Include="Utility\AccountExt.cs" />
+    <Compile Include="Utility\InvariantCultureIgnoreCaseStringComparer.cs" />
+    <Compile Include="Utility\ObjectExt.cs" />
+    <Compile Include="Utility\OrdinalIgnoreCaseStringComparer.cs" />
+    <Compile Include="ViewModel\WebAppChangePassword.cs" />
+    <Compile Include="WebAppAccountService.cs" />
+    <Compile Include="WebAppActivity.cs" />
+    <Compile Include="WebAppActivityService.cs" />
+    <Compile Include="WebAppAuthorizationAttribute.cs" />
+    <Compile Include="WebAppCookie.cs" />
+    <Compile Include="WebAppExecutingContext.cs" />
+    <Compile Include="WebAppGroup.cs" />
+    <Compile Include="WebAppGroupMember.cs" />
+    <Compile Include="WebAppGroupService.cs" />
+    <Compile Include="WebAppMemberService.cs" />
+    <Compile Include="WebAppMenu.cs" />
+    <Compile Include="WebAppMenuService.cs" />
+    <Compile Include="WebAppSignedInInfo.cs" />
+    <Compile Include="WebAppUser.cs" />
+    <Compile Include="WebAppUserProfile.cs" />
+    <Compile Include="WebAppUserService.cs" />
+    <Compile Include="WebAppUserSignInPolicy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Eqx\WebAppAccountService\GetSignInInfoListInOtherDimensionPure.eqx" />
+    <None Include="Eqx\WebAppAccountService\GetUserProfile.eqx" />
+    <None Include="Eqx\WebAppGroupService\Add.eqx" />
+    <None Include="Eqx\WebAppGroupService\AddActivities.eqx" />
+    <None Include="Eqx\WebAppGroupService\Find.eqx" />
+    <None Include="Eqx\WebAppGroupService\Get.eqx" />
+    <None Include="Eqx\WebAppGroupService\GetAll.eqx" />
+    <None Include="Eqx\WebAppGroupService\Remove.eqx" />
+    <None Include="Eqx\WebAppGroupService\Update.eqx" />
+    <None Include="Eqx\WebAppUserService\Add.eqx" />
+    <None Include="Eqx\WebAppUserService\ChangePassword.eqx" />
+    <None Include="Eqx\WebAppUserService\Find.eqx" />
+    <None Include="Eqx\WebAppUserService\Get.eqx" />
+    <None Include="Eqx\WebAppUserService\GetAll.eqx" />
+    <None Include="Eqx\WebAppUserService\GetAllNonAdmin.eqx" />
+    <None Include="Eqx\WebAppUserService\Remove.eqx" />
+    <None Include="Eqx\WebAppUserService\Update.eqx" />
+    <None Include="Eqx\WebAppUserService\UpdateBadSignInCounter.eqx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+    <Folder Include="Authorization\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

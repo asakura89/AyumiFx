@@ -1,0 +1,31 @@
+﻿
+/*
+
+Param:
+    GroupId,
+    GroupDesc
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN UpdateGroup
+
+    BEGIN TRY
+        DECLARE @@message VARCHAR(MAX)
+
+        UPDATE dbo.m_Group SET
+        GroupDesc = @GroupDesc
+        WHERE GroupId = @GroupId
+
+        COMMIT TRAN UpdateGroup
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN UpdateGroup
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END

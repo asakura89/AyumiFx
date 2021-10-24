@@ -1,0 +1,2 @@
+﻿
+SELECT TOP 1 * FROM dbo.m_Group WHERE GroupId = @0

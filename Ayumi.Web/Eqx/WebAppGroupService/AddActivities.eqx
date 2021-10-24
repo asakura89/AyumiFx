@@ -1,0 +1,72 @@
+﻿
+/*
+
+Param:
+    JoinedAuths => GroupId;Username;ActivityId
+
+*/
+
+BEGIN
+    SET NOCOUNT ON
+    BEGIN TRAN AddActivities
+
+    BEGIN TRY
+        DECLARE
+            @@message VARCHAR(MAX),
+            @@itemDelimiter CHAR(1) = ';',
+            @@listDelimiter CHAR(1) = ',',
+            @@itemCount INT,
+            @@listCount INT,
+            @@itemCounter INT = 0,
+            @@listCounter INT = 0,
+            @@currentItem VARCHAR(50),
+            @@currentList VARCHAR(200)
+
+        DECLARE @@splittedList TABLE ( [No] INT, Split VARCHAR(100) )
+
+        INSERT INTO @@splittedList
+        SELECT [No], Split FROM dbo.SplitString(@JoinedAuths, @@listDelimiter)
+        SELECT @@listCount = COUNT(0) FROM @@splittedList
+
+        WHILE (@@listCounter < @@listCount)
+        BEGIN
+            SELECT @@currentList = Split FROM @@splittedList WHERE [No] = @@listCounter +1
+            DECLARE @@splittedItem TABLE ( [No] INT, Split VARCHAR(100) )
+
+            INSERT INTO @@splittedItem
+            SELECT [No], Split FROM dbo.SplitString(@@currentList, @@itemDelimiter)
+
+            DECLARE
+                @@groupId VARCHAR(50) = (SELECT Split FROM @@splittedItem WHERE [No] = 1),
+                @@username VARCHAR(50) = (SELECT Split FROM @@splittedItem WHERE [No] = 2),
+                @@activityId VARCHAR(50) = (SELECT Split FROM @@splittedItem WHERE [No] = 3)
+
+            IF NOT EXISTS (SELECT ActivityId FROM dbo.m_Authorization WHERE GroupId = @@groupId AND Username = @@username AND ActivityId = @@activityId)
+            BEGIN
+                INSERT INTO dbo.m_Authorization
+                (GroupId, Username, ActivityId)
+                VALUES (@@groupId, @@username, @@activityId)
+            END
+
+            IF NOT EXISTS (SELECT Username FROM dbo.m_Member WHERE GroupId = @@groupId AND Username = @@username)
+            BEGIN
+                INSERT INTO dbo.m_Member
+                (GroupId, Username, [Description])
+                VALUES (@@groupId, @@username, '')
+            END
+
+            DELETE FROM @@splittedItem
+            SET @@listCounter = @@listCounter +1
+        END
+
+        COMMIT TRAN AddActivities
+        SET @@message = 'S|Finish'
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRAN AddActivities
+        SET @@message = 'E|' + ERROR_MESSAGE()
+    END CATCH
+
+    SET NOCOUNT OFF
+    SELECT @@message [Message]
+END
