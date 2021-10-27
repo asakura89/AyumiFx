@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 
 namespace Reflx {
-    public static class DefaultAssemblyResolver {
-        public static Assembly Resolve(Object sender, ResolveEventArgs args) {
+    public class DefaultAssemblyResolver : IDefaultAssemblyResolver {
+        public Assembly Resolve(Object sender, ResolveEventArgs args) {
             try {
                 if (args.Name.Contains(".resources"))
                     return null;

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Reflx {
-    public class TypeAndAssemblyParser {
+    public class TypeAndAssemblyParser : ITypeAndAssemblyParser {
         const String TypeAndAssemblyRegex = "^(?<TypeN>.+)(?:,\\s{1,}?)(?<AsmN>.+)$";
         Regex typeNameRgx = new Regex(TypeAndAssemblyRegex, RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
