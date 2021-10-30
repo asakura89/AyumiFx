@@ -4,8 +4,8 @@ using System.IO;
 using System.Xml;
 
 namespace Eksmaru {
-    public static class XmlExt {
-        public static XmlDocument LoadFromPath(String xmlPath) {
+    public class XmlHelper : IXmlHelper {
+        public XmlDocument LoadFromPath(String xmlPath) {
             if (!File.Exists(xmlPath))
                 throw new FileNotFoundException(xmlPath);
 
@@ -15,7 +15,7 @@ namespace Eksmaru {
             return xmlDoc;
         }
 
-        public static XmlDocument Load(String xmlContent) {
+        public XmlDocument Load(String xmlContent) {
             String content = xmlContent.Trim();
             if (String.IsNullOrEmpty(content))
                 return null;
@@ -26,7 +26,7 @@ namespace Eksmaru {
             return xmlDoc;
         }
 
-        public static XmlAttribute GetAttribute(this XmlNode node, String name) {
+        public XmlAttribute GetAttribute(XmlNode node, String name) {
             if (node != null) {
                 XmlAttribute attr = node.Attributes[name];
                 if (attr != null)
@@ -36,9 +36,9 @@ namespace Eksmaru {
             return null;
         }
 
-        public static void AssignAttributeTo(this XmlDocument xmlDoc, XmlNode node, String name, String value) {
+        public void AssignAttributeTo(XmlDocument xmlDoc, XmlNode node, String name, String value) {
             if (xmlDoc != null && node != null) {
-                XmlAttribute attr = node.GetAttribute(name);
+                XmlAttribute attr = GetAttribute(node, name);
                 if (attr == null) {
                     attr = xmlDoc.CreateAttribute(name);
                     node.Attributes.Append(attr);
@@ -48,7 +48,7 @@ namespace Eksmaru {
             }
         }
 
-        public static String GetAttributeValue(this XmlNode node, String name) {
+        public String GetAttributeValue(XmlNode node, String name) {
             XmlAttribute attr = GetAttribute(node, name);
             if (attr != null)
                 return attr.Value;
@@ -56,12 +56,12 @@ namespace Eksmaru {
             return String.Empty;
         }
 
-        public static String GetNodeValue(XmlDocument xmlDoc, String selector) {
+        public String GetNodeValue(XmlDocument xmlDoc, String selector) {
             XmlNode node = xmlDoc.SelectSingleNode(selector);
             return node.InnerText;
         }
 
-        public static IList<String> GetMultipleNodeValue(XmlDocument xmlDoc, String selector) {
+        public IList<String> GetMultipleNodeValue(XmlDocument xmlDoc, String selector) {
             var values = new List<String>();
             XmlNodeList docs = xmlDoc.SelectNodes(selector);
             foreach (XmlNode doc in docs)
