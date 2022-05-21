@@ -8,10 +8,12 @@ namespace Emi {
     public class XmlConfigEventRegistrar : IEventRegistrar {
         readonly String configPath;
         readonly IDictionary<String, EventInfo> handlers;
+        readonly ITypeAndAssemblyParser typeNAsmParser;
 
-        public XmlConfigEventRegistrar() : this($"{AppDomain.CurrentDomain.BaseDirectory}\\emitter.config.xml") { }
+        public XmlConfigEventRegistrar(ITypeAndAssemblyParser typeNAsmParser) : this(typeNAsmParser, $"{AppDomain.CurrentDomain.BaseDirectory}\\emitter.config.xml") { }
 
-        public XmlConfigEventRegistrar(String configPath) {
+        public XmlConfigEventRegistrar(ITypeAndAssemblyParser typeNAsmParser, String configPath) {
+            this.typeNAsmParser = typeNAsmParser ?? throw new ArgumentNullException(nameof(typeNAsmParser));
             this.configPath = configPath ?? throw new ArgumentNullException(nameof(configPath));
             handlers = new Dictionary<String, EventInfo>();
         }
@@ -29,7 +31,7 @@ namespace Emi {
 
             IEnumerable<XmlEventDefinition> events = XmlEventDefinitionLoader.Load(configPath);
             foreach (XmlEventDefinition definition in events) {
-                Type type = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(definition.Type, definition.Assembly));
+                Type type = typeNAsmParser.GetType(new TypeAndAssembly(definition.Type, definition.Assembly));
                 Object instance = Activator.CreateInstance(type);
                 MethodInfo methodInfo = instance
                     .GetType()

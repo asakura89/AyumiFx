@@ -1,13 +1,15 @@
 using System;
+using System.IO;
+using Reflx;
 
 namespace Emi.Example {
     public class ClassB {
-        readonly Emitter globalEmitter;
+        readonly IEmitter globalEmitter;
 
         public ClassB() {
-            globalEmitter =
-                new XmlConfigEmitterLoader($"{AppDomain.CurrentDomain.BaseDirectory}\\emitter_emitter.config.xml")
-                    .Load();
+            ITypeAndAssemblyParser typeNAsmParser = TypeAndAssemblyParser.Instance;
+            String emitterConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "emitter_emitter.config.xml");
+            globalEmitter = new XmlConfigEmitterLoader(typeNAsmParser, emitterConfig).Load();
         }
 
         public void TriggerStart() =>

@@ -13,12 +13,20 @@ namespace Emi {
             EventName = eventName;
         }
 
-        public EmitterEventArgs(String eventName,  IDictionary<String, Object> data) {
+        public EmitterEventArgs(String eventName, params KeyValuePair<String, Object>[] data) {
             if (String.IsNullOrEmpty(eventName))
                 throw new ArgumentNullException(nameof(eventName));
 
             EventName = eventName;
-            Data = data ?? throw new ArgumentNullException(nameof(data));
+
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (data.Length == 0)
+                throw new ArgumentOutOfRangeException(nameof(data));
+
+            foreach (KeyValuePair<String, Object> dataItem in data)
+                Data.Add(dataItem.Key, dataItem.Value);
         }
     }
 }

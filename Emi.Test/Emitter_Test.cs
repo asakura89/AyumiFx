@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using Xunit;
 
@@ -50,7 +51,7 @@ namespace Emi.Test {
             emitter.On("test", arg => {
                 Console.WriteLine("Start.");
                 Thread.Sleep(3000);
-                Console.WriteLine(arg.Context);
+                Console.WriteLine("Data: " + arg.Data.Keys.Aggregate(String.Empty, (acc, curr) => curr + ", "));
                 Thread.Sleep(3000);
                 Console.WriteLine("Done.");
             });
@@ -58,7 +59,7 @@ namespace Emi.Test {
             emitter.On("test-2", arg => {
                 Console.WriteLine("Start Logging.");
                 Thread.Sleep(1000);
-                Console.WriteLine(arg.Context);
+                Console.WriteLine("Data: " + arg.Data.Keys.Aggregate(String.Empty, (acc, curr) => curr + ", "));
                 Thread.Sleep(1000);
                 Console.WriteLine("Done Logging.");
             });
@@ -78,7 +79,7 @@ namespace Emi.Test {
             emitter.On("test", arg => {
                 Console.WriteLine("Start.");
                 Thread.Sleep(3000);
-                Console.WriteLine(arg.Context);
+                Console.WriteLine("Data: " + arg.Data.Keys.Aggregate(String.Empty, (acc, curr) => curr + ", "));
                 Thread.Sleep(3000);
                 Console.WriteLine("Done.");
             });
@@ -86,14 +87,14 @@ namespace Emi.Test {
             emitter.On("test", arg => {
                 Console.WriteLine("Start Logging.");
                 Thread.Sleep(1000);
-                Console.WriteLine(arg.Context);
+                Console.WriteLine("Data: " + arg.Data.Keys.Aggregate(String.Empty, (acc, curr) => curr + ", "));
                 Thread.Sleep(1000);
                 Console.WriteLine("Done Logging.");
             });
 
             Assert.True(emitter.Count == 1);
 
-            emitter.Emit("test", new EmitterEventArgs(new { }));
+            emitter.Emit("test", new EmitterEventArgs("Arg"));
             Assert.True(emitter.Count == 1);
         }
     }

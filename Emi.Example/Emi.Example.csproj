@@ -48,6 +48,10 @@
       <Project>{2851ab33-c4fa-41e1-96ca-925b4dd1a355}</Project>
       <Name>Emi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reflx\Reflx.csproj">
+      <Project>{ff60305a-a48b-4e61-ab32-48acca429ad9}</Project>
+      <Name>Reflx</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="emitter_dotnetnative.config.xml">

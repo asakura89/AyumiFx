@@ -7,19 +7,21 @@ using Reflx;
 namespace Emi {
     public class XmlConfigEmitterLoader : IEmitterLoader {
         readonly String configPath;
-        readonly Emitter globalEmitter;
+        readonly IEmitter globalEmitter;
+        readonly ITypeAndAssemblyParser typeNAsmParser;
 
-        public XmlConfigEmitterLoader() : this($"{AppDomain.CurrentDomain.BaseDirectory}\\emitter.config.xml") { }
+        public XmlConfigEmitterLoader(ITypeAndAssemblyParser typeNAsmParser) : this(typeNAsmParser, $"{AppDomain.CurrentDomain.BaseDirectory}\\emitter.config.xml") { }
 
-        public XmlConfigEmitterLoader(String configPath) {
+        public XmlConfigEmitterLoader(ITypeAndAssemblyParser typeNAsmParser, String configPath) {
+            this.typeNAsmParser = typeNAsmParser ?? throw new ArgumentNullException(nameof(typeNAsmParser));
             this.configPath = configPath ?? throw new ArgumentNullException(nameof(configPath));
             globalEmitter = new Emitter();
         }
 
-        public Emitter Load() {
+        public IEmitter Load() {
             IEnumerable<XmlEventDefinition> events = XmlEventDefinitionLoader.Load(configPath);
             foreach (XmlEventDefinition definition in events) {
-                Type type = TypeAndAssemblyParser.Instance.GetType(new TypeAndAssembly(definition.Type, definition.Assembly));
+                Type type = typeNAsmParser.GetType(new TypeAndAssembly(definition.Type, definition.Assembly));
                 Object instance = Activator.CreateInstance(type);
                 MethodInfo methodInfo = instance
                     .GetType()

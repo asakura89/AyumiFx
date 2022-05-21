@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Reflx;
 
 namespace Emi.Example {
     public class ClassA {
@@ -6,8 +8,9 @@ namespace Emi.Example {
         event EventHandler<EmitterEventArgs> ClassAFinish;
 
         public ClassA() {
-            new XmlConfigEventRegistrar($"{AppDomain.CurrentDomain.BaseDirectory}\\emitter_dotnetnative.config.xml")
-                .Register(this);
+            ITypeAndAssemblyParser typeNAsmParser = TypeAndAssemblyParser.Instance;
+            String emitterConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "emitter_dotnetnative.config.xml");
+            new XmlConfigEventRegistrar(typeNAsmParser, emitterConfig).Register(this);
         }
 
         public void TriggerStart() =>

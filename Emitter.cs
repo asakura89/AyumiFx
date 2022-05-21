@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Emi {
-    public class Emitter {
+    public class Emitter : IEmitter {
         readonly Object eLock = new Object();
         readonly Dictionary<String, IList<Action<EmitterEventArgs>>> e = new Dictionary<String, IList<Action<EmitterEventArgs>>>();
 
@@ -14,7 +14,7 @@ namespace Emi {
             }
         }
 
-        public Emitter On(String name, Action<EmitterEventArgs> callback) {
+        public IEmitter On(String name, Action<EmitterEventArgs> callback) {
             if (String.IsNullOrEmpty(name))
                 throw new EmitterException("Name must be specified.");
 
@@ -31,9 +31,9 @@ namespace Emi {
             return this;
         }
 
-        public Emitter Off(String name) => Off(name, null);
+        public IEmitter Off(String name) => Off(name, null);
 
-        public Emitter Off(String name, Action<EmitterEventArgs> callback) {
+        public IEmitter Off(String name, Action<EmitterEventArgs> callback) {
             if (String.IsNullOrEmpty(name))
                 throw new EmitterException("Name must be specified.");
 
@@ -54,23 +54,22 @@ namespace Emi {
                 if (liveCallbacks.Any())
                     e[name] = liveCallbacks;
                 else
-                    e.Remove(name); 
+                    e.Remove(name);
             }
 
             return this;
         }
 
-        public Emitter Once(String name, Action<EmitterEventArgs> callback) {
+        public IEmitter Once(String name, Action<EmitterEventArgs> callback) {
             if (String.IsNullOrEmpty(name))
                 throw new EmitterException("Name must be specified.");
 
             if (callback == null)
                 throw new EmitterException("Invalid callback.");
 
-            Emitter self = this;
+            IEmitter self = this;
             Action<EmitterEventArgs> wrapper = null;
-            wrapper = arg =>
-            {
+            wrapper = arg => {
                 self.Off(name, wrapper);
                 callback.Invoke(arg);
             };
@@ -78,7 +77,7 @@ namespace Emi {
             return self.On(name, wrapper);
         }
 
-        public Emitter Emit(String name, EmitterEventArgs arg) {
+        public IEmitter Emit(String name, EmitterEventArgs arg) {
             if (String.IsNullOrEmpty(name))
                 throw new EmitterException("Name must be specified.");
 

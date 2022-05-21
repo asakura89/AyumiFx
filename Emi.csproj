@@ -39,6 +39,7 @@
     <Compile Include="Emitter.cs" />
     <Compile Include="EmitterEventArgs.cs" />
     <Compile Include="EmitterException.cs" />
+    <Compile Include="IEmitter.cs" />
     <Compile Include="IEventRegistrar.cs" />
     <Compile Include="XmlConfigEmitterLoader.cs" />
     <Compile Include="IEmitterLoader.cs" />
