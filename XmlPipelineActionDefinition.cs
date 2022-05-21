@@ -5,8 +5,9 @@ namespace Ria {
         public String Type { get; }
         public String Assembly { get; }
         public String Method { get; }
+        public Boolean Enabled { get; set; }
 
-        public XmlPipelineActionDefinition(String type, String assembly, String method) {
+        public XmlPipelineActionDefinition(String type, String assembly, String method, Boolean enabled = true) {
             if (String.IsNullOrEmpty(type))
                 throw new ArgumentNullException(nameof(type));
 
@@ -19,6 +20,7 @@ namespace Ria {
             Type = type;
             Assembly = assembly;
             Method = method;
+            Enabled = enabled;
         }
     }
 }

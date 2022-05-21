@@ -15,7 +15,20 @@ namespace Ria {
             this.configPath = configPath ?? throw new ArgumentNullException(nameof(configPath));
         }
 
-        XmlPipelineActionDefinition MapConfigToActionDefinition(XmlNode actionConfig) {
+        Boolean ParseEnabledValue(String enabledValue) {
+            if (String.IsNullOrEmpty(enabledValue))
+                return true;
+
+            if (enabledValue.Equals(Boolean.TrueString, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (enabledValue.Equals(Boolean.FalseString, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            return false;
+        }
+
+        XmlPipelineActionDefinition MapConfigToActionDefinition(XmlNode actionConfig, Boolean pipelineEnabled) {
             String typeValue = actionConfig.GetAttributeValue("type");
             String methodValue = actionConfig.GetAttributeValue("method");
             TypeAndAssembly actionTypeNAsm = TypeAndAssemblyParser.Instance.Parse(typeValue);
@@ -23,15 +36,20 @@ namespace Ria {
             if (String.IsNullOrEmpty(methodValue))
                 throw new PipelineException($"Wrong Method configuration. '{methodValue}'.");
 
-            return new XmlPipelineActionDefinition(actionTypeNAsm.Type, actionTypeNAsm.Assembly, methodValue);
+            Boolean enabled = ParseEnabledValue(actionConfig.GetAttributeValue("enabled"));
+            if (!pipelineEnabled)
+                enabled = false;
+
+            return new XmlPipelineActionDefinition(actionTypeNAsm.Type, actionTypeNAsm.Assembly, methodValue, enabled);
         }
 
         XmlPipelinesDefinition MapConfigToPipelineDefinition(XmlNode pipelineConfig) {
+            Boolean enabled = ParseEnabledValue(pipelineConfig.GetAttributeValue("enabled"));
             IList<XmlPipelineActionDefinition> actions =
                 pipelineConfig
                     .SelectNodes("action")
                     .Cast<XmlNode>()
-                    .Select(MapConfigToActionDefinition)
+                    .Select(node => MapConfigToActionDefinition(node, enabled))
                     .ToList();
 
             String nameValue = pipelineConfig.GetAttributeValue("name");
@@ -44,7 +62,7 @@ namespace Ria {
 
             TypeAndAssembly ctxTypeNAsm = TypeAndAssemblyParser.Instance.Parse(ctxTypeValue);
 
-            return new XmlPipelinesDefinition(nameValue, ctxTypeNAsm.Type, ctxTypeNAsm.Assembly, actions);
+            return new XmlPipelinesDefinition(nameValue, ctxTypeNAsm.Type, ctxTypeNAsm.Assembly, actions, enabled);
         }
 
         public IPipelineExecutor Load() {

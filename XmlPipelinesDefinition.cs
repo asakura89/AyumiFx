@@ -8,8 +8,9 @@ namespace Ria {
         public String ContextType { get; }
         public String ContextAssembly { get; }
         public IList<XmlPipelineActionDefinition> Actions { get; }
+        public Boolean Enabled { get; set; }
 
-        public XmlPipelinesDefinition(String name, String contextType, String contextAssembly, IList<XmlPipelineActionDefinition> actions) {
+        public XmlPipelinesDefinition(String name, String contextType, String contextAssembly, IList<XmlPipelineActionDefinition> actions, Boolean enabled = true) {
             if (String.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
 
@@ -26,6 +27,7 @@ namespace Ria {
             ContextType = contextType;
             ContextAssembly = contextAssembly;
             Actions = actions;
+            Enabled = enabled;
         }
     }
 }
