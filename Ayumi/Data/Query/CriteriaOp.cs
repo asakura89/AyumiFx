@@ -1,12 +1,13 @@
 namespace Ayumi.Data.Query {
-    public enum CriteriaOperator {
+    public enum CriteriaOp {
         Eq,
         NE,
-        LT,
-        LE,
         GT,
+        LT,
         GE,
+        LE,
         Like,
-        In
+        In,
+        Between
     }
 }

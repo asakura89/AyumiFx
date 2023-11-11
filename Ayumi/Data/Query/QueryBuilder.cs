@@ -1,70 +1,72 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Ayumi.Data.Query {
     public class QueryBuilder {
-        public String defaultQuery = String.Empty;
-        public String tableName = String.Empty;
-        public List<String> fieldList = new List<String>();
-        public List<Criteria> criteriaList = new List<Criteria>();
-        public List<String> groupCriteriaList = new List<String>();
-        public List<String> sortCriteriaList = new List<String>();
-        public SortCriteriaType SortCriteriaType = SortCriteriaType.Asc;
+        String tableName = String.Empty;
+        readonly IList<String> columns = new List<String>();
+        readonly IList<Criteria> criterions = new List<Criteria>();
+        readonly IList<Order> orders = new List<Order>();
+        readonly IList<String> groups = new List<String>();
 
-        String GetOperator(CriteriaOperator op) {
-            String opString = String.Empty;
-            switch (op) {
-                case CriteriaOperator.Eq:
-                    opString = "=";
-                    break;
-
-                case CriteriaOperator.NE:
-                    opString = "<>";
-                    break;
-
-                case CriteriaOperator.LT:
-                    opString = "<";
-                    break;
-
-                case CriteriaOperator.LE:
-                    opString = "<=";
-                    break;
-
-                case CriteriaOperator.GT:
-                    opString = ">";
-                    break;
-
-                case CriteriaOperator.GE:
-                    opString = ">=";
-                    break;
-
-                case CriteriaOperator.In:
-                    opString = "IN";
-                    break;
-
-                case CriteriaOperator.Like:
-                    opString = "LIKE";
-                    break;
-            }
-
-            return opString;
+        public QueryBuilder Select() {
+            columns.Add("*");
+            return this;
         }
 
-        String GetJunction(CriteriaJunction junction) {
-            String junctionString = String.Empty;
-            switch (junction) {
-                case CriteriaJunction.And:
-                    junctionString = "AND";
-                    break;
+        public QueryBuilder Select(params String[] columns) {
+            if (columns == null)
+                throw new ArgumentNullException(nameof(columns));
+            if (!columns.Any())
+                throw new ArgumentException(nameof(columns));
 
-                case CriteriaJunction.Or:
-                    junctionString = "OR";
-                    break;
-            }
+            foreach (String column in columns)
+                this.columns.Add(column);
 
-            return junctionString;
+            return this;
         }
 
+        public QueryBuilder From(String tableName) {
+            this.tableName = tableName;
+            return this;
+        }
+
+        public QueryBuilder Where(String columnName, CriteriaOp critOp, params Object[] values) =>
+            Where(Criterions.Where(columnName, critOp, values));
+
+        public QueryBuilder Where(IEnumerable<Criteria> criterions) {
+            if (criterions == null)
+                throw new ArgumentNullException(nameof(criterions));
+            if (!criterions.Any())
+                throw new ArgumentException(nameof(criterions));
+
+            foreach (Criteria criteria in criterions)
+                this.criterions.Add(criteria);
+
+            return this;
+        }
+
+        public QueryBuilder OrderBy(String columnName, OrderDirection direction) {
+            if (direction == OrderDirection.Asc)
+                return OrderBy(Orders.OrderBy(columnName));
+
+            return OrderBy(Orders.OrderByDescending(columnName));
+        }
+
+        public QueryBuilder OrderBy(IEnumerable<Order> orders) {
+            if (orders == null)
+                throw new ArgumentNullException(nameof(orders));
+            if (!orders.Any())
+                throw new ArgumentException(nameof(orders));
+
+            foreach (Order order in orders)
+                this.orders.Add(order);
+
+            return this;
+        }
+        
         String GetValue(Object value, CriteriaValueType type) {
             String valueString = String.Empty;
             switch (type) {
@@ -84,38 +86,44 @@ namespace Ayumi.Data.Query {
             return valueString;
         }
 
-        String BuildSelectClause() {
-            String builtQueryString = String.Empty;
+        public String BuildQueryString() {
+            if (tableName == String.Empty)
+                throw new ArgumentException("tableName");
 
-            if (defaultQuery != String.Empty) {
-                builtQueryString = defaultQuery;
-            }
-            else {
-                if (fieldList.Count != 0) {
-                    String selectString = String.Join(", ", fieldList.ToArray());
+            var queryString = new StringBuilder(BuildSelectClause());
 
-                    builtQueryString = String.Format("SELECT {0} FROM {1}", selectString, tableName);
-                }
-                else {
-                    builtQueryString = String.Format("SELECT * FROM {0}", tableName);
-                }
-            }
+            if (criterions.Any())
+                queryString.Append(BuildWhereClause());
+            if (groups.Any())
+                queryString.Append(BuildGroupByClause());
+            if (orders.Any())
+                queryString.Append(BuildOrderByClause());
 
-            return builtQueryString;
+            return queryString.ToString();
         }
 
-        String BuildWhereClause(String selectClause) {
-            String criteriaString = String.Empty;
-            foreach (Criteria criteria in criteriaList) {
-                String opString = GetOperator(criteria.Op);
-                String valueString = GetValue(criteria.Value, criteria.Type);
-                String junctionString = GetJunction(criteria.Junction);
-                criteriaString += String.Format("{0} {1} {2} {3} ", junctionString, criteria.FieldName, opString, valueString);
-            }
+        String BuildSelectClause() {
+            var built = new StringBuilder()
+                .Append("SELECT ");
 
-            String builtQueryString = String.Format("{0} WHERE {1}", selectClause, criteriaString.Trim());
+            if (columns.Any())
+                built
+                    .Append(String.Join(", ", columns))
+                    .Append(" ");
+            else
+                built.Append("* ");
 
-            return builtQueryString;
+            built.AppendFormat("FROM {0}", tableName);
+            return built.ToString();
+        }
+
+        String BuildWhereClause() {
+            var built = new StringBuilder()
+                .Append("WHERE ");
+            foreach (Criteria criteria in criterions)
+                built.Append(criteria);
+
+            return built.ToString();
         }
 
         String BuildGroupByClause(String selectClause) {
@@ -130,22 +138,6 @@ namespace Ayumi.Data.Query {
             String builtQueryString = String.Format("{0} ORDER BY {1}", selectClause, sortCriteriaString);
 
             return builtQueryString;
-        }
-
-        public String BuildQueryString() {
-            if (tableName == String.Empty && defaultQuery == String.Empty)
-                throw new ArgumentException("tableName");
-
-            String finalBuiltQueryString = BuildSelectClause();
-
-            if (criteriaList.Count != 0)
-                finalBuiltQueryString = BuildWhereClause(finalBuiltQueryString);
-            if (groupCriteriaList.Count != 0)
-                finalBuiltQueryString = BuildGroupByClause(finalBuiltQueryString);
-            if (sortCriteriaList.Count != 0)
-                finalBuiltQueryString = BuildOrderByClause(finalBuiltQueryString);
-
-            return finalBuiltQueryString;
         }
     }
 }

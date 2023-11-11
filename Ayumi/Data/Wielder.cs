@@ -31,11 +31,7 @@ namespace Ayumi.Data {
 
         readonly StringBuilder keyBuilder = new StringBuilder();
 
-        Int32 GetRandomNumber(Int32 lowerBound, Int32 upperBound) {
-            Int32 seed = Guid.NewGuid().GetHashCode() % 46692;
-            var rnd = new Random(seed);
-            return rnd.Next(lowerBound, upperBound);
-        }
+        
 
         public IWielder AddRandomString(Int32 valueLength) => AddRandomString(valueLength, AlphaType.Upper);
 
@@ -57,7 +53,7 @@ namespace Ayumi.Data {
         IWielder AddRandom(Int32 valueLength, String[] charCombination, String backSeparator) {
             var randomString = new StringBuilder();
             for (Int32 i = 0; i < valueLength; i++) {
-                Int32 randomIdx = GetRandomNumber(0, charCombination.Length - 1);
+                Int32 randomIdx = 0.TurnToRyandom(charCombination.Length -1);
                 randomString.Append(charCombination[randomIdx]);
             }
 

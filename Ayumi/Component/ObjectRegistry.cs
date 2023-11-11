@@ -4,6 +4,12 @@ using System.Linq;
 using System.Reflection;
 
 namespace Ayumi.Component {
+    public class ObjectInstanceNotFoundException : Exception {
+        public ObjectInstanceNotFoundException(String message) : base(message) { }
+
+        public ObjectInstanceNotFoundException(String message, Exception innerException) : base(message, innerException) { }
+    }
+
     public static class ObjectRegistry {
         static readonly IDictionary<Type, Func<Object>> objects = new Dictionary<Type, Func<Object>>();
 
@@ -15,6 +21,16 @@ namespace Ayumi.Component {
 
         public static void Register<I>(I instance) => objects[typeof(I)] = () => instance;
 
+        public static T TryResolve<T>() => (T) GetInstance(typeof(T));
+
+        public static T Resolve<T>() {
+            T resolved = TryResolve<T>();
+            if (resolved == null)
+                throw new ObjectInstanceNotFoundException($"'{typeof(T).FullName}' instance can't be found or can't be created.");
+
+            return resolved;
+        }
+
         static Object GetInstance(Type abstractType) {
             if (objects.TryGetValue(abstractType, out Func<Object> creator))
                 return creator();
@@ -22,7 +38,7 @@ namespace Ayumi.Component {
             if (!abstractType.IsAbstract)
                 return CreateInstance(abstractType);
 
-            throw new InvalidOperationException($"{abstractType.Name} isn't Registered.");
+            return null;
         }
 
         static Object CreateInstance(Type implType) {

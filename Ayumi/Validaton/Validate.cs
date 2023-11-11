@@ -8,7 +8,7 @@ namespace Ayumi.Validaton {
         }
 
         public static void Empty(String str, String customErrorMessage = "String is empty.") {
-            if (str == String.Empty)
+            if (String.Equals(str.Trim(), String.Empty, StringComparison.InvariantCultureIgnoreCase))
                 throw new InvalidOperationException(customErrorMessage);
         }
     }

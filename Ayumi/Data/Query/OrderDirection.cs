@@ -1,5 +1,5 @@
 namespace Ayumi.Data.Query {
-    public enum SortCriteriaType {
+    public enum OrderDirection {
         Asc,
         Desc
     }
