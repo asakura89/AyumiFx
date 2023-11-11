@@ -1,0 +1,1 @@
+Don't forget to edit Post-Build event in Project properties
