@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14289121-8489-42BE-BC75-AAA624EB5A4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ayumi.WebForm</RootNamespace>
+    <AssemblyName>Ayumi.WebForm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationRegistryHandler.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="cNavigation.cs" />
+    <Compile Include="CommonFunction.cs" />
+    <Compile Include="Configuration\ActiveDirectoryConfiguration.cs" />
+    <Compile Include="Configuration\BadConfigurationException.cs" />
+    <Compile Include="Configuration\ConfigurationService.cs" />
+    <Compile Include="Configuration\DefaultConfiguration.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="Constant\App.cs" />
+    <Compile Include="Constant\AppConfig.cs" />
+    <Compile Include="Constant\CommonException.cs" />
+    <Compile Include="Constant\Connector.cs" />
+    <Compile Include="Constant\IAppParameterProperty.cs" />
+    <Compile Include="Constant\IAuditTrailProperty.cs" />
+    <Compile Include="Constant\IGroupMemberProperty.cs" />
+    <Compile Include="Constant\IMenuProperty.cs" />
+    <Compile Include="Constant\IModuleProperty.cs" />
+    <Compile Include="Constant\IUserProperty.cs" />
+    <Compile Include="Constant\Operator.cs" />
+    <Compile Include="Constant\SPStatus.cs" />
+    <Compile Include="Constant\UOBI.cs" />
+    <Compile Include="cUserData.cs" />
+    <Compile Include="Data\AuditTrailedObject.cs" />
+    <Compile Include="Data\CollectionExtended.cs" />
+    <Compile Include="Data\CollectionExtension.cs" />
+    <Compile Include="Data\Column.cs" />
+    <Compile Include="Data\ColumnAttribute.cs" />
+    <Compile Include="Data\Condition.cs" />
+    <Compile Include="Data\ConditionData.cs" />
+    <Compile Include="Data\ElasticMSSQL.cs" />
+    <Compile Include="Data\FileHandler.cs" />
+    <Compile Include="Data\IActionLog.cs" />
+    <Compile Include="Data\IAuditTrail.cs" />
+    <Compile Include="Data\IMSSQLConfiguration.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\ListItem.cs" />
+    <Compile Include="Data\LoggedAction.cs" />
+    <Compile Include="Data\MSSQL.cs" />
+    <Compile Include="Data\ObjectHandler.cs" />
+    <Compile Include="Data\ObjectRepoData.cs" />
+    <Compile Include="Data\RepoManager.cs" />
+    <Compile Include="Data\Table.cs" />
+    <Compile Include="Data\TableAttribute.cs" />
+    <Compile Include="Email.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="EnumExtension.cs" />
+    <Compile Include="Extensions\Model\ISimpleObjectFactory.cs" />
+    <Compile Include="Extensions\Model\ISimpleRepositoryFactory.cs" />
+    <Compile Include="Extensions\Model\ISimpleServiceFactory.cs" />
+    <Compile Include="Extensions\Model\Object\IAppParameter.cs" />
+    <Compile Include="Extensions\Model\Object\IErrorInfo.cs" />
+    <Compile Include="Extensions\Model\Object\IGroupMember.cs" />
+    <Compile Include="Extensions\Model\Object\ILoginInfo.cs" />
+    <Compile Include="Extensions\Model\Object\IMenu.cs" />
+    <Compile Include="Extensions\Model\Object\IModule.cs" />
+    <Compile Include="Extensions\Model\Object\IUser.cs" />
+    <Compile Include="Extensions\Model\Repository\IErrorInfoRepository.cs" />
+    <Compile Include="Extensions\Model\Repository\ILoginInfoRepository.cs" />
+    <Compile Include="Extensions\Model\Repository\IUserRepository.cs" />
+    <Compile Include="Extensions\Model\Service\AppParameterService.cs" />
+    <Compile Include="Extensions\Model\Service\ConsoleErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\DatabaseErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\DefaultErrorLogService.cs" />
+    <Compile Include="Extensions\Model\Service\DefaultUserLoginPolicy.cs" />
+    <Compile Include="Extensions\Model\Service\GroupAccessService.cs" />
+    <Compile Include="Extensions\Model\Service\GroupMemberService.cs" />
+    <Compile Include="Extensions\Model\Service\IErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Model\Service\IErrorLogService.cs" />
+    <Compile Include="Extensions\Model\Service\IUserLoginPolicy.cs" />
+    <Compile Include="Extensions\Model\Service\LoginService.cs" />
+    <Compile Include="Extensions\Model\Service\MenuService.cs" />
+    <Compile Include="Extensions\Model\Service\ModuleService.cs" />
+    <Compile Include="Extensions\Model\Service\UserService.cs" />
+    <Compile Include="Extensions\Model\Service\WindowsEventLogErrorLogCapturer.cs" />
+    <Compile Include="Extensions\Presenter.cs" />
+    <Compile Include="FileToObjectClass.cs" />
+    <Compile Include="fMailer.cs" />
+    <Compile Include="JavaScript.cs" />
+    <Compile Include="MailSender.cs" />
+    <Compile Include="MSAccess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Cryptography\Base64Encryptor.cs" />
+    <Compile Include="Security\Cryptography\IDecryptable.cs" />
+    <Compile Include="Security\Cryptography\INonDecryptable.cs" />
+    <Compile Include="Security\Cryptography\MD5Encryptor.cs" />
+    <Compile Include="Security\Cryptography\RC4Encryptor.cs" />
+    <Compile Include="Security\Cryptography\RIPEMD160Encryptor.cs" />
+    <Compile Include="Security\Cryptography\SHA1Encryptor.cs" />
+    <Compile Include="Security\Cryptography\SHA384Encryptor.cs" />
+    <Compile Include="Security\Cryptography\SimpleOneWayEncryptor.cs" />
+    <Compile Include="Security\Cryptography\TripleDESEncryptor.cs" />
+    <Compile Include="Security\Cryptography\WebConfigEncryptor.cs" />
+    <Compile Include="Security\LDAP.cs" />
+    <Compile Include="Security\PBKDF2SHA1.cs" />
+    <Compile Include="Security\UOBISecurity.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="StringValue.cs" />
+    <Compile Include="WebHandler\Download.cs" />
+    <Compile Include="WebHandler\Image.cs" />
+    <Compile Include="WebLib.cs" />
+    <Compile Include="Web\BasePresenter.cs" />
+    <Compile Include="Web\Configuration.cs" />
+    <Compile Include="Web\DefaultPresenterFactory.cs" />
+    <Compile Include="Web\IActionCapture.cs" />
+    <Compile Include="Web\IAuthorization.cs" />
+    <Compile Include="Web\IControlModel.cs" />
+    <Compile Include="Web\IControlPaging.cs" />
+    <Compile Include="Web\IControlView.cs" />
+    <Compile Include="Web\IExceptionCapture.cs" />
+    <Compile Include="Web\IObjectFactory.cs" />
+    <Compile Include="Web\IPresenter.cs" />
+    <Compile Include="Web\IPresenterFactory.cs" />
+    <Compile Include="Web\ObjectFactory.cs" />
+    <Compile Include="Web\PagingParameter.cs" />
+    <Compile Include="Web\Presenter.cs" />
+    <Compile Include="Web\SearchParameter.cs" />
+    <Compile Include="Web\WebAppsCookie.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
