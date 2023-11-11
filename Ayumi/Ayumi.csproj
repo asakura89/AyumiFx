@@ -61,6 +61,9 @@
     <Compile Include="..\Emi\EmitterException.cs">
       <Link>Emi\EmitterException.cs</Link>
     </Compile>
+    <Compile Include="..\Emi\IEmitter.cs">
+      <Link>Emi\IEmitter.cs</Link>
+    </Compile>
     <Compile Include="..\Emi\IEmitterLoader.cs">
       <Link>Emi\IEmitterLoader.cs</Link>
     </Compile>
@@ -127,17 +130,68 @@
     <Compile Include="..\Pocho\Creator.cs">
       <Link>Pocho\Creator.cs</Link>
     </Compile>
+    <Compile Include="..\Reflx\AssemblyHelper.cs">
+      <Link>Reflx\AssemblyHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\AssemblyLoader.cs">
+      <Link>Reflx\AssemblyLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\AssemblyVersionHelper.cs">
+      <Link>Reflx\AssemblyVersionHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Reflx\DefaultAssemblyResolver.cs">
       <Link>Reflx\DefaultAssemblyResolver.cs</Link>
     </Compile>
-    <Compile Include="..\Reflx\ReflectionExt.cs">
-      <Link>Reflx\ReflectionExt.cs</Link>
+    <Compile Include="..\Reflx\FieldHelper.cs">
+      <Link>Reflx\FieldHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IAssemblyHelper.cs">
+      <Link>Reflx\IAssemblyHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IAssemblyLoader.cs">
+      <Link>Reflx\IAssemblyLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IAssemblyVersionHelper.cs">
+      <Link>Reflx\IAssemblyVersionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IDefaultAssemblyResolver.cs">
+      <Link>Reflx\IDefaultAssemblyResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IFieldHelper.cs">
+      <Link>Reflx\IFieldHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IMemberHelper.cs">
+      <Link>Reflx\IMemberHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IParameterHelper.cs">
+      <Link>Reflx\IParameterHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\IPropertyHelper.cs">
+      <Link>Reflx\IPropertyHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\ITypeAndAssemblyParser.cs">
+      <Link>Reflx\ITypeAndAssemblyParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\ITypeHelper.cs">
+      <Link>Reflx\ITypeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\MemberHelper.cs">
+      <Link>Reflx\MemberHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\ParameterHelper.cs">
+      <Link>Reflx\ParameterHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\PropertyHelper.cs">
+      <Link>Reflx\PropertyHelper.cs</Link>
     </Compile>
     <Compile Include="..\Reflx\TypeAndAssembly.cs">
       <Link>Reflx\TypeAndAssembly.cs</Link>
     </Compile>
     <Compile Include="..\Reflx\TypeAndAssemblyParser.cs">
       <Link>Reflx\TypeAndAssemblyParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\TypeHelper.cs">
+      <Link>Reflx\TypeHelper.cs</Link>
     </Compile>
     <Compile Include="..\Ria\IPipelineExecutor.cs">
       <Link>Ria\IPipelineExecutor.cs</Link>
