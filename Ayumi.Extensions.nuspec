@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Ayumi.Extensions</id>
+        <version>1.0.0</version>
+        <authors>Dita A Subrata</authors>
+        <owners>Dita A Subrata</owners>
+        <projectUrl>https://github.com/asakura89/Ayumi.Extensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Various extensions class.</description>
+        <copyright>Copyright 2015</copyright>
+        <tags>Extensions</tags>
+    </metadata>
+    <files>
+        <file src="\Ayumi.Extensions\bin\Release\Ayumi.Extensions.dll" target="lib\net40" />
+        <file src="\Ayumi.Extensions\bin\Release\Ayumi.Extensions.pdb" target="lib\net40" />
+    </files>
+</package>

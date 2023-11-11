@@ -56,6 +56,7 @@ namespace Ayumi.Desktop {
             for (int i = 0; i < colCount; i++) {
                 String currentColumnType = dataTable.Columns[i].DataType.Name;
                 switch (currentColumnType) {
+
                     case "Boolean":
                         emptyRow[i] = false;
                         break;

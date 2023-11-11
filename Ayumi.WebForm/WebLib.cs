@@ -1,0 +1,6 @@
+namespace WebLib
+{
+    class WebLib
+    {
+    }
+}
