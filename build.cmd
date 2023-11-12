@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Itsu
+set appname=Shiro
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build
@@ -18,10 +18,6 @@ goto exit
 :build
 echo ---------------------------------------------------------------------
 echo Building AnyCpu release...
-%msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v3.5 /p:OutputPath="%outputdir%\net35"
-if errorlevel 1 goto build-error
-%msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v4.0 /p:OutputPath="%outputdir%\net40"
-if errorlevel 1 goto build-error
 %msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v4.5 /p:OutputPath="%outputdir%\net45"
 if errorlevel 1 goto build-error
 
