@@ -302,8 +302,13 @@ pip-log.txt
 *.mo
 
 # > Custom
+# > Project spesific
+tools/
+cakebuild-log.txt
+build-log.txt
 *-log.txt
 *log.txt
+wwwroot/
 !build.cmd
 !publish.cmd
 !.vscode/
