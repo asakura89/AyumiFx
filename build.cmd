@@ -1,10 +1,9 @@
 @echo off
 
-set appname=Shiro
-set config=Release
+set appname=Serena
 set cwd=%CD%
 set outputdir=%cwd%\build
-set commonflags=/p:Configuration=%config%;AllowUnsafeBlocks=true /p:CLSCompliant=False /p:Platform="Any Cpu" /p:langversion=6
+set commonflags=/p:Configuration=Release;AllowUnsafeBlocks=False /p:CLSCompliant=True /p:Platform="Any Cpu" /p:langversion=6
 
 set nugetversion=latest
 set cachednuget=%LocalAppData%\NuGet\nuget.%nugetversion%.exe
