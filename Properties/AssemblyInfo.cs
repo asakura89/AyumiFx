@@ -1,15 +1,15 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RyaNG")]
-[assembly: AssemblyDescription("Simple random generator")]
+[assembly: AssemblyTitle("Itsu")]
+[assembly: AssemblyDescription("Simple datetime helper")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RyaNG")]
+[assembly: AssemblyProduct("Itsu")]
 [assembly: AssemblyCopyright("Copyright © 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a114a141-08f1-40d6-9b58-213dd29a2068")]
+[assembly: Guid("aed04e87-1239-4184-9572-0e6a860e23a0")]
 
 // Version information for an assembly consists of the following four values:
 //
