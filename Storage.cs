@@ -7,25 +7,7 @@ using Eksmaru;
 using Itsu;
 
 namespace Haru {
-    public interface IStorage {
-        IEnumerable<String> Keys { get; }
-        String Get(String key);
-        void Set(String key, String value);
-        Int32 GetInt(String key);
-        void SetInt(String key, Int32 value);
-        Boolean GetBoolean(String key);
-        void SetBoolean(String key, Boolean value);
-        Single GetFloat(String key);
-        void SetFloat(String key, Single value);
-        DateTime GetDatetime(String key);
-        void SetDatetime(String key, DateTime value);
-        TimeSpan GetTimespan(String key);
-        void SetTimespan(String key, TimeSpan value);
-        void Remove(String key);
-        void Clear();
-    }
-
-    public class XmlStorage : IStorage {
+    public class XmlStorage {
         readonly String path;
         readonly String appName;
         XmlDocument docRoot;
@@ -90,6 +72,16 @@ namespace Haru {
         }
 
         XmlNode GetItemNode(String key) => docRoot.SelectSingleNode($"storage/{appName}/item[@key='{key}']");
+
+        public Boolean Exists(String key) {
+            Load(path, appName);
+
+            XmlNode item = GetItemNode(key);
+            if (item == null)
+                return false;
+
+            return true;
+        }
 
         public String Get(String key) {
             Load(path, appName);
