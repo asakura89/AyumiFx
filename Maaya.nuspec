@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Maaya</id>
+        <version>1.0.2019.0127</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Maaya</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Maaya</title>
+        <description>Simple url helper.</description>
+        <copyright></copyright>
+        <tags>url helper</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net45\Maaya.dll" target="lib\net45" />
+    </files>
+</package>
