@@ -301,10 +301,10 @@ pip-log.txt
 # > Translations
 *.mo
 
-# > Project spesific
-tools/
-cakebuild-log.txt
-build-log.txt
+# > Custom
 *-log.txt
 *log.txt
-wwwroot/
+!build.cmd
+!publish.cmd
+!.vscode/
+!.vscode/**/*.*

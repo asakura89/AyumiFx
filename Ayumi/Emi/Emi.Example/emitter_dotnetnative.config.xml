@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <events>
+    <event name="ClassA.ClassAStart" type="Emi.Example.EventList, Emi.Example" method="OnClassAStarted" />
+    <event name="ClassA.ClassAFinish" onlyOnce="true" type="Emi.Example.EventList, Emi.Example" method="OnClassAFinished" />
+    <event name="ClassA.ClassAStart" type="Emi.Example.EventList, Emi.Example" method="OnGlobalStarted" />
+    <event name="ClassA.ClassAFinish" type="Emi.Example.EventList, Emi.Example" method="OnGlobalFinished" />
+  </events>
+</configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Shiro</id>
+        <version>1.0.2020.1630</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Shiro</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Shiro</title>
+        <description>Simple log4net utility.</description>
+        <copyright>Copyright 2019</copyright>
+        <tags>log4net utility</tags>
+        <dependencies>
+            <dependency id="Exy" version="[1.0.2020.1322]" />
+            <dependency id="log4net" version="2.0.8" />
+            <dependency id="Newtonsoft.Json" version="12.0.2" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src=".\build\net45\Shiro.dll" target="lib\net45" />
+    </files>
+</package>

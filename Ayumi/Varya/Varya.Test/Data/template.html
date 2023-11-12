@@ -1,0 +1,25 @@
+
+<div id="${WidgetId}" class="xe-widget xe-progress-counter xe-progress-counter-${IconColor}" data-count=".num" data-from="0" data-to="${Counter}" data-suffix="${Suffix}" data-duration="2">
+    <div class="xe-background">
+        <i class="${Icon}"></i>
+    </div>
+    <div class="xe-upper">
+        <div class="xe-icon">
+            <i class="${Icon}"></i>
+        </div>
+        <div class="xe-label">
+            <span>${Label1}</span>
+            <strong class="num">${Counter}${Suffix}</strong>
+        </div>
+    </div>
+    <div class="xe-progress">
+        <span class="xe-progress-fill" data-fill-from="0" data-fill-to="${Progress}" data-fill-unit="%" data-fill-property="width"
+            data-fill-duration="3" data-fill-easing="true" style="width: ${Progress}%;"></span>
+    </div>
+    <div class="xe-lower">
+        <span>${Label2}</span>
+        <strong>${Label3}</strong>
+        <span>${Day}</span>
+        <span>${Date}</span>
+    </div>
+</div>

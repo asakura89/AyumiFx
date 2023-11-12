@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Eksmaru</id>
+        <version>1.0.2020.0124</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Eksmaru</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Eksmaru</title>
+        <description>Simple xml helper.</description>
+        <copyright>Copyright 2020</copyright>
+        <tags>xml helper</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net35\Eksmaru.dll" target="lib\net35" />
+        <file src=".\build\net40\Eksmaru.dll" target="lib\net40" />
+        <file src=".\build\net45\Eksmaru.dll" target="lib\net45" />
+    </files>
+</package>
