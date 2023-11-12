@@ -301,7 +301,6 @@ pip-log.txt
 # > Translations
 *.mo
 
-# > Custom
 # > Project spesific
 tools/
 cakebuild-log.txt
