@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Pocho
+set appname=Tipe
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build

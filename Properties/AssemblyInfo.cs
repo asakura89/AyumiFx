@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Pocho")]
-[assembly: AssemblyDescription("Simple poco builder for test")]
+[assembly: AssemblyTitle("Tipe")]
+[assembly: AssemblyDescription("Object to hold simple data type")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Pocho")]
+[assembly: AssemblyProduct("Tipe")]
 [assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("67e091e9-8417-4ee1-b032-b5f09e58172c")]
+[assembly: Guid("e9831711-4b11-4569-84a7-8bc2366c18b9")]
 
 // Version information for an assembly consists of the following four values:
 //
