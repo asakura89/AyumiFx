@@ -1,7 +1,6 @@
 @echo off
 
-set appname=Puru
-set appname2=Puru.Wpf
+set appname=Varya
 set cwd=%CD%
 set outputdir=%cwd%\build
 set commonflags=/p:Configuration=Release;AllowUnsafeBlocks=False /p:CLSCompliant=True /p:Platform="Any Cpu" /p:langversion=6
@@ -41,7 +40,6 @@ copy %cachednuget% .nuget\nuget.exe > nul
 :createpackage
 echo Creating nuget package...
 .nuget\nuget.exe pack %appname%.nuspec -OutputDirectory "%outputdir%"
-.nuget\nuget.exe pack %appname2%.nuspec -OutputDirectory "%outputdir%"
 cd %cwd%
 goto exit
 
