@@ -1,9 +1,10 @@
 @echo off
 
-set appname=Meutia
+set appname=RyaNG
+set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build
-set commonflags=/p:Configuration=Release;AllowUnsafeBlocks=False /p:CLSCompliant=True /p:Platform="Any Cpu" /p:langversion=7
+set commonflags=/p:Configuration=%config%;AllowUnsafeBlocks=true /p:CLSCompliant=False
 
 set nugetversion=latest
 set cachednuget=%LocalAppData%\NuGet\nuget.%nugetversion%.exe
@@ -17,11 +18,11 @@ goto exit
 :build
 echo ---------------------------------------------------------------------
 echo Building AnyCpu release...
-%msbuild% %appname%.sln /t:%appname% %commonflags% /p:TargetFrameworkVersion=v3.5 /p:OutputPath="%outputdir%\net35"
+%msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v3.5 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net35"
 if errorlevel 1 goto build-error
-%msbuild% %appname%.sln /t:%appname% %commonflags% /p:TargetFrameworkVersion=v4.0 /p:OutputPath="%outputdir%\net40"
+%msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v4.0 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net40"
 if errorlevel 1 goto build-error
-%msbuild% %appname%.sln /t:%appname% %commonflags% /p:TargetFrameworkVersion=v4.5 /p:OutputPath="%outputdir%\net45"
+%msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v4.5 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net45"
 if errorlevel 1 goto build-error
 
 :done
