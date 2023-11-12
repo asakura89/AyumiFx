@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Dfy
+set appname=KamenReader
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build

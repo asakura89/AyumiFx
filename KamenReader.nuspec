@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KamenReader</id>
+        <version>1.0.2018.0418</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/KamenReader</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>KamenReader</title>
+        <description>Simple fixed-length text file reader.</description>
+        <copyright>Copyright 2017</copyright>
+        <tags>fixedlength text file reader</tags>
+    </metadata>
+    <files>
+        <file src="\build\net35\KamenReader.dll" target="lib\net35" />
+        <file src="\build\net35\KamenReader.pdb" target="lib\net35" />
+        <file src="\build\net40\KamenReader.dll" target="lib\net40" />
+        <file src="\build\net40\KamenReader.pdb" target="lib\net40" />
+        <file src="\build\net45\KamenReader.dll" target="lib\net45" />
+        <file src="\build\net45\KamenReader.pdb" target="lib\net45" />
+    </files>
+</package>
