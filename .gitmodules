@@ -1,0 +1,9 @@
+[submodule "Arvy"]
+	path = Arvy
+	url = https://github.com/asakura89/Arvy
+[submodule "Eksmaru"]
+	path = Eksmaru
+	url = https://github.com/asakura89/Eksmaru
+[submodule "Reflx"]
+	path = Reflx
+	url = https://github.com/asakura89/Reflx
