@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Meutia</id>
+        <version>1.0.2021.0113</version>
+        <authors>asakura89</authors>
+        <owners>asakura89</owners>
+        <projectUrl>https://github.com/asakura89/Meutia</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Meutia</title>
+        <description>Simple service locator.</description>
+        <copyright>Copyright 2021</copyright>
+        <tags>service locator</tags>
+    </metadata>
+    <files>
+        <file src=".\build\net35\Meutia.dll" target="lib\net35" />
+        <file src=".\build\net40\Meutia.dll" target="lib\net40" />
+        <file src=".\build\net45\Meutia.dll" target="lib\net45" />
+    </files>
+</package>
