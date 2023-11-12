@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Arvy")]
-[assembly: AssemblyDescription("Simple implementation of return object from a function")]
+[assembly: AssemblyTitle("Buruku")]
+[assembly: AssemblyDescription("Simple Sql bulk helper")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Arvy")]
+[assembly: AssemblyProduct("Buruku")]
 [assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a658b44-725f-44a8-a0f0-710e56e99bc6")]
+[assembly: Guid("9c81d34b-853c-4403-b56c-a0258986d3e2")]
 
 // Version information for an assembly consists of the following four values:
 //
