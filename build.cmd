@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Ria
+set appname=Reflx
 set cwd=%CD%
 set outputdir=%cwd%\build
 set commonflags=/p:Configuration=Release;AllowUnsafeBlocks=False /p:CLSCompliant=True /p:Platform="Any Cpu" /p:langversion=7
