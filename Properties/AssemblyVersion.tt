@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Linq" #>
@@ -6,8 +6,8 @@
 <#
     DateTime date = DateTime.Now;
     DateTime buildYearMo = new DateTime(date.Year, date.Month, 1);
-    DateTime projectYear = new DateTime(2017, 3, 1);
-    
+    DateTime projectYear = new DateTime(2015, 10, 1);
+
     Int32 major = 1;
     Int32 minor = 0;
     Int32 build = buildYearMo.Year;

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tipe")]
-[assembly: AssemblyDescription("Object to hold simple data type")]
+[assembly: AssemblyTitle("Nvy")]
+[assembly: AssemblyDescription("Simple implementation of Name-Value pair object")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Tipe")]
-[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyProduct("Nvy")]
+[assembly: AssemblyCopyright("Copyright © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e9831711-4b11-4569-84a7-8bc2366c18b9")]
+[assembly: Guid("bfc83e31-d741-46c7-b241-7b81cc38c24d")]
 
 // Version information for an assembly consists of the following four values:
 //
