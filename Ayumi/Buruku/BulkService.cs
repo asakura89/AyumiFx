@@ -39,7 +39,7 @@ namespace Buruku {
             DataTable dt = ConvertToBulkDataTable(dataList);
 
             const SqlBulkCopyOptions Options = SqlBulkCopyOptions.TableLock | SqlBulkCopyOptions.UseInternalTransaction | SqlBulkCopyOptions.CheckConstraints;
-            var bulk = String.IsNullOrEmpty(connectionString) ?
+            SqlBulkCopy bulk = String.IsNullOrEmpty(connectionString) ?
                 new SqlBulkCopy(connection, Options, connection.BeginTransaction()) : 
                 new SqlBulkCopy(connectionString, Options);
             bulk.DestinationTableName = tableName;

@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 
-namespace Dfy
-{
+namespace Dfy {
     [Serializable]
-    public class DownloadFileInfo
-    {
+    public class DownloadFileInfo {
         public Byte[] FileByteArray { get; set; }
         public String MimeType { get; set; }
         public String Filename { get; set; }

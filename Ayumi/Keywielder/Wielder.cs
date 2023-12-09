@@ -51,6 +51,7 @@ namespace Keywielder {
         readonly StringBuilder keyBuilder = new StringBuilder();
 
         Wielder() { }
+
         public static Wielder New() => new Wielder();
 
         public Wielder AddRandomString(Int32 valueLength) => AddRandomString(valueLength, AlphaType.Upper);

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,18 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AppSea\AppConfig.cs">
-      <Link>AppSea\AppConfig.cs</Link>
-    </Compile>
-    <Compile Include="..\Arvy\ActionResponseViewModel.cs">
-      <Link>Arvy\ActionResponseViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Dfy\DownloadFileInfo.cs">
-      <Link>Dfy\DownloadFileInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Eksmaru\XmlExt.cs">
-      <Link>Eksmaru\XmlExt.cs</Link>
-    </Compile>
     <Compile Include="..\Emi\Emitter.cs">
       <Link>Emi\Emitter.cs</Link>
     </Compile>
@@ -85,9 +74,6 @@
     <Compile Include="..\Eqx\Eqx.cs">
       <Link>Eqx\Eqx.cs</Link>
     </Compile>
-    <Compile Include="..\Exy\ExceptionExt.cs">
-      <Link>Exy\ExceptionExt.cs</Link>
-    </Compile>
     <Compile Include="..\Haru\Storage.cs">
       <Link>Haru\Storage.cs</Link>
     </Compile>
@@ -111,87 +97,6 @@
     </Compile>
     <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
       <Link>KamenReader\IFileReader.cs</Link>
-    </Compile>
-    <Compile Include="..\Keywielder\KeyWielder\Wielder.cs">
-      <Link>Keywielder\Wielder.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\IServiceRegistry.cs">
-      <Link>Meutia\IServiceRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\ServiceInstanceNotFoundException.cs">
-      <Link>Meutia\ServiceInstanceNotFoundException.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\ServiceRegistry.cs">
-      <Link>Meutia\ServiceRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\Nvy\NameValueItem.cs">
-      <Link>Nvy\NameValueItem.cs</Link>
-    </Compile>
-    <Compile Include="..\Pocho\Creator.cs">
-      <Link>Pocho\Creator.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyHelper.cs">
-      <Link>Reflx\AssemblyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyLoader.cs">
-      <Link>Reflx\AssemblyLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyVersionHelper.cs">
-      <Link>Reflx\AssemblyVersionHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\DefaultAssemblyResolver.cs">
-      <Link>Reflx\DefaultAssemblyResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\FieldHelper.cs">
-      <Link>Reflx\FieldHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyHelper.cs">
-      <Link>Reflx\IAssemblyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyLoader.cs">
-      <Link>Reflx\IAssemblyLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyVersionHelper.cs">
-      <Link>Reflx\IAssemblyVersionHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IDefaultAssemblyResolver.cs">
-      <Link>Reflx\IDefaultAssemblyResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IFieldHelper.cs">
-      <Link>Reflx\IFieldHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IMemberHelper.cs">
-      <Link>Reflx\IMemberHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IParameterHelper.cs">
-      <Link>Reflx\IParameterHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IPropertyHelper.cs">
-      <Link>Reflx\IPropertyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ITypeAndAssemblyParser.cs">
-      <Link>Reflx\ITypeAndAssemblyParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ITypeHelper.cs">
-      <Link>Reflx\ITypeHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\MemberHelper.cs">
-      <Link>Reflx\MemberHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ParameterHelper.cs">
-      <Link>Reflx\ParameterHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\PropertyHelper.cs">
-      <Link>Reflx\PropertyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssembly.cs">
-      <Link>Reflx\TypeAndAssembly.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssemblyParser.cs">
-      <Link>Reflx\TypeAndAssemblyParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeHelper.cs">
-      <Link>Reflx\TypeHelper.cs</Link>
     </Compile>
     <Compile Include="..\Ria\IPipelineExecutor.cs">
       <Link>Ria\IPipelineExecutor.cs</Link>
@@ -217,59 +122,120 @@
     <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
       <Link>Ria\XmlPipelinesDefinition.cs</Link>
     </Compile>
-    <Compile Include="..\RyaNG\RyandomNumberGenerator.cs">
-      <Link>RyaNG\RyandomNumberGenerator.cs</Link>
-    </Compile>
-    <Compile Include="..\Serena\SecurityExt.cs">
-      <Link>Serena\SecurityExt.cs</Link>
-    </Compile>
-    <Compile Include="..\Tipe\DataType.cs">
-      <Link>Tipe\DataType.cs</Link>
-    </Compile>
+    <Compile Include="AppSea\AppConfigExt.cs" />
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
-    <Compile Include="Arvy\Exy\ExceptionExt.cs" />
-    <Compile Include="Arvy\Exy\Properties\AssemblyInfo.cs" />
-    <Compile Include="Arvy\Exy\Properties\AssemblyVersion.cs" />
-    <Compile Include="Arvy\Exy\Properties\AssemblyVersion1.cs">
+    <Compile Include="Buruku\BulkColumnAttribute.cs" />
+    <Compile Include="Buruku\BulkService.cs" />
+    <Compile Include="Buruku\IBulkService.cs" />
+    <Compile Include="AppSea\AppConfig.cs" />
+    <Compile Include="AppSea\BadConfigurationException.cs" />
+    <Compile Include="AppSea\Feature.cs" />
+    <Compile Include="Dfy\DownloadFileInfo.cs" />
+    <Compile Include="Eksmaru\XmlExt.cs" />
+    <Compile Include="Exy\ExceptionExt.cs" />
+    <Compile Include="Auditr\AuditTrailed.cs" />
+    <Compile Include="Auditr\IActionCapturer.cs" />
+    <Compile Include="Auditr\IAuditTrailed.cs" />
+    <Compile Include="Auditr\IExceptionCapturer.cs" />
+    <Compile Include="Arvy\ActionResponseExt.cs" />
+    <Compile Include="Backstreet\CommandLine.cs" />
+    <Compile Include="Backstreet\CommandLineArgument.cs" />
+    <Compile Include="Keywielder\Wielder.cs" />
+    <Compile Include="Shiro\ConsoleLogWriter.cs" />
+    <Compile Include="Shiro\DefaultLogFormatter.cs" />
+    <Compile Include="Shiro\DummyLogWriter.cs" />
+    <Compile Include="Shiro\ILogMessageFormatter.cs" />
+    <Compile Include="Shiro\ILogWriter.cs" />
+    <Compile Include="Shiro\Logger.cs" />
+    <Compile Include="Shiro\LogSeverity.cs" />
+    <Compile Include="Shiro\TextLogWriter.cs" />
+    <Compile Include="Shiro\WindowsEventLogWriter.cs" />
+    <Compile Include="Maaya\UrlExt.cs" />
+    <Compile Include="Meutia\IServiceRegistry.cs" />
+    <Compile Include="Meutia\ServiceInstanceNotFoundException.cs" />
+    <Compile Include="Meutia\ServiceRegistry.cs" />
+    <Compile Include="Nino\ScItemConfiguration\ConfigurationItemService.cs" />
+    <Compile Include="Nino\ScItemConfiguration\ConfigurationItemServiceFactory.cs" />
+    <Compile Include="Nino\ScItemConfiguration\ConfigurationItemUtil.cs" />
+    <Compile Include="Nino\ScItemConfiguration\ConfigurationService.cs" />
+    <Compile Include="Nino\ScItemConfiguration\ConfigurationServiceFactory.cs" />
+    <Compile Include="Nino\ScItemConfiguration\IConfigurationItemService.cs" />
+    <Compile Include="Nino\ScItemConfiguration\IConfigurationItemServiceFactory.cs" />
+    <Compile Include="Nino\ScItemConfiguration\IConfigurationService.cs" />
+    <Compile Include="Nino\ScItemConfiguration\IConfigurationServiceFactory.cs" />
+    <Compile Include="Nvy\ICustomList.cs" />
+    <Compile Include="Nvy\IMultiSelectList.cs" />
+    <Compile Include="Nvy\InMemoryList.cs" />
+    <Compile Include="Nvy\ISelectList.cs" />
+    <Compile Include="Nvy\Item.cs" />
+    <Compile Include="Nvy\NameValueItem.cs" />
+    <Compile Include="Nvy\NameValueItemExt.cs" />
+    <Compile Include="Pocho\Creator.cs" />
+    <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
-    <Compile Include="Arvy\Properties\AssemblyInfo.cs" />
-    <Compile Include="Arvy\Properties\AssemblyVersion.cs" />
-    <Compile Include="Arvy\Properties\AssemblyVersion1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyVersion.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Auditor\AuditTrailed.cs" />
-    <Compile Include="Auditor\IActionCapturer.cs" />
-    <Compile Include="Auditor\IAuditTrailed.cs" />
-    <Compile Include="Auditor\IExceptionCapturer.cs" />
-    <Compile Include="Backstreet\Backstreet\ActionResponseExt.cs" />
-    <Compile Include="Backstreet\Backstreet\ActionResponseViewModel.cs" />
-    <Compile Include="Backstreet\Backstreet\CommandLine.cs" />
-    <Compile Include="Backstreet\Backstreet\CommandLineArgument.cs" />
-    <Compile Include="Backstreet\Backstreet\ExceptionExt.cs" />
-    <Compile Include="Backstreet\Backstreet\Item.cs" />
-    <Compile Include="Backstreet\Backstreet\NameValueItem.cs" />
-    <Compile Include="Backstreet\Backstreet\NameValueItemExt.cs" />
-    <Compile Include="Backstreet\Backstreet\Properties\AssemblyInfo.cs" />
-    <Compile Include="Backstreet\Backstreet\Validated.cs" />
+    <Compile Include="Puru\DynamicTypeLoader.cs" />
+    <Compile Include="Puru\IPlugin.cs" />
+    <Compile Include="Puru\PluginInfoAttribute.cs" />
+    <Compile Include="Reflx\AssemblyHelper.cs" />
+    <Compile Include="Reflx\AssemblyLoader.cs" />
+    <Compile Include="Reflx\AssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\DefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\FieldHelper.cs" />
+    <Compile Include="Reflx\IAssemblyHelper.cs" />
+    <Compile Include="Reflx\IAssemblyLoader.cs" />
+    <Compile Include="Reflx\IAssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\IDefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\IFieldHelper.cs" />
+    <Compile Include="Reflx\IMemberHelper.cs" />
+    <Compile Include="Reflx\IParameterHelper.cs" />
+    <Compile Include="Reflx\IPropertyHelper.cs" />
+    <Compile Include="Reflx\ITypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\ITypeHelper.cs" />
+    <Compile Include="Reflx\MemberHelper.cs" />
+    <Compile Include="Reflx\ParameterHelper.cs" />
+    <Compile Include="Reflx\PropertyHelper.cs" />
+    <Compile Include="Reflx\TypeAndAssembly.cs" />
+    <Compile Include="Reflx\TypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\TypeHelper.cs" />
+    <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
+    <Compile Include="Serena\SecurityExt.cs" />
+    <Compile Include="Shiro\ILogger.cs" />
+    <Compile Include="Shiro\ILoggerFactory.cs" />
+    <Compile Include="Shiro\LogCallerInfo.cs" />
+    <Compile Include="Shiro\LogExt.cs" />
+    <Compile Include="Tabura\Cell.cs" />
+    <Compile Include="Tabura\Column.cs" />
+    <Compile Include="Tabura\ColumnType.cs" />
+    <Compile Include="Tabura\ReportGenerator.cs" />
+    <Compile Include="Tabura\ReportSource.cs" />
+    <Compile Include="Tabura\Row.cs" />
+    <Compile Include="Tabura\RowType.cs" />
+    <Compile Include="Tipe\DataType.cs" />
+    <Compile Include="Tipe\DataTypeExt.cs" />
+    <Compile Include="Varya\StringExt.cs" />
+    <Compile Include="Vily\Validate.cs" />
+    <Compile Include="Vily\Validated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arvy\Exy\Properties\AssemblyVersion.tt">
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logger\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AssemblyVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyVersion1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Arvy\Properties\AssemblyVersion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyVersion1.cs</LastGenOutput>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <None Include="Nino\App.config" />
+    <None Include="Nino\packages.config" />
+    <None Include="Puru\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
