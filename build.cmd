@@ -1,6 +1,6 @@
 @echo off
 
-set appname=Keywielder
+set appname=Ayumi
 set config=Release
 set cwd=%CD%
 set outputdir=%cwd%\build

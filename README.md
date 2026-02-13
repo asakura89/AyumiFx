@@ -1,10 +1,25 @@
-Keywielder
-==========
+<!--
+SPDX-License-Identifier: 0BSD
+-->
+
+## License
+
+Dilisensikan di bawah BSD Zero Clause License. Atau liat [LICENSE file ini](LICENSE.md), atau buka link ini https://opensource.org/licenses/0BSD buat keterangan lengkap.
+
+[SPDX](https://spdx.dev) license identifier buat project ini `0BSD`.
+
+Untuk hal lain yang punya license berbeda, silakan baca license link yang disertakan.
+
+
+
+## Keywielder
 
 Simple token, unique key generator. It's one of my favorite library to generate formatted primary key.
 Such as Document number in (LOB) apps.
 
-# How to - 1
+
+
+### How to - 1
 
 ```csharp
 String key = Wielder
@@ -25,8 +40,9 @@ Console.WriteLine(key);
 Above code will generate key like this (below), result may vary as I use date
 *KEY-20150125-0022*
 
-  
-# How to - 2
+
+
+### How to - 2
 
 ```csharp
 String complexKey = Wielder
