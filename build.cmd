@@ -18,6 +18,8 @@ goto exit
 :build
 echo ---------------------------------------------------------------------
 echo Building AnyCpu release...
+rem %msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v2.0 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net20"
+rem if errorlevel 1 goto build-error
 %msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v3.5 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net35"
 if errorlevel 1 goto build-error
 %msbuild% %appname%.sln %commonflags% /p:TargetFrameworkVersion=v4.0 /p:Platform="Any Cpu" /p:OutputPath="%outputdir%\net40"
