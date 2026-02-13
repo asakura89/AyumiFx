@@ -40,9 +40,6 @@
     <Compile Include="..\Haru\Storage.cs">
       <Link>Haru\Storage.cs</Link>
     </Compile>
-    <Compile Include="..\Itsu\DateTimeExt.cs">
-      <Link>Itsu\DateTimeExt.cs</Link>
-    </Compile>
     <Compile Include="..\KamenReader\KamenReader\Ext.cs">
       <Link>KamenReader\Ext.cs</Link>
     </Compile>
@@ -60,9 +57,6 @@
     </Compile>
     <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
       <Link>KamenReader\IFileReader.cs</Link>
-    </Compile>
-    <Compile Include="..\Pocho\Creator.cs">
-      <Link>Pocho\Creator.cs</Link>
     </Compile>
     <Compile Include="AppSea\AppConfig.cs" />
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
@@ -84,11 +78,13 @@
     <Compile Include="Emi\XmlEventDefinitionLoader.cs" />
     <Compile Include="Eqx\Eqx.cs" />
     <Compile Include="Exy\ExceptionExt.cs" />
+    <Compile Include="Itsu\DateTimeExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Meutia\IServiceRegistry.cs" />
     <Compile Include="Meutia\ServiceInstanceNotFoundException.cs" />
     <Compile Include="Meutia\ServiceRegistry.cs" />
     <Compile Include="Nvy\NameValueItem.cs" />
+    <Compile Include="Pocho\Creator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
