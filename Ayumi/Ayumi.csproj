@@ -37,24 +37,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\KamenReader\KamenReader\Ext.cs">
-      <Link>KamenReader\Ext.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FileReaderMap.cs">
-      <Link>KamenReader\FileReaderMap.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FileReaderResult.cs">
-      <Link>KamenReader\FileReaderResult.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FixedLengthReader.cs">
-      <Link>KamenReader\FixedLengthReader.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\GridData.cs">
-      <Link>KamenReader\GridData.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
-      <Link>KamenReader\IFileReader.cs</Link>
-    </Compile>
     <Compile Include="AppSea\AppConfig.cs" />
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
     <Compile Include="Backstreet\CommandLine.cs" />
@@ -94,6 +76,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="Puru\DynamicTypeLoader.cs" />
+    <Compile Include="Puru\IPlugin.cs" />
+    <Compile Include="Puru\PluginInfoAttribute.cs" />
     <Compile Include="Reflx\AssemblyHelper.cs" />
     <Compile Include="Reflx\AssemblyLoader.cs" />
     <Compile Include="Reflx\AssemblyVersionHelper.cs" />
