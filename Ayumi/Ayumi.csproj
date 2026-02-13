@@ -73,9 +73,6 @@
     <Compile Include="..\Eqx\Eqx.cs">
       <Link>Eqx\Eqx.cs</Link>
     </Compile>
-    <Compile Include="..\Exy\ExceptionExt.cs">
-      <Link>Exy\ExceptionExt.cs</Link>
-    </Compile>
     <Compile Include="..\Haru\Storage.cs">
       <Link>Haru\Storage.cs</Link>
     </Compile>
@@ -153,6 +150,7 @@
     <Compile Include="Backstreet\CommandLine.cs" />
     <Compile Include="Backstreet\CommandLineArgument.cs" />
     <Compile Include="Databossy\Database.cs" />
+    <Compile Include="Exy\ExceptionExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Nvy\NameValueItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
