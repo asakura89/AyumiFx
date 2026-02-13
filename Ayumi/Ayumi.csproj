@@ -59,6 +59,9 @@
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
     <Compile Include="Backstreet\CommandLine.cs" />
     <Compile Include="Backstreet\CommandLineArgument.cs" />
+    <Compile Include="Buruku\BulkColumnAttribute.cs" />
+    <Compile Include="Buruku\BulkService.cs" />
+    <Compile Include="Buruku\IBulkService.cs" />
     <Compile Include="Databossy\Database.cs" />
     <Compile Include="Dfy\DownloadFileInfo.cs" />
     <Compile Include="Eksmaru\IXmlHelper.cs" />
