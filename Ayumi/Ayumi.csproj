@@ -64,6 +64,12 @@
     <Compile Include="Haru\IStorage.cs" />
     <Compile Include="Haru\Storage.cs" />
     <Compile Include="Itsu\DateTimeExt.cs" />
+    <Compile Include="KamenReader\Ext.cs" />
+    <Compile Include="KamenReader\FileReaderMap.cs" />
+    <Compile Include="KamenReader\FileReaderResult.cs" />
+    <Compile Include="KamenReader\FixedLengthReader.cs" />
+    <Compile Include="KamenReader\GridData.cs" />
+    <Compile Include="KamenReader\IFileReader.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Meutia\IServiceRegistry.cs" />
     <Compile Include="Meutia\ServiceInstanceNotFoundException.cs" />
