@@ -40,9 +40,6 @@
     <Compile Include="..\Dfy\DownloadFileInfo.cs">
       <Link>Dfy\DownloadFileInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Eksmaru\XmlExt.cs">
-      <Link>Eksmaru\XmlExt.cs</Link>
-    </Compile>
     <Compile Include="..\Emi\Emitter.cs">
       <Link>Emi\Emitter.cs</Link>
     </Compile>
@@ -150,6 +147,8 @@
     <Compile Include="Backstreet\CommandLine.cs" />
     <Compile Include="Backstreet\CommandLineArgument.cs" />
     <Compile Include="Databossy\Database.cs" />
+    <Compile Include="Eksmaru\IXmlHelper.cs" />
+    <Compile Include="Eksmaru\XmlHelper.cs" />
     <Compile Include="Exy\ExceptionExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Nvy\NameValueItem.cs" />
