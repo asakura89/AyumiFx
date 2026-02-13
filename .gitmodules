@@ -4,15 +4,6 @@
 [submodule "Puru"]
 	path = Puru
 	url = https://github.com/asakura89/Puru
-[submodule "Varya"]
-	path = Varya
-	url = https://github.com/asakura89/Varya
-[submodule "Nino"]
-	path = Nino
-	url = https://github.com/asakura89/Nino
-[submodule "Buruku"]
-	path = Buruku
-	url = https://github.com/asakura89/Buruku
 [submodule "KamenReader"]
 	path = KamenReader
 	url = https://github.com/asakura89/KamenReader
