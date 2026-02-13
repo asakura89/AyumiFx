@@ -151,9 +151,6 @@
     <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
       <Link>Ria\XmlPipelinesDefinition.cs</Link>
     </Compile>
-    <Compile Include="..\RyaNG\RyandomNumberGenerator.cs">
-      <Link>RyaNG\RyandomNumberGenerator.cs</Link>
-    </Compile>
     <Compile Include="..\Serena\SecurityExt.cs">
       <Link>Serena\SecurityExt.cs</Link>
     </Compile>
@@ -170,6 +167,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AssemblyVersion.tt">

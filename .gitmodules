@@ -37,9 +37,6 @@
 [submodule "Dfy"]
 	path = Dfy
 	url = https://github.com/asakura89/Dfy
-[submodule "Backstreet"]
-	path = Backstreet
-	url = https://github.com/asakura89/Backstreet
 [submodule "Puru"]
 	path = Puru
 	url = https://github.com/asakura89/Puru
