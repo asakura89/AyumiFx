@@ -123,6 +123,7 @@
     <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
     <Compile Include="Serena\SecurityExt.cs" />
     <Compile Include="Tipe\DataType.cs" />
+    <Compile Include="Varya\StringExt.cs" />
     <Compile Include="Vily\Validated.cs" />
   </ItemGroup>
   <ItemGroup>
