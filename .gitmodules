@@ -1,15 +1,6 @@
-[submodule "Itsu"]
-	path = Itsu
-	url = https://github.com/asakura89/Itsu
-[submodule "Haru"]
-	path = Haru
-	url = https://github.com/asakura89/Haru
 [submodule "Shiro"]
 	path = Shiro
 	url = https://github.com/asakura89/Shiro
-[submodule "Pocho"]
-	path = Pocho
-	url = https://github.com/asakura89/Pocho
 [submodule "Puru"]
 	path = Puru
 	url = https://github.com/asakura89/Puru
