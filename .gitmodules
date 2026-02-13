@@ -49,9 +49,6 @@
 [submodule "Serena"]
 	path = Serena
 	url = https://github.com/asakura89/Serena
-[submodule "AppSea"]
-	path = AppSea
-	url = https://github.com/asakura89/AppSea
 [submodule "Backstreet"]
 	path = Backstreet
 	url = https://github.com/asakura89/Backstreet
