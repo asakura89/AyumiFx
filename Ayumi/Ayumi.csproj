@@ -37,15 +37,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AppSea\AppConfig.cs">
-      <Link>AppSea\AppConfig.cs</Link>
-    </Compile>
-    <Compile Include="..\Arvy\ActionResponseViewModel.cs">
-      <Link>Arvy\ActionResponseViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Databossy\Databossy\Database.cs">
-      <Link>Databossy\Database.cs</Link>
-    </Compile>
     <Compile Include="..\Dfy\DownloadFileInfo.cs">
       <Link>Dfy\DownloadFileInfo.cs</Link>
     </Compile>
@@ -109,9 +100,6 @@
     <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
       <Link>KamenReader\IFileReader.cs</Link>
     </Compile>
-    <Compile Include="..\Keywielder\KeyWielder\Wielder.cs">
-      <Link>Keywielder\Wielder.cs</Link>
-    </Compile>
     <Compile Include="..\Meutia\IServiceRegistry.cs">
       <Link>Meutia\IServiceRegistry.cs</Link>
     </Compile>
@@ -172,6 +160,10 @@
     <Compile Include="..\Tipe\DataType.cs">
       <Link>Tipe\DataType.cs</Link>
     </Compile>
+    <Compile Include="AppSea\AppConfig.cs" />
+    <Compile Include="Arvy\ActionResponseViewModel.cs" />
+    <Compile Include="Databossy\Database.cs" />
+    <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
