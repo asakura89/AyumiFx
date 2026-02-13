@@ -13,12 +13,6 @@
 [submodule "Eksmaru"]
 	path = Eksmaru
 	url = https://github.com/asakura89/Eksmaru
-[submodule "Exy"]
-	path = Exy
-	url = https://github.com/asakura89/Exy
-[submodule "Nvy"]
-	path = Nvy
-	url = https://github.com/asakura89/Nvy
 [submodule "Itsu"]
 	path = Itsu
 	url = https://github.com/asakura89/Itsu
