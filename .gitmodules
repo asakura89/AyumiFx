@@ -1,12 +1,6 @@
-[submodule "Reflx"]
-	path = Reflx
-	url = https://github.com/asakura89/Reflx
 [submodule "Meutia"]
 	path = Meutia
 	url = https://github.com/asakura89/Meutia
-[submodule "Eksmaru"]
-	path = Eksmaru
-	url = https://github.com/asakura89/Eksmaru
 [submodule "Itsu"]
 	path = Itsu
 	url = https://github.com/asakura89/Itsu
