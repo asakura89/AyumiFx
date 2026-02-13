@@ -8,10 +8,11 @@ using Reflx;
 namespace Emi {
     static class XmlEventDefinitionLoader {
         static XmlEventDefinition MapConfigItemToEventDefinition(XmlNode eventConfig) {
-            String nameValue = eventConfig.GetAttributeValue("name");
-            String onlyOnceValue = eventConfig.GetAttributeValue("onlyOnce");
-            String typeValue = eventConfig.GetAttributeValue("type");
-            String methodValue = eventConfig.GetAttributeValue("method");
+            var xmlH = new XmlHelper();
+            String nameValue = xmlH.GetAttributeValue(eventConfig, "name");
+            String onlyOnceValue = xmlH.GetAttributeValue(eventConfig, "onlyOnce");
+            String typeValue = xmlH.GetAttributeValue(eventConfig, "type");
+            String methodValue = xmlH.GetAttributeValue(eventConfig, "method");
             TypeAndAssembly eventTypeNAsm = TypeAndAssemblyParser.Instance.Parse(typeValue);
 
             if (String.IsNullOrEmpty(methodValue))
@@ -21,7 +22,8 @@ namespace Emi {
         }
 
         internal static IEnumerable<XmlEventDefinition> Load(String configPath) {
-            XmlDocument config = XmlExt.LoadFromPath(configPath);
+            var xmlH = new XmlHelper();
+            XmlDocument config = xmlH.LoadFromPath(configPath);
             String eventsSelector = $"configuration/events";
             XmlNode eventsConfig = config.SelectSingleNode(eventsSelector);
             if (eventsConfig == null)

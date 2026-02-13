@@ -40,33 +40,6 @@
     <Compile Include="..\Dfy\DownloadFileInfo.cs">
       <Link>Dfy\DownloadFileInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Emi\Emitter.cs">
-      <Link>Emi\Emitter.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\EmitterEventArgs.cs">
-      <Link>Emi\EmitterEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\EmitterException.cs">
-      <Link>Emi\EmitterException.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\IEmitterLoader.cs">
-      <Link>Emi\IEmitterLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\IEventRegistrar.cs">
-      <Link>Emi\IEventRegistrar.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlConfigEmitterLoader.cs">
-      <Link>Emi\XmlConfigEmitterLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlConfigEventRegistrar.cs">
-      <Link>Emi\XmlConfigEventRegistrar.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlEventDefinition.cs">
-      <Link>Emi\XmlEventDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlEventDefinitionLoader.cs">
-      <Link>Emi\XmlEventDefinitionLoader.cs</Link>
-    </Compile>
     <Compile Include="..\Eqx\Eqx.cs">
       <Link>Eqx\Eqx.cs</Link>
     </Compile>
@@ -106,30 +79,6 @@
     <Compile Include="..\Pocho\Creator.cs">
       <Link>Pocho\Creator.cs</Link>
     </Compile>
-    <Compile Include="..\Ria\IPipelineExecutor.cs">
-      <Link>Ria\IPipelineExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\IPipelineLoader.cs">
-      <Link>Ria\IPipelineLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineContext.cs">
-      <Link>Ria\PipelineContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineException.cs">
-      <Link>Ria\PipelineException.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineExecutor.cs">
-      <Link>Ria\PipelineExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlConfigPipelineLoader.cs">
-      <Link>Ria\XmlConfigPipelineLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlPipelineActionDefinition.cs">
-      <Link>Ria\XmlPipelineActionDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
-      <Link>Ria\XmlPipelinesDefinition.cs</Link>
-    </Compile>
     <Compile Include="AppSea\AppConfig.cs" />
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
     <Compile Include="Backstreet\CommandLine.cs" />
@@ -137,6 +86,16 @@
     <Compile Include="Databossy\Database.cs" />
     <Compile Include="Eksmaru\IXmlHelper.cs" />
     <Compile Include="Eksmaru\XmlHelper.cs" />
+    <Compile Include="Emi\Emitter.cs" />
+    <Compile Include="Emi\EmitterEventArgs.cs" />
+    <Compile Include="Emi\EmitterException.cs" />
+    <Compile Include="Emi\IEmitter.cs" />
+    <Compile Include="Emi\IEmitterLoader.cs" />
+    <Compile Include="Emi\IEventRegistrar.cs" />
+    <Compile Include="Emi\XmlConfigEmitterLoader.cs" />
+    <Compile Include="Emi\XmlConfigEventRegistrar.cs" />
+    <Compile Include="Emi\XmlEventDefinition.cs" />
+    <Compile Include="Emi\XmlEventDefinitionLoader.cs" />
     <Compile Include="Exy\ExceptionExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Nvy\NameValueItem.cs" />
@@ -167,16 +126,26 @@
     <Compile Include="Reflx\TypeAndAssembly.cs" />
     <Compile Include="Reflx\TypeAndAssemblyParser.cs" />
     <Compile Include="Reflx\TypeHelper.cs" />
+    <Compile Include="Ria\IPipelineExecutor.cs" />
+    <Compile Include="Ria\IPipelineLoader.cs" />
+    <Compile Include="Ria\PipelineContext.cs" />
+    <Compile Include="Ria\PipelineException.cs" />
+    <Compile Include="Ria\PipelineExecutor.cs" />
+    <Compile Include="Ria\XmlConfigPipelineLoader.cs" />
+    <Compile Include="Ria\XmlPipelineActionDefinition.cs" />
+    <Compile Include="Ria\XmlPipelinesDefinition.cs" />
     <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
     <Compile Include="Serena\SecurityExt.cs" />
     <Compile Include="Tipe\DataType.cs" />
     <Compile Include="Vily\Validated.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Emi\emitter.config.xml" />
     <Content Include="Properties\AssemblyVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
     </Content>
+    <Content Include="Ria\pipeline.config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
