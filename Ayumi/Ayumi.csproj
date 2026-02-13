@@ -37,9 +37,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Eqx\Eqx.cs">
-      <Link>Eqx\Eqx.cs</Link>
-    </Compile>
     <Compile Include="..\Haru\Storage.cs">
       <Link>Haru\Storage.cs</Link>
     </Compile>
@@ -94,6 +91,7 @@
     <Compile Include="Emi\XmlConfigEventRegistrar.cs" />
     <Compile Include="Emi\XmlEventDefinition.cs" />
     <Compile Include="Emi\XmlEventDefinitionLoader.cs" />
+    <Compile Include="Eqx\Eqx.cs" />
     <Compile Include="Exy\ExceptionExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Nvy\NameValueItem.cs" />
