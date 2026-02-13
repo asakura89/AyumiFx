@@ -106,18 +106,6 @@
     <Compile Include="..\Pocho\Creator.cs">
       <Link>Pocho\Creator.cs</Link>
     </Compile>
-    <Compile Include="..\Reflx\DefaultAssemblyResolver.cs">
-      <Link>Reflx\DefaultAssemblyResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ReflectionExt.cs">
-      <Link>Reflx\ReflectionExt.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssembly.cs">
-      <Link>Reflx\TypeAndAssembly.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssemblyParser.cs">
-      <Link>Reflx\TypeAndAssemblyParser.cs</Link>
-    </Compile>
     <Compile Include="..\Ria\IPipelineExecutor.cs">
       <Link>Ria\IPipelineExecutor.cs</Link>
     </Compile>
@@ -158,6 +146,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reflx\AssemblyHelper.cs" />
+    <Compile Include="Reflx\AssemblyLoader.cs" />
+    <Compile Include="Reflx\AssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\DefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\FieldHelper.cs" />
+    <Compile Include="Reflx\IAssemblyHelper.cs" />
+    <Compile Include="Reflx\IAssemblyLoader.cs" />
+    <Compile Include="Reflx\IAssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\IDefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\IFieldHelper.cs" />
+    <Compile Include="Reflx\IMemberHelper.cs" />
+    <Compile Include="Reflx\IParameterHelper.cs" />
+    <Compile Include="Reflx\IPropertyHelper.cs" />
+    <Compile Include="Reflx\ITypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\ITypeHelper.cs" />
+    <Compile Include="Reflx\MemberHelper.cs" />
+    <Compile Include="Reflx\ParameterHelper.cs" />
+    <Compile Include="Reflx\PropertyHelper.cs" />
+    <Compile Include="Reflx\TypeAndAssembly.cs" />
+    <Compile Include="Reflx\TypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\TypeHelper.cs" />
     <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
     <Compile Include="Serena\SecurityExt.cs" />
     <Compile Include="Tipe\DataType.cs" />
