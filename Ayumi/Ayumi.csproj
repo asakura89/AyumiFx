@@ -37,9 +37,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Dfy\DownloadFileInfo.cs">
-      <Link>Dfy\DownloadFileInfo.cs</Link>
-    </Compile>
     <Compile Include="..\Eqx\Eqx.cs">
       <Link>Eqx\Eqx.cs</Link>
     </Compile>
@@ -84,6 +81,7 @@
     <Compile Include="Backstreet\CommandLine.cs" />
     <Compile Include="Backstreet\CommandLineArgument.cs" />
     <Compile Include="Databossy\Database.cs" />
+    <Compile Include="Dfy\DownloadFileInfo.cs" />
     <Compile Include="Eksmaru\IXmlHelper.cs" />
     <Compile Include="Eksmaru\XmlHelper.cs" />
     <Compile Include="Emi\Emitter.cs" />
