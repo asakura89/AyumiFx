@@ -37,9 +37,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Haru\Storage.cs">
-      <Link>Haru\Storage.cs</Link>
-    </Compile>
     <Compile Include="..\KamenReader\KamenReader\Ext.cs">
       <Link>KamenReader\Ext.cs</Link>
     </Compile>
@@ -78,6 +75,9 @@
     <Compile Include="Emi\XmlEventDefinitionLoader.cs" />
     <Compile Include="Eqx\Eqx.cs" />
     <Compile Include="Exy\ExceptionExt.cs" />
+    <Compile Include="Haru\IPersistence.cs" />
+    <Compile Include="Haru\IStorage.cs" />
+    <Compile Include="Haru\Storage.cs" />
     <Compile Include="Itsu\DateTimeExt.cs" />
     <Compile Include="Keywielder\Wielder.cs" />
     <Compile Include="Meutia\IServiceRegistry.cs" />
