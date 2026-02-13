@@ -37,213 +37,99 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AppSea\AppConfig.cs">
-      <Link>AppSea\AppConfig.cs</Link>
-    </Compile>
-    <Compile Include="..\Arvy\ActionResponseViewModel.cs">
-      <Link>Arvy\ActionResponseViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\Databossy\Databossy\Database.cs">
-      <Link>Databossy\Database.cs</Link>
-    </Compile>
-    <Compile Include="..\Dfy\DownloadFileInfo.cs">
-      <Link>Dfy\DownloadFileInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Eksmaru\XmlExt.cs">
-      <Link>Eksmaru\XmlExt.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\Emitter.cs">
-      <Link>Emi\Emitter.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\EmitterEventArgs.cs">
-      <Link>Emi\EmitterEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\EmitterException.cs">
-      <Link>Emi\EmitterException.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\IEmitter.cs">
-      <Link>Emi\IEmitter.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\IEmitterLoader.cs">
-      <Link>Emi\IEmitterLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\IEventRegistrar.cs">
-      <Link>Emi\IEventRegistrar.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlConfigEmitterLoader.cs">
-      <Link>Emi\XmlConfigEmitterLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlConfigEventRegistrar.cs">
-      <Link>Emi\XmlConfigEventRegistrar.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlEventDefinition.cs">
-      <Link>Emi\XmlEventDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\Emi\XmlEventDefinitionLoader.cs">
-      <Link>Emi\XmlEventDefinitionLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Eqx\Eqx.cs">
-      <Link>Eqx\Eqx.cs</Link>
-    </Compile>
-    <Compile Include="..\Exy\ExceptionExt.cs">
-      <Link>Exy\ExceptionExt.cs</Link>
-    </Compile>
-    <Compile Include="..\Haru\Storage.cs">
-      <Link>Haru\Storage.cs</Link>
-    </Compile>
-    <Compile Include="..\Itsu\DateTimeExt.cs">
-      <Link>Itsu\DateTimeExt.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\Ext.cs">
-      <Link>KamenReader\Ext.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FileReaderMap.cs">
-      <Link>KamenReader\FileReaderMap.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FileReaderResult.cs">
-      <Link>KamenReader\FileReaderResult.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\FixedLengthReader.cs">
-      <Link>KamenReader\FixedLengthReader.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\GridData.cs">
-      <Link>KamenReader\GridData.cs</Link>
-    </Compile>
-    <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
-      <Link>KamenReader\IFileReader.cs</Link>
-    </Compile>
-    <Compile Include="..\Keywielder\KeyWielder\Wielder.cs">
-      <Link>Keywielder\Wielder.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\IServiceRegistry.cs">
-      <Link>Meutia\IServiceRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\ServiceInstanceNotFoundException.cs">
-      <Link>Meutia\ServiceInstanceNotFoundException.cs</Link>
-    </Compile>
-    <Compile Include="..\Meutia\ServiceRegistry.cs">
-      <Link>Meutia\ServiceRegistry.cs</Link>
-    </Compile>
-    <Compile Include="..\Nvy\NameValueItem.cs">
-      <Link>Nvy\NameValueItem.cs</Link>
-    </Compile>
-    <Compile Include="..\Pocho\Creator.cs">
-      <Link>Pocho\Creator.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyHelper.cs">
-      <Link>Reflx\AssemblyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyLoader.cs">
-      <Link>Reflx\AssemblyLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\AssemblyVersionHelper.cs">
-      <Link>Reflx\AssemblyVersionHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\DefaultAssemblyResolver.cs">
-      <Link>Reflx\DefaultAssemblyResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\FieldHelper.cs">
-      <Link>Reflx\FieldHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyHelper.cs">
-      <Link>Reflx\IAssemblyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyLoader.cs">
-      <Link>Reflx\IAssemblyLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IAssemblyVersionHelper.cs">
-      <Link>Reflx\IAssemblyVersionHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IDefaultAssemblyResolver.cs">
-      <Link>Reflx\IDefaultAssemblyResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IFieldHelper.cs">
-      <Link>Reflx\IFieldHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IMemberHelper.cs">
-      <Link>Reflx\IMemberHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IParameterHelper.cs">
-      <Link>Reflx\IParameterHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\IPropertyHelper.cs">
-      <Link>Reflx\IPropertyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ITypeAndAssemblyParser.cs">
-      <Link>Reflx\ITypeAndAssemblyParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ITypeHelper.cs">
-      <Link>Reflx\ITypeHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\MemberHelper.cs">
-      <Link>Reflx\MemberHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\ParameterHelper.cs">
-      <Link>Reflx\ParameterHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\PropertyHelper.cs">
-      <Link>Reflx\PropertyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssembly.cs">
-      <Link>Reflx\TypeAndAssembly.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeAndAssemblyParser.cs">
-      <Link>Reflx\TypeAndAssemblyParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Reflx\TypeHelper.cs">
-      <Link>Reflx\TypeHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\IPipelineExecutor.cs">
-      <Link>Ria\IPipelineExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\IPipelineLoader.cs">
-      <Link>Ria\IPipelineLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineContext.cs">
-      <Link>Ria\PipelineContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineException.cs">
-      <Link>Ria\PipelineException.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\PipelineExecutor.cs">
-      <Link>Ria\PipelineExecutor.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlConfigPipelineLoader.cs">
-      <Link>Ria\XmlConfigPipelineLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlPipelineActionDefinition.cs">
-      <Link>Ria\XmlPipelineActionDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
-      <Link>Ria\XmlPipelinesDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\RyaNG\RyandomNumberGenerator.cs">
-      <Link>RyaNG\RyandomNumberGenerator.cs</Link>
-    </Compile>
-    <Compile Include="..\Serena\SecurityExt.cs">
-      <Link>Serena\SecurityExt.cs</Link>
-    </Compile>
-    <Compile Include="..\Tipe\DataType.cs">
-      <Link>Tipe\DataType.cs</Link>
-    </Compile>
+    <Compile Include="AppSea\AppConfig.cs" />
+    <Compile Include="Arvy\ActionResponseViewModel.cs" />
+    <Compile Include="Backstreet\CommandLine.cs" />
+    <Compile Include="Backstreet\CommandLineArgument.cs" />
+    <Compile Include="Buruku\BulkColumnAttribute.cs" />
+    <Compile Include="Buruku\BulkService.cs" />
+    <Compile Include="Buruku\IBulkService.cs" />
+    <Compile Include="Databossy\Database.cs" />
+    <Compile Include="Dfy\DownloadFileInfo.cs" />
+    <Compile Include="Eksmaru\IXmlHelper.cs" />
+    <Compile Include="Eksmaru\XmlHelper.cs" />
+    <Compile Include="Emi\Emitter.cs" />
+    <Compile Include="Emi\EmitterEventArgs.cs" />
+    <Compile Include="Emi\EmitterException.cs" />
+    <Compile Include="Emi\IEmitter.cs" />
+    <Compile Include="Emi\IEmitterLoader.cs" />
+    <Compile Include="Emi\IEventRegistrar.cs" />
+    <Compile Include="Emi\XmlConfigEmitterLoader.cs" />
+    <Compile Include="Emi\XmlConfigEventRegistrar.cs" />
+    <Compile Include="Emi\XmlEventDefinition.cs" />
+    <Compile Include="Emi\XmlEventDefinitionLoader.cs" />
+    <Compile Include="Eqx\Eqx.cs" />
+    <Compile Include="Exy\ExceptionExt.cs" />
+    <Compile Include="Haru\IPersistence.cs" />
+    <Compile Include="Haru\IStorage.cs" />
+    <Compile Include="Haru\Storage.cs" />
+    <Compile Include="Itsu\DateTimeExt.cs" />
+    <Compile Include="KamenReader\Ext.cs" />
+    <Compile Include="KamenReader\FileReaderMap.cs" />
+    <Compile Include="KamenReader\FileReaderResult.cs" />
+    <Compile Include="KamenReader\FixedLengthReader.cs" />
+    <Compile Include="KamenReader\GridData.cs" />
+    <Compile Include="KamenReader\IFileReader.cs" />
+    <Compile Include="Keywielder\Wielder.cs" />
+    <Compile Include="Meutia\IServiceRegistry.cs" />
+    <Compile Include="Meutia\ServiceInstanceNotFoundException.cs" />
+    <Compile Include="Meutia\ServiceRegistry.cs" />
+    <Compile Include="Nvy\NameValueItem.cs" />
+    <Compile Include="Pocho\Creator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="Puru\DynamicTypeLoader.cs" />
+    <Compile Include="Puru\IPlugin.cs" />
+    <Compile Include="Puru\PluginInfoAttribute.cs" />
+    <Compile Include="Reflx\AssemblyHelper.cs" />
+    <Compile Include="Reflx\AssemblyLoader.cs" />
+    <Compile Include="Reflx\AssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\DefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\FieldHelper.cs" />
+    <Compile Include="Reflx\IAssemblyHelper.cs" />
+    <Compile Include="Reflx\IAssemblyLoader.cs" />
+    <Compile Include="Reflx\IAssemblyVersionHelper.cs" />
+    <Compile Include="Reflx\IDefaultAssemblyResolver.cs" />
+    <Compile Include="Reflx\IFieldHelper.cs" />
+    <Compile Include="Reflx\IMemberHelper.cs" />
+    <Compile Include="Reflx\IParameterHelper.cs" />
+    <Compile Include="Reflx\IPropertyHelper.cs" />
+    <Compile Include="Reflx\ITypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\ITypeHelper.cs" />
+    <Compile Include="Reflx\MemberHelper.cs" />
+    <Compile Include="Reflx\ParameterHelper.cs" />
+    <Compile Include="Reflx\PropertyHelper.cs" />
+    <Compile Include="Reflx\TypeAndAssembly.cs" />
+    <Compile Include="Reflx\TypeAndAssemblyParser.cs" />
+    <Compile Include="Reflx\TypeHelper.cs" />
+    <Compile Include="Ria\IPipelineExecutor.cs" />
+    <Compile Include="Ria\IPipelineLoader.cs" />
+    <Compile Include="Ria\PipelineContext.cs" />
+    <Compile Include="Ria\PipelineException.cs" />
+    <Compile Include="Ria\PipelineExecutor.cs" />
+    <Compile Include="Ria\XmlConfigPipelineLoader.cs" />
+    <Compile Include="Ria\XmlPipelineActionDefinition.cs" />
+    <Compile Include="Ria\XmlPipelinesDefinition.cs" />
+    <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
+    <Compile Include="Serena\SecurityExt.cs" />
+    <Compile Include="Tipe\DataType.cs" />
+    <Compile Include="Varya\StringExt.cs" />
+    <Compile Include="Vily\Validated.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Emi\emitter.config.xml" />
     <Content Include="Properties\AssemblyVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
     </Content>
+    <Content Include="Ria\pipeline.config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Backstreet\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
