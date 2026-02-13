@@ -13,9 +13,6 @@
 [submodule "Meutia"]
 	path = Meutia
 	url = https://github.com/asakura89/Meutia
-[submodule "Arvy"]
-	path = Arvy
-	url = https://github.com/asakura89/Arvy
 [submodule "Keywielder"]
 	path = Keywielder
 	url = https://github.com/asakura89/Keywielder
