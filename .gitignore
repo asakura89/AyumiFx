@@ -311,3 +311,5 @@ build-log.txt
 # > Project spesific
 !**/CSScratchpad/Data/*
 !SQLScratchpad/Data/*
+wwwroot/
+
