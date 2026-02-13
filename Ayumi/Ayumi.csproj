@@ -151,9 +151,6 @@
     <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
       <Link>Ria\XmlPipelinesDefinition.cs</Link>
     </Compile>
-    <Compile Include="..\Serena\SecurityExt.cs">
-      <Link>Serena\SecurityExt.cs</Link>
-    </Compile>
     <Compile Include="AppSea\AppConfig.cs" />
     <Compile Include="Arvy\ActionResponseViewModel.cs" />
     <Compile Include="Databossy\Database.cs" />
@@ -165,6 +162,7 @@
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
     <Compile Include="RyaNG\RyandomNumberGenerator.cs" />
+    <Compile Include="Serena\SecurityExt.cs" />
     <Compile Include="Tipe\DataType.cs" />
   </ItemGroup>
   <ItemGroup>
