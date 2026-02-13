@@ -1,24 +1,15 @@
-[submodule "Meutia"]
-	path = Meutia
-	url = https://github.com/asakura89/Meutia
 [submodule "Itsu"]
 	path = Itsu
 	url = https://github.com/asakura89/Itsu
 [submodule "Haru"]
 	path = Haru
 	url = https://github.com/asakura89/Haru
-[submodule "Eqx"]
-	path = Eqx
-	url = https://github.com/asakura89/Eqx
 [submodule "Shiro"]
 	path = Shiro
 	url = https://github.com/asakura89/Shiro
 [submodule "Pocho"]
 	path = Pocho
 	url = https://github.com/asakura89/Pocho
-[submodule "Dfy"]
-	path = Dfy
-	url = https://github.com/asakura89/Dfy
 [submodule "Puru"]
 	path = Puru
 	url = https://github.com/asakura89/Puru
@@ -28,9 +19,6 @@
 [submodule "Nino"]
 	path = Nino
 	url = https://github.com/asakura89/Nino
-[submodule "Maaya"]
-	path = Maaya
-	url = https://github.com/asakura89/Maaya
 [submodule "Buruku"]
 	path = Buruku
 	url = https://github.com/asakura89/Buruku
