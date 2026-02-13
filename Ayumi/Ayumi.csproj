@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09115916-AEE0-40FB-AE74-CDC0FA291EB5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ayumi</RootNamespace>
+    <AssemblyName>Ayumi</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AppSea\AppConfig.cs">
+      <Link>AppSea\AppConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Arvy\ActionResponseViewModel.cs">
+      <Link>Arvy\ActionResponseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Databossy\Databossy\Database.cs">
+      <Link>Databossy\Database.cs</Link>
+    </Compile>
+    <Compile Include="..\Dfy\DownloadFileInfo.cs">
+      <Link>Dfy\DownloadFileInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Eksmaru\XmlExt.cs">
+      <Link>Eksmaru\XmlExt.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\Emitter.cs">
+      <Link>Emi\Emitter.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\EmitterEventArgs.cs">
+      <Link>Emi\EmitterEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\EmitterException.cs">
+      <Link>Emi\EmitterException.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\IEmitterLoader.cs">
+      <Link>Emi\IEmitterLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\IEventRegistrar.cs">
+      <Link>Emi\IEventRegistrar.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\XmlConfigEmitterLoader.cs">
+      <Link>Emi\XmlConfigEmitterLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\XmlConfigEventRegistrar.cs">
+      <Link>Emi\XmlConfigEventRegistrar.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\XmlEventDefinition.cs">
+      <Link>Emi\XmlEventDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Emi\XmlEventDefinitionLoader.cs">
+      <Link>Emi\XmlEventDefinitionLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Eqx\Eqx.cs">
+      <Link>Eqx\Eqx.cs</Link>
+    </Compile>
+    <Compile Include="..\Exy\ExceptionExt.cs">
+      <Link>Exy\ExceptionExt.cs</Link>
+    </Compile>
+    <Compile Include="..\Haru\Storage.cs">
+      <Link>Haru\Storage.cs</Link>
+    </Compile>
+    <Compile Include="..\Itsu\DateTimeExt.cs">
+      <Link>Itsu\DateTimeExt.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\Ext.cs">
+      <Link>KamenReader\Ext.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\FileReaderMap.cs">
+      <Link>KamenReader\FileReaderMap.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\FileReaderResult.cs">
+      <Link>KamenReader\FileReaderResult.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\FixedLengthReader.cs">
+      <Link>KamenReader\FixedLengthReader.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\GridData.cs">
+      <Link>KamenReader\GridData.cs</Link>
+    </Compile>
+    <Compile Include="..\KamenReader\KamenReader\IFileReader.cs">
+      <Link>KamenReader\IFileReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Keywielder\KeyWielder\Wielder.cs">
+      <Link>Keywielder\Wielder.cs</Link>
+    </Compile>
+    <Compile Include="..\Meutia\IServiceRegistry.cs">
+      <Link>Meutia\IServiceRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Meutia\ServiceInstanceNotFoundException.cs">
+      <Link>Meutia\ServiceInstanceNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\Meutia\ServiceRegistry.cs">
+      <Link>Meutia\ServiceRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Nvy\NameValueItem.cs">
+      <Link>Nvy\NameValueItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Pocho\Creator.cs">
+      <Link>Pocho\Creator.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\DefaultAssemblyResolver.cs">
+      <Link>Reflx\DefaultAssemblyResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\ReflectionExt.cs">
+      <Link>Reflx\ReflectionExt.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\TypeAndAssembly.cs">
+      <Link>Reflx\TypeAndAssembly.cs</Link>
+    </Compile>
+    <Compile Include="..\Reflx\TypeAndAssemblyParser.cs">
+      <Link>Reflx\TypeAndAssemblyParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\IPipelineExecutor.cs">
+      <Link>Ria\IPipelineExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\IPipelineLoader.cs">
+      <Link>Ria\IPipelineLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\PipelineContext.cs">
+      <Link>Ria\PipelineContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\PipelineException.cs">
+      <Link>Ria\PipelineException.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\PipelineExecutor.cs">
+      <Link>Ria\PipelineExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\XmlConfigPipelineLoader.cs">
+      <Link>Ria\XmlConfigPipelineLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\XmlPipelineActionDefinition.cs">
+      <Link>Ria\XmlPipelineActionDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\Ria\XmlPipelinesDefinition.cs">
+      <Link>Ria\XmlPipelinesDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\RyaNG\RyandomNumberGenerator.cs">
+      <Link>RyaNG\RyandomNumberGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\Serena\SecurityExt.cs">
+      <Link>Serena\SecurityExt.cs</Link>
+    </Compile>
+    <Compile Include="..\Tipe\DataType.cs">
+      <Link>Tipe\DataType.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyVersion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyVersion.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AssemblyVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backstreet\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
