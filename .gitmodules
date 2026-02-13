@@ -1,6 +1,3 @@
-[submodule "Databossy"]
-	path = Databossy
-	url = https://github.com/asakura89/Databossy
 [submodule "Ria"]
 	path = Ria
 	url = https://github.com/asakura89/Ria
